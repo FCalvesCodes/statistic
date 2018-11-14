@@ -1,5 +1,6 @@
 # coding:utf-8
-#
+#FelipeAlmeid4
+
 from func import Basic, RawData, GroupedData
 import os
 import time
