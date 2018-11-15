@@ -1,297 +1,110 @@
-# coding:utf-8
-#FelipeAlmeid4
+#! data/data/com.termux/files/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-from func import Basic, RawData, GroupedData
+
+#Arquivo principal
+#Medida de dispersão
+
+from func import Basic
 import os
 import time
 
 basic = Basic()
-rawdata = RawData()
-groupeddata = GroupedData()
+
+# -------------- Variáveis em geral ------------------
+x1= 0					#Média aritmética
+sum_x2 = 0
+sum_x3 = 0
+sum_x4 = 0
+sum_xi = 0
+quant_xi = 0 	 #len(xi)
+
+list_x2 = []		  #xi - "x-barra"
+list_x3 = []		  #|xi - "x-barra"|
+list_x4 = []		  #(xi - "x-barra")^2
+list_xi = []		   # xi
+
+is_error = False
 
 
-_list = []
-_sum = 0
-_arithmetic_mean = 0
+commands1 = ["[1] - Dados brutos",\
+								"[2] - Dados Agrupados",\
+								"[3] - Sobre",\
+								"[4] - Sair"]
 
-#xi - "x-barra"
-_xi_x = []
-_sum_xi_x = 0
-
-#(xi - "x-barra")²
-xi_x_2 = []
-_sum_xi_x_2 = 0
-
-#Número da classes de dados agrupados
-n_ = 0
-
-#fi
-fi = []
-sum_fi = 0
-
-#xi
-xi = []
-sum_xi =0
-
-#xi.fi
-xi_fi = []
-sum_xi_fi = 0
-
-
-
-commands = ["[1] - Adicionar dados brutos", \
-							"[2] - Amplitude Total", \
-							"[3] - Desvio Médio simples",\
-							"[4] - Desvio Padrão",\
-							"[5] - Adicionar fi e xi (Dados agrupados)",\
-							"[6] - Aprender calcular xi (Dados agrupados)",\
-							"[7] - Mostrar tabela completa (Dados Agrupados)",\
-							"[6] - Sair"]
-
-commands2 = ["[1] - Dados brutos", "Dados Agrupados"]
-
-table ="""
- i | dados | fi\
- i |xmin|-x| fi
- i |x |-- x| fi 
- i |x |-- x| fi 
- i |x|-xmax| fi 
- """
-
-
-# ------------------------------------------------------------------------------
-def input_error(string):
-	""" Tratamento de error no while principal. """
-	global commands
-	n = len(commands)
+commands2 = ["[1] - Amplitude total",\
+								"[2] - Desvio médio simples",\
+								"[3] - Desvio padrão",\
+								"[4] - Todos(1, 2, 3)",\
+								"[5] - Retornar"]
+								
+def data_entry(raw_data):
+	#raw_data - "dados brutos"
+	global list_xi
+	global is_error
 	
-	while 1:
-		try:
-			x = int(input(string))
-			if x > n:
-				print("Opção Invalida.")
-			else:
-				break
-		except:
-			print("Opção invalida.")
-	return x
-
-# ------------------------------------------------------------------------------
-def arithmetic_mean(indice):
-	#Média aritmética
-	global _list
-	global _sum
+	if raw_data == True:
+		print("Exemplo:\n\txi: 14,15,63,10,52,10,59\n")
+		string_xi = str(input("xi: ")).replace(" ","")
+		list_xi = basic.dismemberment(string_xi)
 		
-	for n in _list[indice]:
-		_sum += n
-	m = round(_sum/len(_list[indice]), 2)
-	print(f"\n Tirando a Média aritmética: {m}\n")
-	_sum = 0
-	return m
-
-
-def input_xi_fi():
-	"""Responsavel por receber fi e xi para dados agrupados."""
-	global fi
-	global xi
-	
-	print("\nExemplo: fi: 10,30,20,10,30,40")
-	print("Exemplo:   xi: 200,400,600,800,1000,1200\n")
-	print("\txi é a soma amplitude minima e maxima da classe dividida por 2 (média aritmética)\n")
-	string_fi = input("fi:")
-	strin_xi = input("xi:")
-	
-	base = ""
-	
-	for n in string_fi:
-		if n == ",":
-			fi.append(int(base))
+		if not len(list_xi) > 0:
+			is_error = True
+			return
 		else:
-			base += n
+			print(f"xi = {list_xi}")
+			input("...")
 			
-	base = ""
-	
-	for n in string_xi:
-		if n == ",":
-			fi.append(int(base))
+			
+	else:
+		print("Exemplo:\n\txi: 14,15,63,10,52,10,59\n\tfi: 500,700,900,1100,1300,1500,1700\n")
+		
+		string_xi = str(input("xi: ")).replace(" ", "")
+		string_fi = str(input("fi: ")).replace(" ","")
+		
+		list_xi = basic.dismemberment(string_xi)
+		list_fi = basic.dismemberment(string_fi)
+		
+		if not len(list_xi) > 0 or len(list_xi) != len(list_fi):
+			is_error = True
+			return
 		else:
-			base += n
-	
-	if len(xi) == len(fi):
-		for i in range(0, len(xi)):
-			print(f"classe:{i+1} - fi:{fi[i]} - xi:{xi[i]}")
-	else:
-		print("Dados não batem!")
-		
-	
-# ------------------------------------------------------------------------------
-def input_list():
-	""" Responsavel em receber os dados da
-			lista. """
-	global _list
-	
-	list_ = []
-	
-	n = int(input("Quantidade de dados: "))
-	modo = input("Inteiro/Real: ")
-	
-	for i in range(1, n+1):
-		
-		if modo.lower() == "inteiro":
-			while 1:
-				try:
-					d = int(input("{} - : ".format(i)))
-					list_.append(d)
-					break
-				except:
-					print("Dados inválidos. ")
-					
-		elif modo.lower() == "real":
-			while 1:
-				try:
-					d = float(input("{} - : ".format(i)))
-					list_.append(d)
-					break
-				except:
-					print("Dados inválidos. ")
-					
-	_list.append(list_)
-	print(_list[-1])
-	input("...")
-
-# ------------------------------------------------------------------------------
-def print_list():
-	""" Imprime os dados armazenados em _list
-			com seu indice na lista. """
-	global _list
-	for indice, list_ in enumerate(_list):
-		print("[{}]-- {}".format(indice, list_))
-		
-# ------------------------------------------------------------------------------
-def total_amplitude():
-	#Amplitude total dados brutos
-	global _list
-	
-	if len(_list) != 0:
-		print_list()
-		ind = int(input("Indice: "))
-		
-		print("\nColocando a lista em ordem.")
-		_list_ = basic.ordination(_list[ind])
-	
-		at = rawdata.total_amplitude(_list_)
-	
-		print(f"Amplitude total é {at}")
-		input("...")
-	else:
-		print("Não foi criado dados ainda.")
-		time.sleep(1)
-
-def total_amplitude():
-	#Amplitude total Dados Agrupados
-	pass
-	
-# ------------------------------------------------------------------------------
-def simple_mean_deviation():
-	#Desvio médio simples
-	global _list
-	global _arithmetic_mean
-	global _xi_xi
-	global _sum_xi_x
-	
-	if len(_list) > 0:
-		print_list()
-	
-		ind = int(input("Indice: "))
-	
-		_arithmetic_mean = round(arithmetic_mean(ind), 2)
-		
-		
-		#Cria uma lista xi-x
-		for i, xi in enumerate(_list[ind]):
-			_xi_x.append(round(abs(xi - _arithmetic_mean), 4))
-			print(f"x{i+1}: {xi} - {_arithmetic_mean} = {round(abs(xi - _arithmetic_mean), 4)}")
-		
-		#Faz a somatória 
-		for  E in _xi_x:
-			_sum_xi_x+= E
-		print(f"\n\tSomatória: {round(_sum_xi_x, 2)}")
-		
-		dms = round(_sum_xi_x/len(_list[ind]), 2)
-		print(f"Desvio médio simples é {dms}")
-		_xi_x = []
-		_sum_xi_x = 0
-		_arithmetic_mean = 0
-		input("...")
-	else:
-		print("Não foi criado dados ainda.")
-
-# ------------------------------------------------------------------------------
-def standard_deviation():
-	#Desvio padrão
-	global _list
-	global _xi_x_2
-	global _sum_xi_x_2
-	
-	if len(_list) > 0:
-		print_list()
-	
-		ind = int(input("Indice: "))
-	
-		_arithmetic_mean = round(arithmetic_mean(ind), 2)
-		
-		
-		#Cria uma lista xi-x
-		for i, xi in enumerate(_list[ind]):
-			x = abs(xi - _arithmetic_mean)
-			_xi_x_2.append(round(x**2, 2))
-			print(f"x{i+1}: ({xi} - {_arithmetic_mean})²= {round(x**2, 2)}")
-		
-		#Faz a somatória 
-		for  E in _xi_x_2:
-			_sum_xi_x_2 += E
-		_sum_xi_x_2 = round(_sum_xi_x_2, 2)
-		
-		print(f"\n\tSomatória: {_sum_xi_x_2}")
-		a = round(_sum_xi_x_2/len(_list[ind]), 2)
-		b = round(a**0.5, 2)
-		print(f"\n\tDesvio Padrão é {b}.")
-		_sum_xi_x_2 = 0
-		_xi_x_2 = []
-		
-		input("...")
-	
-	else:
-		print("Não foi criado dados ainda.")
-	
-	
+			print(f"xi = {list_xi}")
+			print(f"fi = {list_fi}")
+			input("...")
+			
 
 while 1:
 	os.system("clear")
-	#Apresentação das opções
-	for command in commands:
+	
+	for command in commands1:
 		print(command)
-		
-	x = str(input_error("Opção: "))
 	
-	if x == "1":
-		input_list()
-	elif x == "2":
-		total_amplitude()
-	elif x == "3":
-		simple_mean_deviation()
-	elif x == "4":
-		standard_deviation()
-	elif x == "5":
+	res1 = input("Opção: ")
+	
+	if res1 == "1":
+		data_entry(True)
+		while 1:
+			os.system("clear")
+			print("===== Modo Dados Brutos =====\n")
+			input()
+			break
+	elif res1 == "2":
+		data_entry(False)
+		while 1:
+			os.system("clear")
+			print("===== Modo Dados Agrupados =====\n")
+			input()
+			break
+	elif res1 == "3":
 		pass
-	elif x == "6":
+	elif res1 == "4":
 		break
-	
 		
 	
-	
+		
+		
 
 
 
-		
-		
+
