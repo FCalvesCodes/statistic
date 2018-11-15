@@ -18,10 +18,12 @@ _arithmetic_mean = 0
 _xi_x = []
 _sum_xi_x = 0
 
-#xi - "x-barra"^2
+#(xi - "x-barra")²
 xi_x_2 = []
 _sum_xi_x_2 = 0
 
+#Número da classes de dados agrupados
+n_ = 0
 
 #fi
 fi = []
@@ -35,9 +37,6 @@ sum_xi =0
 xi_fi = []
 sum_xi_fi = 0
 
-#
-
-
 
 
 commands = ["[1] - Adicionar dados brutos", \
@@ -50,6 +49,14 @@ commands = ["[1] - Adicionar dados brutos", \
 							"[6] - Sair"]
 
 commands2 = ["[1] - Dados brutos", "Dados Agrupados"]
+
+table ="""
+ i | dados | fi\
+ i |xmin|-x| fi
+ i |x |-- x| fi 
+ i |x |-- x| fi 
+ i |x|-xmax| fi 
+ """
 
 
 # ------------------------------------------------------------------------------
@@ -81,6 +88,41 @@ def arithmetic_mean(indice):
 	print(f"\n Tirando a Média aritmética: {m}\n")
 	_sum = 0
 	return m
+
+
+def input_xi_fi():
+	"""Responsavel por receber fi e xi para dados agrupados."""
+	global fi
+	global xi
+	
+	print("\nExemplo: fi: 10,30,20,10,30,40")
+	print("Exemplo:   xi: 200,400,600,800,1000,1200\n")
+	print("\txi é a soma amplitude minima e maxima da classe dividida por 2 (média aritmética)\n")
+	string_fi = input("fi:")
+	strin_xi = input("xi:")
+	
+	base = ""
+	
+	for n in string_fi:
+		if n == ",":
+			fi.append(int(base))
+		else:
+			base += n
+			
+	base = ""
+	
+	for n in string_xi:
+		if n == ",":
+			fi.append(int(base))
+		else:
+			base += n
+	
+	if len(xi) == len(fi):
+		for i in range(0, len(xi)):
+			print(f"classe:{i+1} - fi:{fi[i]} - xi:{xi[i]}")
+	else:
+		print("Dados não batem!")
+		
 	
 # ------------------------------------------------------------------------------
 def input_list():

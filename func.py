@@ -32,6 +32,17 @@ class GroupedData(object):
 	def __init__(self):
 		pass
 
-	
+	def calculate_xi_fi(self, list_xi, list_fi):
+		#xi.fi
+		pass
+	def calculate_xi_x(self, list_xi, x):
+		#|xi-'x-barra'|
+		pass
 		
+	def calculate_fi_x_2(self, list_fi, list_xi_x):
+		#fi.|xi-'x-barra'
+		pass
 	
+	def calculate_fi_xi_x_2(self, list_fi, list_fi_x_2):
+		#fi.(xi-'x-barra')²
+		pass
