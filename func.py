@@ -45,8 +45,6 @@ class Basic(object):
 					return
 			else:
 				base += letter
-				
-		print(list_)
 		return list_
 	
 	

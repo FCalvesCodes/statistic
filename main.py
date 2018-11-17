@@ -46,17 +46,25 @@ commands2 = ["[1] - Amplitude total",\
 sobre = "Script desenvolvido para auxiliar em\n Medida de dispersão.\n\t FelipeAlmeid4."
 
 # ------------------------------------------------------------------------------------------
+def new_xi(initial, amplitude_class, amount_class):
+	list_ = []
+	
+	for x in range(0, amount_class):
+		list_.append(initial+(amplitude_class/2))
+		initial += amplitude_class
+	return list_
+
 
 def data_entry(raw_data):
 	#raw_data - bool
 	global list_xi
+	global list_fi
 	global is_error
 	
 	if raw_data == True:
 		print("Exemplo de Entrada:\n\txi: 14,15,63,10,52,10,59\n")
 		string_xi = str(input("xi: ")).replace(" ","")
 		list_xi = basic.dismemberment(string_xi)
-		print(type(list_xi))
 		
 		if len(list_xi) == 0:
 			return
@@ -66,13 +74,17 @@ def data_entry(raw_data):
 			
 			
 	else:
-		print("Exemplo de Entradas:\n\txi: 14,15,63,10,52,10,59\n\tfi: 500,700,900,1100,1300,1500,1700\n")
+		print("Exemplo de Entradas:\n\tfi: 14,15,63,10,52,10,59\n\txi:\n\t  Inicial:\n\t  Amplitude_classe:\n")
 		
-		string_xi = str(input("xi: ")).replace(" ", "")
-		string_fi = str(input("fi: ")).replace(" ","")
+		string_fi = str(input("fi: ")).replace(" ", "")
+		initial= float(input("N° inicial: "))
+		am_c = float(input("Amplitude das classes: "))
 		
-		list_xi = basic.dismemberment(string_xi)
+		
 		list_fi = basic.dismemberment(string_fi)
+		
+		qu_c = len(list_fi)
+		list_xi = new_xi(initial, am_c, qu_c)
 		
 		if len(list_xi) == 0 or list_fi == 0 or len(list_xi ) != len(list_fi):
 			return
@@ -82,7 +94,8 @@ def data_entry(raw_data):
 			input("...")
 			
 # ------------------------------------------------------------------------------------------
-# ----------- while principal do script ------------
+# -------------------- while principal do script --------------------------------
+# ------------------------------------------------------------------------------------------
 while 1:
 	os.system("clear")
 	
