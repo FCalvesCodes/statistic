@@ -19,6 +19,14 @@ class Basic(object):
 				return
 		
 		return True
+	
+	def sum_list(self, list_):
+		#Faz a soma da listae a retorna
+		sum = 0
+		for n in list_:
+			sum += n
+			
+		return sum
 		
 	def dismemberment(self, string):
 		# Desmembramento de string

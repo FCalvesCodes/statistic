@@ -30,12 +30,15 @@ list_xi = []		   # xi
 
 list_fi = []
 is_raw_data = False
+decimal = 2
 
+at = 0
 
-commands1 = ["[1] - Dados brutos",\
+commands1 = ["[1] - Dados Brutos",\
 								"[2] - Dados Agrupados",\
 								"[3] - Sobre",\
-								"[4] - Sair"]
+								"[4] - Configurar casa decimal",\
+							    "[5] - Sair"]
 
 commands2 = ["[1] - Amplitude total",\
 								"[2] - Desvio médio simples",\
@@ -43,7 +46,10 @@ commands2 = ["[1] - Amplitude total",\
 								"[4] - Todos(1, 2, 3)",\
 								"[5] - Retornar"]
 
-sobre = "Script desenvolvido para auxiliar em\n Medida de dispersão.\n\t FelipeAlmeid4."
+sobre = "Script desenvolvido para auxiliar em\n Medida de dispersão.\n\t github: FelipeAlmeid4."
+
+def total_amplitude(at):
+	print(f"\n\t Amplitude Total:{at}\n")
 
 # ------------------------------------------------------------------------------------------
 def new_xi(initial, amplitude_class, amount_class):
@@ -54,6 +60,12 @@ def new_xi(initial, amplitude_class, amount_class):
 		initial += amplitude_class
 	return list_
 
+# -------------------------------------------------------------------------------
+
+def reset_var():
+	global list_xi
+
+# -------------------------------------------------------------------------------
 
 def data_entry(raw_data):
 	#raw_data - bool
@@ -69,6 +81,7 @@ def data_entry(raw_data):
 		if len(list_xi) == 0:
 			return
 		else:
+			os.system("clear")
 			print(f"xi = {list_xi}")
 			input("...")
 			
@@ -96,8 +109,12 @@ def data_entry(raw_data):
 # ------------------------------------------------------------------------------------------
 # -------------------- while principal do script --------------------------------
 # ------------------------------------------------------------------------------------------
+
 while 1:
 	os.system("clear")
+	
+	print(basic.terminal_size("Medida de dispersão", "+"))
+	print(f"\t\t   Decimal:  {decimal}\n")
 	
 	for command in commands1:
 		print(command)
@@ -105,30 +122,59 @@ while 1:
 	res1 = input("Opção: ")
 	
 	if res1 == "1":
+		#Dados brutos
 		data_entry(True)
 		if len(list_xi) > 1:
+			
+			#Ler soma list
+			sum_xi = basic.sum_list(list_xi)
+			quant_xi = len(list_xi)
+			
+			
+			# ------------------------------------------------------------------------------------------
+		    # -------------------- while principal do submenu --------------------------------
+            # ------------------------------------------------------------------------------------------
 			while 1:
 				is_raw_data = True
 				os.system("clear")
 				print(basic.terminal_size(modo_1, "="))
+				print(basic.terminal_size(f"xi:{list_xi}", " "))
+				print("\n")
+				
 				for command in commands2:
 					print(command)
-				input("...")
+				
+				res2 = input("Opção: ")
+				
+				if res2 == "1":
+					#Amplitude total
+					total_amplitude(statistic.total_amplitude1(statistic.rol_raw_data(list_xi)))
+					input("...")
+					
 		else:
 			print("Dados Inválidos.")
 			time.sleep(1)
 			
 			
 			
+			
 	elif res1 == "2":
+		#Dados Agrupados
 		data_entry(False)
 		if len(list_xi) > 1 and len(list_fi) > 1 and len(list_xi) == len(list_fi):
+			
+			# ------------------------------------------------------------------------------------------
+		    # -------------------- while principal do submenu --------------------------
+            # ------------------------------------------------------------------------------------------
+			
 			while 1:
 				os.system("clear")
 				print(basic.terminal_size(modo_2, "="))
+				
 				for command in commands2:
 					print(command)
-				input("...")
+					
+				res2 = input("Opção: ")
 		else:
 			print("Dados Inválidos.")
 			time.sleep(1)
@@ -141,6 +187,10 @@ while 1:
 	
 	
 	elif res1 == "4":
+		decimal = int(input("Digite entre 0 á 5: "))
+		
+	elif res1 == "5":
+		print("exit :)")
 		break
 		
 	
