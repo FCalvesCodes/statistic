@@ -5,11 +5,15 @@
 #Arquivo principal
 #Medida de dispersão
 
-from func import Basic
+from func import Basic, Statistic
 import os
 import time
 
 basic = Basic()
+statistic = Statistic()
+
+modo_1 = "Modo Dados Brutos"
+modo_2 = "Modo Dados Agrupados"
 
 # -------------- Variáveis em geral ------------------
 x1= 0					#Média aritmética
@@ -24,7 +28,8 @@ list_x3 = []		  #|xi - "x-barra"|
 list_x4 = []		  #(xi - "x-barra")^2
 list_xi = []		   # xi
 
-is_error = False
+list_fi = []
+is_raw_data = False
 
 
 commands1 = ["[1] - Dados brutos",\
@@ -37,19 +42,23 @@ commands2 = ["[1] - Amplitude total",\
 								"[3] - Desvio padrão",\
 								"[4] - Todos(1, 2, 3)",\
 								"[5] - Retornar"]
-								
+
+sobre = "Script desenvolvido para auxiliar em\n Medida de dispersão.\n\t FelipeAlmeid4."
+
+# ------------------------------------------------------------------------------------------
+
 def data_entry(raw_data):
-	#raw_data - "dados brutos"
+	#raw_data - bool
 	global list_xi
 	global is_error
 	
 	if raw_data == True:
-		print("Exemplo:\n\txi: 14,15,63,10,52,10,59\n")
+		print("Exemplo de Entrada:\n\txi: 14,15,63,10,52,10,59\n")
 		string_xi = str(input("xi: ")).replace(" ","")
 		list_xi = basic.dismemberment(string_xi)
+		print(type(list_xi))
 		
-		if not len(list_xi) > 0:
-			is_error = True
+		if len(list_xi) == 0:
 			return
 		else:
 			print(f"xi = {list_xi}")
@@ -57,7 +66,7 @@ def data_entry(raw_data):
 			
 			
 	else:
-		print("Exemplo:\n\txi: 14,15,63,10,52,10,59\n\tfi: 500,700,900,1100,1300,1500,1700\n")
+		print("Exemplo de Entradas:\n\txi: 14,15,63,10,52,10,59\n\tfi: 500,700,900,1100,1300,1500,1700\n")
 		
 		string_xi = str(input("xi: ")).replace(" ", "")
 		string_fi = str(input("fi: ")).replace(" ","")
@@ -65,15 +74,15 @@ def data_entry(raw_data):
 		list_xi = basic.dismemberment(string_xi)
 		list_fi = basic.dismemberment(string_fi)
 		
-		if not len(list_xi) > 0 or len(list_xi) != len(list_fi):
-			is_error = True
+		if len(list_xi) == 0 or list_fi == 0 or len(list_xi ) != len(list_fi):
 			return
 		else:
 			print(f"xi = {list_xi}")
 			print(f"fi = {list_fi}")
 			input("...")
 			
-
+# ------------------------------------------------------------------------------------------
+# ----------- while principal do script ------------
 while 1:
 	os.system("clear")
 	
@@ -84,20 +93,40 @@ while 1:
 	
 	if res1 == "1":
 		data_entry(True)
-		while 1:
-			os.system("clear")
-			print("===== Modo Dados Brutos =====\n")
-			input()
-			break
+		if len(list_xi) > 1:
+			while 1:
+				is_raw_data = True
+				os.system("clear")
+				print(basic.terminal_size(modo_1, "="))
+				for command in commands2:
+					print(command)
+				input("...")
+		else:
+			print("Dados Inválidos.")
+			time.sleep(1)
+			
+			
+			
 	elif res1 == "2":
 		data_entry(False)
-		while 1:
-			os.system("clear")
-			print("===== Modo Dados Agrupados =====\n")
-			input()
-			break
+		if len(list_xi) > 1 and len(list_fi) > 1 and len(list_xi) == len(list_fi):
+			while 1:
+				os.system("clear")
+				print(basic.terminal_size(modo_2, "="))
+				for command in commands2:
+					print(command)
+				input("...")
+		else:
+			print("Dados Inválidos.")
+			time.sleep(1)
+	
+	
+	
 	elif res1 == "3":
-		pass
+		print(sobre)
+		input("...")
+	
+	
 	elif res1 == "4":
 		break
 		
