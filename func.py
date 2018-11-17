@@ -21,7 +21,7 @@ class Basic(object):
 		return True
 	
 	def sum_list(self, list_):
-		#Faz a soma da listae a retorna
+		#Faz a soma da lista a retorna
 		sum = 0
 		for n in list_:
 			sum += n
@@ -84,6 +84,7 @@ class Statistic(object):
 					list_[x] = copy
 					
 		return list_
+		
 		
 		
 		
