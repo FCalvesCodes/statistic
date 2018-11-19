@@ -58,10 +58,14 @@ commands2 = ["[1] - Amplitude total",\
 abount = ["Script desenvolvido para auxiliar em\n Medida de dispersão.\n        github: FelipeAlmeid4."]
 
 def tables(data,ult_borda= False):
+	#Cria tabela
 	tables_terminal = AsciiTable(data)
 	tables_terminal.inner_footing_row_border = ult_borda
-	tables_terminal.padding_left = 5
-	print(tables_terminal.table)
+	tables_terminal.padding_left = 2
+	if tables_terminal.ok:
+		print(tables_terminal.table)
+	else:
+		print("Tabela não pode ser visualizada, \n Reduza o zoom do terminal e tente novamente")
 	
 def arithmetic_mean1(list_):
 	global x1
@@ -76,17 +80,49 @@ def arithmetic_mean1(list_):
 
 # ------------------------------------------------------------------------------
 
+def standard_deviation():
+	#Desvio padrão
+	global decimal
+	global sum_x2
+	global is_terminaltables
+	global list_x4
+	
+	l = []
+	l.append(["xi", "xi-'x-barra'","|xi-'x-barra'|","(xi-'x-barra')²"])
+	for x in range(0, quant_xi):
+		list_x2.append(round(list_xi[x] - x1, decimal))
+		list_x3.append(abs(round(list_xi[x] - x1, decimal)))
+		list_x4.append(round(list_x3[x]**2, decimal))
+		if is_terminaltables:
+			l.append([list_xi[x], list_x2[x], list_x3[x], list_x4[x]])
+		else:
+			print(f"{list_xi[x]} - {x1} = {list_x2[x]} > |{list_x3[x]}| > {list_x4[x]}")
+	sum_x3 = round(basic.sum_list(list_x3), decimal)
+	sum_x4 = round(basic.sum_list(list_x4), decimal)
+	if is_terminaltables:
+		l.append([" ", "Σ",sum_x3, sum_x4])
+		tables(l, True)
+		dt = sum_x4/len(list_x4)
+		dt = dt**0.5
+		print(f"\n\tDesvio padrão é √({sum_x4}/{len(list_x4)}) = {round(dt, decimal)}")
+	else:
+		print(f"\n\t    Σ {sum_x3} - ({sum_x4})² ")
+	
+	
+	
 def average_mean_deviation1():
 	#Desvio médio simples
 	global decimal
 	global sum_x2
 	global is_terminaltables
+	global list_x4
+	
 	l = []
 	l.append(["xi", "xi-'x-barra'","|xi-'x-barra'|"])
 	for x in range(0, quant_xi):
 		list_x2.append(round(list_xi[x] - x1, decimal))
 		list_x3.append(abs(round(list_xi[x] - x1, decimal)))
-		
+		list_x4.append(round(list_x3[x]**2, decimal))
 		if is_terminaltables:
 			l.append([list_xi[x], list_x2[x], list_x3[x]])
 		else:
@@ -95,8 +131,10 @@ def average_mean_deviation1():
 	if is_terminaltables:
 		l.append([" ", "Σ",sum_x3])
 		tables(l, True)
+		print(f"\n\t Desvio médio simples é ({sum_x3}/{len(list_x3)}) = {round(sum_x3/len(list_x3),decimal)}")
 	else:
 		print(f"\n\t    Σ {sum_x3}")
+		
 	
 # ------------------------------------------------------------------------------------------
 
@@ -104,7 +142,7 @@ def total_amplitude(at_):
 	#Amplitude total
 	global at
 	at = at_
-	print(f"\n\t Amplitude Total:{at}\n")
+	print(f"\n\t Amplitude Total:{at_}\n")
 
 # ------------------------------------------------------------------------------------------
 
@@ -119,7 +157,11 @@ def new_xi(initial, amplitude_class, amount_class):
 # -------------------------------------------------------------------------------
 
 def reset_var():
-	pass
+	global list_x2
+	global list_x3
+	global list_x4
+	
+	list_x2, list_x3, list_x4 = [], [], []
 
 # -------------------------------------------------------------------------------
 
@@ -185,7 +227,7 @@ while 1:
 	if res1 == "1":
 		#Dados brutos
 		data_entry(True)
-		if len(list_xi) > 1:
+		if len(list_xi) > 2:
 			
 			#Ler soma list
 			sum_xi = basic.sum_list(list_xi)
@@ -196,6 +238,7 @@ while 1:
 		    # -------------------- while principal do submenu --------------------------
             # ------------------------------------------------------------------------------------------
 			while 1:
+				reset_var()
 				is_raw_data = True
 				os.system("clear")
 				print(basic.terminal_size(modo_1, "="))
@@ -215,6 +258,25 @@ while 1:
 					arithmetic_mean1(list_xi)
 					average_mean_deviation1()
 					input("...")
+				
+				elif res2 == "3":
+					arithmetic_mean1(list_xi)
+					standard_deviation()
+					input("...")
+				
+				elif res2 == "4":
+					#Todos(1,2,3)
+					total_amplitude(statistic.total_amplitude1(statistic.rol_raw_data(list_xi)))
+					arithmetic_mean1(list_xi)
+					average_mean_deviation1()
+					reset_var()
+					standard_deviation()
+					input("...")
+					
+				elif res2 == "5":
+					#sair
+					break
+					
 					
 		else:
 			print("Dados Inválidos.")
@@ -233,6 +295,7 @@ while 1:
             # ------------------------------------------------------------------------------------------
 			
 			while 1:
+				reset_var()
 				os.system("clear")
 				print(basic.terminal_size(modo_2, "="))
 				

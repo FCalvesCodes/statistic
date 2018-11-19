@@ -70,20 +70,21 @@ class Statistic(object):
 	def __init__(self):
 		pass
 		
-	def total_amplitude1(self, list_):
-		#retorna a amplitude da classe para dados brutos em rol
-		return list_[-1] - list_[0]
-		
 	def rol_raw_data(self, list_):
 		#Coloca uma list de números em ordem crescente
 		for x in range(0, len(list_)):
 			for y in range(x+1, len(list_)):
-				if x > y:
+				if list_[x] > list_[y]:
 					copy = list_[y]
 					list_[y] = list_[x]    #list_[y], list_[x] = list_[x], list_[y]
 					list_[x] = copy
 					
 		return list_
+		
+	def total_amplitude1(self, list_):
+		#retorna a amplitude da classe para dados brutos em rol
+		list_ = self.rol_raw_data(list_)
+		return list_[-1] - list_[0]
 		
 		
 		
