@@ -12,19 +12,14 @@ import sys
 
 
 is_terminaltables = True
+
 try:
 	from terminaltables import AsciiTable
 	it_broke = False
 except:
-	print("Está faltando o módulo terminaltables\npara melhor experiência.")
-	f = input("Deseja instalar ? y/n :")
-	if f == "y":
-		os.system("pip install terminaltables")
-		print("Instalando...")
-		time.sleep(4)
-	else:
-		time.sleep(2)
-		is_terminaltables = False
+	print("Instale o módulo terminaltables.")
+	time.sleep(2)
+	is_terminaltables = False
 	
 	
 basic = Basic()
@@ -104,11 +99,15 @@ def arithmetic_mean1(list_):
 	global list_xi
 	global decimal
 	global it_broke
+	
 	#Média aritmética adc em x1
 	total = basic.sum_list(list_)
 	quantidade = len(list_)
 	x1 = round(total/quantidade, decimal)
-	if it_broke == False:
+	try:
+		if it_broke == False:
+			print(f"\n\tCalculando Média aritmética: {x1}\n")
+	except:
 		print(f"\n\tCalculando Média aritmética: {x1}\n")
 # ------------------------------------------------------------------------------
 
@@ -138,7 +137,10 @@ def standard_deviation():
 		tables(l, True)
 		dt = sum_x4/len(list_x4)
 		dt = dt**0.5
-		if it_broke == False:
+		try:
+			if it_broke == False:
+				print(f"\n\tDesvio padrão é √({sum_x4}/{len(list_x4)}) = {round(dt, decimal)}")
+		except:
 			print(f"\n\tDesvio padrão é √({sum_x4}/{len(list_x4)}) = {round(dt, decimal)}")
 	else:
 		print(f"\n\t    Σ {sum_x3} - ({sum_x4})² ")
@@ -167,8 +169,13 @@ def average_mean_deviation1():
 	if is_terminaltables:
 		l.append([" ", "Σ",sum_x3])
 		tables(l, True)
-		if it_broke == False:
+		
+		try:
+			if it_broke == False:
+				print(f"\n\t Desvio médio simples é ({sum_x3}/{len(list_x3)}) = {round(sum_x3/len(list_x3), decimal)}")
+		except:
 			print(f"\n\t Desvio médio simples é ({sum_x3}/{len(list_x3)}) = {round(sum_x3/len(list_x3), decimal)}")
+			
 	else:
 		print(f"\n\t    Σ {sum_x3}")
 		
