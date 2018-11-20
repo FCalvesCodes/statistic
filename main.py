@@ -8,15 +8,23 @@
 from func import Basic, Statistic
 import os
 import time
+import sys
 
 
 is_terminaltables = True
-
 try:
 	from terminaltables import AsciiTable
+	it_broke = False
 except:
-	print("Está faltando modúlo terminaltables.")
-	is_terminaltables = False
+	print("Está faltando o módulo terminaltables\npara melhor experiência.")
+	f = input("Deseja instalar ? y/n :")
+	if f == "y":
+		os.system("pip install terminaltables")
+		print("Instalando...")
+		time.sleep(4)
+	else:
+		time.sleep(2)
+		is_terminaltables = False
 	
 	
 basic = Basic()
@@ -26,22 +34,30 @@ modo_1 = "Modo Dados Brutos"
 modo_2 = "Modo Dados Agrupados"
 
 # -------------- Variáveis em geral ------------------
-x1= 0					#Média aritmética
+
+xmin = 0
+xmax = 0
+amplitude = 0
+x1= 0				 #Média aritmética
 sum_x3 = 0
 sum_x4 = 0
 sum_xi = 0
-quant_xi = 0 	 #len(xi)
+quant_xi = 0 	 #len(list_xi)
+quant_fi = 0       #len(list_fi)
+decimal = 2
+total_amp = 0
+
 
 list_x2 = []		  #xi - "x-barra"
 list_x3 = []		  #|xi - "x-barra"|
 list_x4 = []		  #(xi - "x-barra")^2
 list_xi = []		   # xi
+list_fi = []		   # fi
 
-list_fi = []
 is_raw_data = False
-decimal = 2
 
-at = 0
+
+
 
 commands1 = ["[1] - Dados Brutos",\
 								"[2] - Dados Agrupados",\
@@ -57,27 +73,43 @@ commands2 = ["[1] - Amplitude total",\
 
 abount = ["Script desenvolvido para auxiliar em\n Medida de dispersão.\n        github: FelipeAlmeid4."]
 
-def tables(data,ult_borda= False):
-	#Cria tabela
+def clear_():
+	""" Limpa o terminal de acordo com
+		sua plataforma."""
+	if sys.platform == "linux":
+		os.system("clear")
+	elif sys.platform == "win32":
+		os.system("cls")
+		
+	
+def tables(data, ult_borda= False):
+	""" Cria a tabela e imprime ela. """
+	global it_broke
+	
 	tables_terminal = AsciiTable(data)
 	tables_terminal.inner_footing_row_border = ult_borda
 	tables_terminal.padding_left = 2
 	if tables_terminal.ok:
 		print(tables_terminal.table)
 	else:
+		it_broke = True
 		print("Tabela não pode ser visualizada, \n Reduza o zoom do terminal e tente novamente")
 	
+	
 def arithmetic_mean1(list_):
+	""" Faz a operação para obter a média 
+		aritimética  e guarda na var x1."""
 	global x1
 	global quant_xi
 	global list_xi
 	global decimal
+	global it_broke
 	#Média aritmética adc em x1
 	total = basic.sum_list(list_)
 	quantidade = len(list_)
 	x1 = round(total/quantidade, decimal)
-	print(f"\n\tCalculando Média aritmética: {x1}\n")
-
+	if it_broke == False:
+		print(f"\n\tCalculando Média aritmética: {x1}\n")
 # ------------------------------------------------------------------------------
 
 def standard_deviation():
@@ -86,9 +118,11 @@ def standard_deviation():
 	global sum_x2
 	global is_terminaltables
 	global list_x4
+	global it_broke
 	
 	l = []
 	l.append(["xi", "xi-'x-barra'","|xi-'x-barra'|","(xi-'x-barra')²"])
+	
 	for x in range(0, quant_xi):
 		list_x2.append(round(list_xi[x] - x1, decimal))
 		list_x3.append(abs(round(list_xi[x] - x1, decimal)))
@@ -104,7 +138,8 @@ def standard_deviation():
 		tables(l, True)
 		dt = sum_x4/len(list_x4)
 		dt = dt**0.5
-		print(f"\n\tDesvio padrão é √({sum_x4}/{len(list_x4)}) = {round(dt, decimal)}")
+		if it_broke == False:
+			print(f"\n\tDesvio padrão é √({sum_x4}/{len(list_x4)}) = {round(dt, decimal)}")
 	else:
 		print(f"\n\t    Σ {sum_x3} - ({sum_x4})² ")
 	
@@ -116,6 +151,7 @@ def average_mean_deviation1():
 	global sum_x2
 	global is_terminaltables
 	global list_x4
+	global it_broke
 	
 	l = []
 	l.append(["xi", "xi-'x-barra'","|xi-'x-barra'|"])
@@ -131,7 +167,8 @@ def average_mean_deviation1():
 	if is_terminaltables:
 		l.append([" ", "Σ",sum_x3])
 		tables(l, True)
-		print(f"\n\t Desvio médio simples é ({sum_x3}/{len(list_x3)}) = {round(sum_x3/len(list_x3),decimal)}")
+		if it_broke == False:
+			print(f"\n\t Desvio médio simples é ({sum_x3}/{len(list_x3)}) = {round(sum_x3/len(list_x3), decimal)}")
 	else:
 		print(f"\n\t    Σ {sum_x3}")
 		
@@ -140,13 +177,14 @@ def average_mean_deviation1():
 
 def total_amplitude(at_):
 	#Amplitude total
-	global at
-	at = at_
-	print(f"\n\t Amplitude Total:{at_}\n")
+	global total_amp
+	total_amp = at_
+	print(f"\n\t Amplitude Total:{total_amp}\n")
 
 # ------------------------------------------------------------------------------------------
 
 def new_xi(initial, amplitude_class, amount_class):
+	#Cria o xi baseado na entrada
 	list_ = []
 	
 	for x in range(0, amount_class):
@@ -179,7 +217,7 @@ def data_entry(raw_data):
 		if len(list_xi) == 0:
 			return
 		else:
-			os.system("clear")
+			clear_()
 			print(f"xi = {list_xi}")
 			input("...")
 			
@@ -190,10 +228,10 @@ def data_entry(raw_data):
 		string_fi = str(input("fi: ")).replace(" ", "")
 		try:
 			initial= float(input("Xmin da 1° Classe "))
-			am_c = float(input("Amplitude das classes: "))
+			amplitude= float(input("Amplitude da classe: "))
 			list_fi = basic.dismemberment(string_fi)
-			qu_c = len(list_fi)
-			list_xi = new_xi(initial, am_c, qu_c)
+			quant_fi = len(list_fi)
+			list_xi = new_xi(initial, amplitude, quant_fi)
 		except:
 			pass
 		
@@ -214,7 +252,7 @@ def data_entry(raw_data):
 # ------------------------------------------------------------------------------------------
 
 while 1:
-	os.system("clear")
+	clear_()
 	
 	print(basic.terminal_size("Medida de dispersão", "+"))
 	print(f"\t\t   Decimal:  {decimal}\n")
@@ -229,18 +267,20 @@ while 1:
 		data_entry(True)
 		if len(list_xi) > 2:
 			
-			#Ler soma list
+			#Ler a soma da list_xi
 			sum_xi = basic.sum_list(list_xi)
+			
+			#ler a quantidade de dados list_xi
 			quant_xi = len(list_xi)
 			
 			
 			# ------------------------------------------------------------------------------------------
-		    # -------------------- while principal do submenu --------------------------
+		    # -------------------- while Dados brutos --------------------------------------
             # ------------------------------------------------------------------------------------------
 			while 1:
 				reset_var()
 				is_raw_data = True
-				os.system("clear")
+				clear_()
 				print(basic.terminal_size(modo_1, "="))
 				print(basic.terminal_size(f"xi:{list_xi}", " "))
 				print("\n")
@@ -291,12 +331,12 @@ while 1:
 		if len(list_xi) > 1 and len(list_fi) > 1 and len(list_xi) == len(list_fi):
 			
 			# ------------------------------------------------------------------------------------------
-		    # -------------------- while principal do submenu --------------------------
+		    # -------------------- while Dados Agrupados  --------------------------
             # ------------------------------------------------------------------------------------------
 			
 			while 1:
 				reset_var()
-				os.system("clear")
+				clear_()
 				print(basic.terminal_size(modo_2, "="))
 				
 				for command in commands2:
@@ -310,14 +350,17 @@ while 1:
 	
 	
 	elif res1 == "3":
-		l = [["Sobre"], abount]
-		tables(l)
+		if is_terminaltables:
+			l = [["Sobre"], abount]
+			tables(l)
+		else:
+			print(f"\nSobre:\n\t{abount[0]}")
 		input("...")
 	
 	
 	elif res1 == "4":
-		decimal = int(input("Digite entre 0 á 5: "))
-		if decimal > 5 or decimal < 0:
+		decimal = int(input("Digite entre 1 a 5: "))
+		if decimal > 5 or decimal < 1:
 			decimal = 2
 			
 		

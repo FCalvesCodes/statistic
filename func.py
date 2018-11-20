@@ -8,7 +8,11 @@ class Basic(object):
 		pass
 	
 	def checker_string(self, string, list_allowed=[",","0","1","2","3","4","5","6","7","8","9"]):
-		#Verifica se na string contém caracteres permitidos
+		""" Verifica se a string contém caracteres
+				indiferente do desejado. """
+		# return False 
+		# return True
+				
 		if string == None:
 			return False
 		
@@ -16,21 +20,23 @@ class Basic(object):
 			if i in list_allowed:
 				pass 
 			else:
-				return
+				return False
 		
 		return True
 	
 	def sum_list(self, list_):
-		#Faz a soma da lista a retorna
+		""" Faz a soma de uma lista com números."""
+		# return sum
 		sum = 0
 		for n in list_:
 			sum += n
-			
 		return sum
 		
 	def dismemberment(self, string):
-		# Desmembramento de string
-		# "1,2,3,4" para [1,2,3,4]
+		""" Pega uma string com números separados
+			por vírgula e retorna lista com os números 
+			separados. """
+		# return
 		
 		list_ = []
 		base = ""
@@ -71,7 +77,7 @@ class Statistic(object):
 		pass
 		
 	def rol_raw_data(self, list_):
-		#Coloca uma list de números em ordem crescente
+		#Coloca uma lista de números em ordem crescente
 		for x in range(0, len(list_)):
 			for y in range(x+1, len(list_)):
 				if list_[x] > list_[y]:
