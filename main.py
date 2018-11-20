@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-#Arquivo principal
-#Medida de dispersão
+#Arquivo principal --  Medida de dispersão
 
 from func import Basic, Statistic
 import os
@@ -16,12 +15,13 @@ is_terminaltables = True
 try:
 	from terminaltables import AsciiTable
 	it_broke = False
+	
 except:
 	print("Instale o módulo terminaltables.")
 	time.sleep(2)
 	is_terminaltables = False
 	
-	
+
 basic = Basic()
 statistic = Statistic()
 
@@ -33,11 +33,11 @@ modo_2 = "Modo Dados Agrupados"
 xmin = 0
 xmax = 0
 amplitude = 0
-x1= 0				 #Média aritmética
+x1= 0			   #Média aritmética
 sum_x3 = 0
 sum_x4 = 0
 sum_xi = 0
-quant_xi = 0 	 #len(list_xi)
+quant_xi = 0 	   #len(list_xi)
 quant_fi = 0       #len(list_fi)
 decimal = 2
 total_amp = 0
@@ -49,6 +49,8 @@ list_x4 = []		  #(xi - "x-barra")^2
 list_xi = []		   # xi
 list_fi = []		   # fi
 
+
+#-- É dados brutos
 is_raw_data = False
 
 
@@ -66,6 +68,8 @@ commands2 = ["[1] - Amplitude total",\
 								"[4] - Todos(1, 2, 3)",\
 								"[5] - Retornar"]
 
+
+
 abount = ["Script desenvolvido para auxiliar em\n Medida de dispersão.\n        github: FelipeAlmeid4."]
 
 def clear_():
@@ -76,6 +80,7 @@ def clear_():
 	elif sys.platform == "win32":
 		os.system("cls")
 		
+# ----------------------------------------------------
 	
 def tables(data, ult_borda= False):
 	""" Cria a tabela e imprime ela. """
@@ -90,6 +95,7 @@ def tables(data, ult_borda= False):
 		it_broke = True
 		print("Tabela não pode ser visualizada, \n Reduza o zoom do terminal e tente novamente")
 	
+#------------------------------------------------------
 	
 def arithmetic_mean1(list_):
 	""" Faz a operação para obter a média 
@@ -109,6 +115,8 @@ def arithmetic_mean1(list_):
 			print(f"\n\tCalculando Média aritmética: {x1}\n")
 	except:
 		print(f"\n\tCalculando Média aritmética: {x1}\n")
+
+
 # ------------------------------------------------------------------------------
 
 def standard_deviation():
@@ -148,7 +156,9 @@ def standard_deviation():
 	
 	
 def average_mean_deviation1():
-	#Desvio médio simples
+	""" Desvio médio simples
+		Apenas imprime ou cria um table."""
+		
 	global decimal
 	global sum_x2
 	global is_terminaltables
@@ -228,16 +238,25 @@ def data_entry(raw_data):
 			print(f"xi = {list_xi}")
 			input("...")
 			
-			
+# --------#### Dados Agrupados #####--------------------------------------------------------------------
+	
+	# Pede os dados e faz o pré- processamento das variáveis necessarias para funções em seguida
 	else:
-		print("Exemplo de Entradas:\n\tfi: 14,15,63,10,52,10,59\n\txi:\n\t  Inicial:\n\t  Amplitude_classe:\n")
+		#Demostração de entrada 
+		print("Exemplo de Entradas:\n\tfi: 14,15,63,10,52,10,59\n\txi:\n\t  Xmin da 1° Classe:\n\t  Amplitude_classe:\n")
 		
 		string_fi = str(input("fi: ")).replace(" ", "")
 		try:
 			initial= float(input("Xmin da 1° Classe "))
 			amplitude= float(input("Amplitude da classe: "))
+			
+			#Recebe a lista fi desmembrada 
 			list_fi = basic.dismemberment(string_fi)
+			
+			#Calcula a quantidade de classes com base na list_fi
 			quant_fi = len(list_fi)
+			
+			#Calcula o xi com base nos dados de entrada e return uma lista
 			list_xi = new_xi(initial, amplitude, quant_fi)
 		except:
 			pass
@@ -252,10 +271,9 @@ def data_entry(raw_data):
 		else:
 			print(f"xi = {list_xi}")
 			print(f"fi = {list_fi}")
-			input("...")
-			
+			input("...")			
 # ------------------------------------------------------------------------------------------
-# -------------------- while principal do script --------------------------------
+# ------------------------------- while principal do script --------------------------------
 # ------------------------------------------------------------------------------------------
 
 while 1:
@@ -282,7 +300,7 @@ while 1:
 			
 			
 			# ------------------------------------------------------------------------------------------
-		    # -------------------- while Dados brutos --------------------------------------
+		    # -------------------------------- while Dados brutos --------------------------------------
             # ------------------------------------------------------------------------------------------
 			while 1:
 				reset_var()
@@ -301,25 +319,32 @@ while 1:
 					#Amplitude total
 					total_amplitude(statistic.total_amplitude1(statistic.rol_raw_data(list_xi)))
 					input("...")
+					
+					
 				elif res2 == "2":
+					# Desvio médio simples
 					arithmetic_mean1(list_xi)
 					average_mean_deviation1()
 					input("...")
 				
+				
 				elif res2 == "3":
+					# Desvio Padrão
 					arithmetic_mean1(list_xi)
 					standard_deviation()
 					input("...")
 				
+				
 				elif res2 == "4":
-					#Todos(1,2,3)
+					#Todos(1,2,3) - Amplitude total - Desvio médio simples - Desvio Padrão
 					total_amplitude(statistic.total_amplitude1(statistic.rol_raw_data(list_xi)))
 					arithmetic_mean1(list_xi)
 					average_mean_deviation1()
 					reset_var()
 					standard_deviation()
 					input("...")
-					
+				
+				
 				elif res2 == "5":
 					#sair
 					break
