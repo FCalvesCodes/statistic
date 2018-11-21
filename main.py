@@ -37,18 +37,23 @@ x1= 0			   #Média aritmética
 sum_x3 = 0
 sum_x4 = 0
 sum_xi = 0
+sum_fi = 0
 quant_xi = 0 	   #len(list_xi)
 quant_fi = 0       #len(list_fi)
 decimal = 2
 total_amp = 0
 initial = 0
+sum_xi_fi = 0
+sum_fi_x3 = 0
 
 
 list_x2 = []		  #xi - "x-barra"
 list_x3 = []		  #|xi - "x-barra"|
-list_x4 = []		  #(xi - "x-barra")^2
+list_x4 = []		  #(xi - "x-barra")²
 list_xi = []		   # xi
 list_fi = []		   # fi
+list_xi_fi = []     # xi.fi
+list_fi_x3 = []
 
 
 # É dados brutos
@@ -98,7 +103,7 @@ def tables(data, ult_borda= False):
 	
 #------------------------------------------------------
 	
-def arithmetic_mean1(list_):
+def arithmetic_mean1(list_, grouped_data=False):
 	""" Faz a operação para obter a média 
 		aritimética  e guarda na var x1."""
 	global x1
@@ -106,16 +111,26 @@ def arithmetic_mean1(list_):
 	global list_xi
 	global decimal
 	global it_broke
+	global sum_fi
+	global list_fi
 	
 	#Média aritmética adc em x1
 	total = basic.sum_list(list_)
-	quantidade = len(list_)
+	
+	if grouped_data:
+		sum_fi = round(basic.sum_list(list_fi), decimal)
+		quantidade = sum_fi
+		
+	else:
+		quantidade = len(list_)
+	
 	x1 = round(total/quantidade, decimal)
 	try:
 		if it_broke == False:
 			print(f"\n\tCalculando Média aritmética: {x1}\n")
 	except:
 		print(f"\n\tCalculando Média aritmética: {x1}\n")
+
 
 
 # ------------------------------------------------------------------------------
@@ -155,9 +170,10 @@ def standard_deviation():
 		print(f"\n\t    Σ {sum_x3} - ({sum_x4})² ")
 	
 	
-	
+# -------------------------------------------------------------------------------
+
 def average_mean_deviation1():
-	""" Desvio médio simples
+	""" Desvio médio simples dados brutos,
 		Apenas imprime ou cria um table."""
 		
 	global decimal
@@ -168,6 +184,7 @@ def average_mean_deviation1():
 	
 	l = []
 	l.append(["xi", "xi-'x-barra'","|xi-'x-barra'|"])
+	list_x2, list_x3, list_x4 = [], [], []
 	for x in range(0, quant_xi):
 		list_x2.append(round(list_xi[x] - x1, decimal))
 		list_x3.append(abs(round(list_xi[x] - x1, decimal)))
@@ -190,6 +207,56 @@ def average_mean_deviation1():
 	else:
 		print(f"\n\t    Σ {sum_x3}")
 		
+		
+def average_mean_deviation2():
+	""" Desvio médio simples dados agrupados,
+		Apenas imprime ou cria um table."""
+		
+	global decimal
+	global sum_x2
+	global is_terminaltables
+	global list_x4
+	global it_broke
+	global list_xi_fi
+	global sum_xi_fi
+	global sum_fi
+	global sum_xi
+	global sum_x4
+	global list_fi_x3
+	global sum_fi_x3
+	
+	list_fi_x3, list_x2, list_x3, list_x4 = [], [], [], []
+	l = []
+	l.append(["fi", "xi", "xi.fi","|xi-'x-barra'|", "fi.|xi-'x-barra'|"])
+	for x in range(0, quant_fi):
+	    #list_x2.append(round(list_xi[x] - x1, decimal))
+		list_x3.append(abs(round(list_xi[x] - x1, decimal))) #|xi-'x-barra'|
+		list_x4.append(round(list_x3[x]**2, decimal))   #(xi-'x-barra')²
+		list_fi_x3.append(round(list_fi[x]*list_x3[x], decimal))
+		
+		if is_terminaltables:
+			l.append([list_fi[x], list_xi[x], list_xi_fi[x], list_x3[x], list_fi_x3[x]])
+		else:
+			print() #Colocar modo manual
+			
+	sum_x3 = round(basic.sum_list(list_x3), decimal)
+	sum_xi = round(basic.sum_list(list_xi), decimal)
+	sum_x4 = round(basic.sum_list(list_x4), decimal)
+	#sum_fi está sendo calculada na média aritmética
+	sum_xi_fi = round(basic.sum_list(list_xi_fi), decimal)
+	sum_fi_x3 = round(basic.sum_list(list_fi_x3), decimal)
+	if is_terminaltables:
+		l.append([sum_fi, sum_xi, sum_xi_fi, sum_x3, sum_fi_x3])
+		tables(l, True)
+		
+		try:
+			if it_broke == False:
+				print(f"\n\t Desvio médio simples é ({sum_fi_x3}/{sum_fi}) = {round(sum_fi_x3/sum_fi, decimal)}")
+		except:
+			print(f"\n\t Desvio médio simples é ({sum_fi_x3}/{sum_fi}) = {round(sum_x3/sum_fi, decimal)}")
+			
+	else:
+		print(f"\n\t    Σ {sum_x3}") #tem que imprimir mais coisas
 	
 # ------------------------------------------------------------------------------------------
 
@@ -229,13 +296,6 @@ def new_xi(initial, amplitude_class, amount_class):
 	return list_
 
 # -------------------------------------------------------------------------------
-
-def reset_var():
-	global list_x2
-	global list_x3
-	global list_x4
-	
-	list_x2, list_x3, list_x4 = [], [], []
 
 # -------------------------------------------------------------------------------
 
@@ -280,6 +340,10 @@ def data_entry(raw_data):
 			
 			#Calcula o xi com base nos dados de entrada e return uma lista
 			list_xi = new_xi(initial, amplitude, quant_fi)
+			
+			#Pegando a soma das listas
+			sum_xi = basic.sum_list(list_xi)
+			sum_fi = basic.sum_list(list_fi)
 		except:
 			pass
 		
@@ -393,7 +457,10 @@ while 1:
             # ------------------------------------------------------------------------------------------
 			
 			while 1:
-				reset_var()
+				#reset_var()
+				clear_()
+				print(" \nRecomenda-se que aumente\n o número de casas decimais,\npara não haver distorção nos valores.\n")
+				input("...")
 				clear_()
 				print(basic.terminal_size(modo_2, "="))
 				print(basic.terminal_size(f"fi:{list_fi}", " "))
@@ -406,15 +473,33 @@ while 1:
 				res2 = input("Opção: ")
 				
 				if res2 =="1":
+					#Amplitude total - Dados Agrupados
 					total_amplitude2(initial, amplitude, quant_fi)
 					print(f"\n\t Amplitude Total:{total_amp}\n")
 					input("...")
+					
+				elif res2 == "2":
+					#Desvio médio simples - Dados Agrupados
+					
+					#Cria a lista nova xi.fi
+					for x in range(0, len(list_fi)):
+						list_xi_fi.append(round(list_xi[x]*list_fi[x], 2)) #xi.fi
+					print(list_xi_fi)
+						
+	
+					arithmetic_mean1(list_xi_fi, True)
+					average_mean_deviation2()
+					input("...")
+					
+					
+					pass
 				elif res2 == "3":
 					pass
 				elif res2 == "4":
 					pass
 				elif res2 == "5":
-					pass
+					#exit do submenu dados agrupados
+					break
 					
 		else:
 			print("Dados Inválidos.")
