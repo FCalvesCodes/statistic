@@ -41,6 +41,7 @@ quant_xi = 0 	   #len(list_xi)
 quant_fi = 0       #len(list_fi)
 decimal = 2
 total_amp = 0
+initial = 0
 
 
 list_x2 = []		  #xi - "x-barra"
@@ -50,7 +51,7 @@ list_xi = []		   # xi
 list_fi = []		   # fi
 
 
-#-- É dados brutos
+# É dados brutos
 is_raw_data = False
 
 
@@ -192,21 +193,39 @@ def average_mean_deviation1():
 	
 # ------------------------------------------------------------------------------------------
 
-def total_amplitude(at_):
-	#Amplitude total
+def total_amplitude1(at_):
+	""" Atualiza a amplitude total da var total_amp."""
 	global total_amp
 	total_amp = at_
-	print(f"\n\t Amplitude Total:{total_amp}\n")
+
+def total_amplitude2(initial, amplitude, quant_fi):
+	""" Atualiza a amplitude total da var total_amp."""
+	global total_amp
+	a = initial
+	for i in range(0, quant_fi):
+		a+= amplitude
+	if str(a-initial).endswith(".0"):
+		total_amp = round(a - initial)
+	else:
+		total_amp = a-initial
+	
+	
 
 # ------------------------------------------------------------------------------------------
 
 def new_xi(initial, amplitude_class, amount_class):
 	#Cria o xi baseado na entrada
+	global decimal
 	list_ = []
 	
 	for x in range(0, amount_class):
-		list_.append(initial+(amplitude_class/2))
-		initial += amplitude_class
+		if str(initial+(amplitude_class/2)).endswith(".0"):
+			list_.append(round(initial+(amplitude_class/2)))
+			initial += amplitude_class
+		else:
+			list_.append(round(initial+(amplitude_class/2), decimal))
+			initial += amplitude_class
+		
 	return list_
 
 # -------------------------------------------------------------------------------
@@ -225,6 +244,9 @@ def data_entry(raw_data):
 	global list_xi
 	global list_fi
 	global is_error
+	global initial
+	global amplitude
+	global quant_fi
 	
 	if raw_data == True:
 		print("Exemplo de Entrada:\n\txi: 14,15,63,10,52,10,59\n")
@@ -271,7 +293,8 @@ def data_entry(raw_data):
 		else:
 			print(f"xi = {list_xi}")
 			print(f"fi = {list_fi}")
-			input("...")			
+			input("...")
+	
 # ------------------------------------------------------------------------------------------
 # ------------------------------- while principal do script --------------------------------
 # ------------------------------------------------------------------------------------------
@@ -299,8 +322,8 @@ while 1:
 			quant_xi = len(list_xi)
 			
 			
-			# ------------------------------------------------------------------------------------------
-		    # -------------------------------- while Dados brutos --------------------------------------
+			# -----------------------------------------------------------------------------------------
+		    # -------------------------------- while Dados brutos --------------------------
             # ------------------------------------------------------------------------------------------
 			while 1:
 				reset_var()
@@ -317,7 +340,8 @@ while 1:
 				
 				if res2 == "1":
 					#Amplitude total
-					total_amplitude(statistic.total_amplitude1(statistic.rol_raw_data(list_xi)))
+					total_amplitude1(statistic.total_amplitude1(statistic.rol_raw_data(list_xi)))
+					print(f"\n\t Amplitude Total:{total_amp}\n")
 					input("...")
 					
 					
@@ -360,6 +384,8 @@ while 1:
 	elif res1 == "2":
 		#Dados Agrupados
 		data_entry(False)
+		
+		#Verifica se a algo errado com os dados
 		if len(list_xi) > 1 and len(list_fi) > 1 and len(list_xi) == len(list_fi):
 			
 			# ------------------------------------------------------------------------------------------
@@ -370,11 +396,26 @@ while 1:
 				reset_var()
 				clear_()
 				print(basic.terminal_size(modo_2, "="))
+				print(basic.terminal_size(f"fi:{list_fi}", " "))
+				print(basic.terminal_size(f"xi:{list_xi}", " "))
+				print("\n")
 				
 				for command in commands2:
 					print(command)
 					
 				res2 = input("Opção: ")
+				
+				if res2 =="1":
+					total_amplitude2(initial, amplitude, quant_fi)
+					print(f"\n\t Amplitude Total:{total_amp}\n")
+					input("...")
+				elif res2 == "3":
+					pass
+				elif res2 == "4":
+					pass
+				elif res2 == "5":
+					pass
+					
 		else:
 			print("Dados Inválidos.")
 			time.sleep(1)
