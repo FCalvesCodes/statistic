@@ -14,7 +14,6 @@ is_terminaltables = True
 
 try:
 	from terminaltables import AsciiTable
-	it_broke = False
 	
 except:
 	print("Instale o módulo terminaltables.")
@@ -45,6 +44,7 @@ total_amp = 0
 initial = 0
 sum_xi_fi = 0
 sum_fi_x3 = 0
+sum_fi_x4 = 0
 
 
 list_x2 = []		  #xi - "x-barra"
@@ -54,7 +54,7 @@ list_xi = []		   # xi
 list_fi = []		   # fi
 list_xi_fi = []     # xi.fi
 list_fi_x3 = []
-
+list_fi_x4 = []
 
 # É dados brutos
 is_raw_data = False
@@ -65,21 +65,23 @@ is_raw_data = False
 commands1 = ["[1] - Dados Brutos",\
 								"[2] - Dados Agrupados",\
 								"[3] - Sobre",\
-								"[4] - Configurar casa decimal",\
-							    "[5] - Sair"]
+								"[4] - Informações",\
+								"[5] - Configurar Casa Decimal",\
+							    "[6] - Sair"]
 
 commands2 = ["[1] - Amplitude total",\
 								"[2] - Desvio médio simples",\
 								"[3] - Desvio padrão",\
 								"[4] - Todos(1, 2, 3)",\
-								"[5] - Retornar"]
+								"[5] - Configurar Casa Decimal",\
+								"[6] - Retornar"]
 
 
 
-abount = ["Script desenvolvido para auxiliar em\n Medida de dispersão.\n        github: FelipeAlmeid4."]
+abount = ["Amplitude Total\nDesvio médio simples\nDesvio padrão\n        github: FelipeAlmeid4."]
 
 def clear_():
-	""" Limpa o terminal de acordo com
+	""" Limpa o terminal de acordo com a
 		sua plataforma."""
 	if sys.platform == "linux":
 		os.system("clear")
@@ -87,88 +89,159 @@ def clear_():
 		os.system("cls")
 		
 # ----------------------------------------------------
-	
-def tables(data, ult_borda= False):
-	""" Cria a tabela e imprime ela. """
-	global it_broke
-	
+def tables(data, ult_borda= False,title= ""):
+	""" Recebe a tabela em formatos
+			Matriz."""
 	tables_terminal = AsciiTable(data)
 	tables_terminal.inner_footing_row_border = ult_borda
 	tables_terminal.padding_left = 2
+	tables_terminal.title = title
 	if tables_terminal.ok:
 		print(tables_terminal.table)
 	else:
-		it_broke = True
-		print("Tabela não pode ser visualizada, \n Reduza o zoom do terminal e tente novamente")
+		print("Tabela não pode ser visualizada, \n Recua o zoom do terminal e tente novamente.")
 	
 #------------------------------------------------------
 	
-def arithmetic_mean1(list_, grouped_data=False):
+def arithmetic_mean(list_, grouped_data=False):
 	""" Faz a operação para obter a média 
 		aritimética  e guarda na var x1."""
 	global x1
-	global quant_xi
-	global list_xi
 	global decimal
-	global it_broke
 	global sum_fi
 	global list_fi
 	
-	#Média aritmética adc em x1
 	total = basic.sum_list(list_)
 	
 	if grouped_data:
+		#Para dados Agrupados
 		sum_fi = round(basic.sum_list(list_fi), decimal)
 		quantidade = sum_fi
-		
 	else:
 		quantidade = len(list_)
-	
 	x1 = round(total/quantidade, decimal)
-	try:
-		if it_broke == False:
-			print(f"\n\tCalculando Média aritmética: {x1}\n")
-	except:
-		print(f"\n\tCalculando Média aritmética: {x1}\n")
-
 
 
 # ------------------------------------------------------------------------------
 
 def standard_deviation():
-	#Desvio padrão
-	global decimal
-	global sum_x2
+	"""Desvio padrão para dados brutos."""
 	global is_terminaltables
+	global decimal
+	
+	global sum_x2
+	global sum_xi
+	
+	global list_xi
+	global list_x2
+	global list_x3
 	global list_x4
-	global it_broke
+	
+	
+	global quant_xi
+	
 	
 	l = []
-	l.append(["xi", "xi-'x-barra'","|xi-'x-barra'|","(xi-'x-barra')²"])
+	
+	#Zerar as listas
+	list_x2, list_x3, list_x4 = [], [], []
+	
+	#Escopo da tabela
+	l.append(["xi", "xi-'x-barra'","|xi-'x-barra'|", "(xi-'x-barra')²"])
 	
 	for x in range(0, quant_xi):
+		
+		#xi-'x-barra'
 		list_x2.append(round(list_xi[x] - x1, decimal))
+		# |xi-'x-barra'|
 		list_x3.append(abs(round(list_xi[x] - x1, decimal)))
+		#(xi-'x-barra')²
 		list_x4.append(round(list_x3[x]**2, decimal))
+		
+		#True caso o terminaltables foi instalado
 		if is_terminaltables:
 			l.append([list_xi[x], list_x2[x], list_x3[x], list_x4[x]])
 		else:
-			print(f"{list_xi[x]} - {x1} = {list_x2[x]} > |{list_x3[x]}| > {list_x4[x]}")
+			pass
+		
+	#Recebe a soma de todas list
 	sum_x3 = round(basic.sum_list(list_x3), decimal)
 	sum_x4 = round(basic.sum_list(list_x4), decimal)
-	if is_terminaltables:
-		l.append([" ", "Σ",sum_x3, sum_x4])
-		tables(l, True)
-		dt = sum_x4/len(list_x4)
-		dt = dt**0.5
-		try:
-			if it_broke == False:
-				print(f"\n\tDesvio padrão é √({sum_x4}/{len(list_x4)}) = {round(dt, decimal)}")
-		except:
-			print(f"\n\tDesvio padrão é √({sum_x4}/{len(list_x4)}) = {round(dt, decimal)}")
-	else:
-		print(f"\n\t    Σ {sum_x3} - ({sum_x4})² ")
+	sum_xi = round(basic.sum_list(list_xi), decimal)
 	
+	if is_terminaltables:
+		l.append([sum_xi, "Σ",sum_x3, sum_x4])
+		tables(l, True,"Dados brutos - desvio padrão")
+	else:
+		print("Instale o módulo terminaltables para mais detalhes.\n")
+	
+	#Recebe o resultado da raiz
+	dt = statistic.standard_deviation(sum_x4,list_x4)
+		
+	print(f"\n\tDesvio padrão é √({sum_x4}/{len(list_x4)}) = {round(dt, decimal)}")
+
+
+
+def standard_deviation2():
+	"""Desvio padrão para dados Agrupados."""
+	global is_terminaltables
+	global decimal
+	
+	global sum_fi
+	global sum_xi
+	global sum_x2
+	global sum_x3
+	global sum_x4
+	global sum_fi_x4
+	
+	global list_x2
+	global list_x3
+	global list_x4
+	global list_fi_x4
+	
+	global quant_xi
+	
+	list_x2, list_x3, list_x4, list_fi_x4 = [], [], [], []
+	
+	l = []
+	#Escopo da tabela
+	l.append(["fi", "xi","xi-'x-barra'","(xi-'x-barra')²", "fi.(xi-'x-barra')²"])
+	
+	
+	for x in range(0, quant_xi):
+		#xi-'x-barra'
+		list_x2.append(round(list_xi[x] - x1, decimal))
+		#|xi-'x-barra'|
+		list_x3.append(abs(round(list_xi[x] - x1, decimal)))
+		#(xi-'x-barra')²
+		list_x4.append(round(list_x3[x]**2, decimal))
+		#fi
+		list_fi_x4.append(round(list_fi[x]*list_x4[x], decimal))
+		
+		#True caso o terminaltables foi instalado
+		if is_terminaltables:
+			l.append([list_fi[x], list_xi[x], list_x2[x], list_x4[x], list_fi_x4[x]])
+		else:
+			pass
+	
+	#Recebe as somas das list
+	sum_xi = round(basic.sum_list(list_xi), decimal)
+	sum_fi = round(basic.sum_list(list_fi), decimal)
+	sum_x3 = round(basic.sum_list(list_x3), decimal)
+	sum_x4 = round(basic.sum_list(list_x4), decimal)
+	sum_fi_x4 = round(basic.sum_list(list_fi_x4), decimal)
+	
+	if is_terminaltables:
+		l.append([sum_fi, sum_xi, "Σ", sum_x4, sum_fi_x4])
+		tables(l, True,"Dados brutos - desvio padrão")
+	else:
+		print("Instale o módulo terminaltables para mais detalhes.\n")
+		
+	#Recebe o resultado da raiz
+	dt = statistic.standard_deviation(sum_x4/list_x4)
+		
+	print(f"\n\tDesvio padrão é √({sum_x4}/{len(list_x4)}) = {round(dt, decimal)}")
+	print(f"\tCalculando Média aritmética: {x1}\n")
 	
 # -------------------------------------------------------------------------------
 
@@ -176,112 +249,126 @@ def average_mean_deviation1():
 	""" Desvio médio simples dados brutos,
 		Apenas imprime ou cria um table."""
 		
-	global decimal
-	global sum_x2
 	global is_terminaltables
+	global decimal
+	
+	global sum_xi
+	global sum_x3
+	
+	global list_x2
+	global list_x3
 	global list_x4
-	global it_broke
 	
 	l = []
+	
+	#Escopo da tabela
 	l.append(["xi", "xi-'x-barra'","|xi-'x-barra'|"])
+	
+	#Zera as listas
 	list_x2, list_x3, list_x4 = [], [], []
+	
 	for x in range(0, quant_xi):
+		#x-'x-barra'
 		list_x2.append(round(list_xi[x] - x1, decimal))
+		#|x-'x-barra'|
 		list_x3.append(abs(round(list_xi[x] - x1, decimal)))
+		#(x-'x-barra')²
 		list_x4.append(round(list_x3[x]**2, decimal))
+		
+		#True caso o terminaltables foi instalado
 		if is_terminaltables:
 			l.append([list_xi[x], list_x2[x], list_x3[x]])
 		else:
-			print(f"{list_xi[x]} - {x1} = {list_x2[x]} > |{list_x3[x]}|")
+			pass
+	
+	#Recebem a somas das list
 	sum_x3 = round(basic.sum_list(list_x3), decimal)
+	sum_xi = round(basic.sum_list(list_xi), decimal)
+	
+	
 	if is_terminaltables:
-		l.append([" ", "Σ",sum_x3])
-		tables(l, True)
-		
-		try:
-			if it_broke == False:
-				print(f"\n\t Desvio médio simples é ({sum_x3}/{len(list_x3)}) = {round(sum_x3/len(list_x3), decimal)}")
-		except:
-			print(f"\n\t Desvio médio simples é ({sum_x3}/{len(list_x3)}) = {round(sum_x3/len(list_x3), decimal)}")
-			
+		l.append([sum_xi, "    Σ",sum_x3])
+		tables(l, True, "Dados Brutos - Desvio médio simples")
 	else:
-		print(f"\n\t    Σ {sum_x3}")
-		
+		print("Instale o módulo terminaltables para mais detalhes.\n")
+	
+	print(f"\n\t Desvio médio simples é ({sum_x3}/{len(list_x3)}) = {round(sum_x3/len(list_x3), decimal)}")
 		
 def average_mean_deviation2():
-	""" Desvio médio simples dados agrupados,
-		Apenas imprime ou cria um table."""
-		
-	global decimal
-	global sum_x2
+	""" Desvio médio simples dados agrupados."""
+	
 	global is_terminaltables
-	global list_x4
-	global it_broke
-	global list_xi_fi
-	global sum_xi_fi
+	global decimal
+	
 	global sum_fi
 	global sum_xi
-	global sum_x4
-	global list_fi_x3
+	global sum_x2
+	global sum_xi_fi
 	global sum_fi_x3
 	
-	list_fi_x3, list_x2, list_x3, list_x4 = [], [], [], []
+	global list_fi
+	global list_xi
+	global list_x3
+	global list_xi_fi
+	global list_fi_x3
+	
+	global quant_fi
+	
+	
+	#Zera as listas
+	list_fi_x3, list_x2, list_x3, list_xi_fi = [], [], [], []
+	
 	l = []
+	
+	#Escopo da tablea
 	l.append(["fi", "xi", "xi.fi","|xi-'x-barra'|", "fi.|xi-'x-barra'|"])
+	
 	for x in range(0, quant_fi):
-	    #list_x2.append(round(list_xi[x] - x1, decimal))
-		list_x3.append(abs(round(list_xi[x] - x1, decimal))) #|xi-'x-barra'|
-		list_x4.append(round(list_x3[x]**2, decimal))   #(xi-'x-barra')²
+		#|x-'x-barra'|
+		list_x3.append(abs(round(list_xi[x] - x1, decimal)))
+		#xi.fi
+		list_xi_fi.append(round(list_xi[x]*list_fi[x], decimal))
+		#fi. |x-'x-barra'|
 		list_fi_x3.append(round(list_fi[x]*list_x3[x], decimal))
 		
+		#True caso o terminaltables foi instalado
 		if is_terminaltables:
 			l.append([list_fi[x], list_xi[x], list_xi_fi[x], list_x3[x], list_fi_x3[x]])
 		else:
-			print() #Colocar modo manual
-			
-	sum_x3 = round(basic.sum_list(list_x3), decimal)
+			pass
+	
+	#Recebem as somas das listas
+	sum_fi = round(basic.sum_list(list_fi), decimal)
 	sum_xi = round(basic.sum_list(list_xi), decimal)
-	sum_x4 = round(basic.sum_list(list_x4), decimal)
-	#sum_fi está sendo calculada na média aritmética
 	sum_xi_fi = round(basic.sum_list(list_xi_fi), decimal)
+	sum_x3 = round(basic.sum_list(list_x3), decimal)
 	sum_fi_x3 = round(basic.sum_list(list_fi_x3), decimal)
+	
 	if is_terminaltables:
 		l.append([sum_fi, sum_xi, sum_xi_fi, sum_x3, sum_fi_x3])
-		tables(l, True)
-		
-		try:
-			if it_broke == False:
-				print(f"\n\t Desvio médio simples é ({sum_fi_x3}/{sum_fi}) = {round(sum_fi_x3/sum_fi, decimal)}")
-		except:
-			print(f"\n\t Desvio médio simples é ({sum_fi_x3}/{sum_fi}) = {round(sum_x3/sum_fi, decimal)}")
-			
+		tables(l, True,"Dados Agrupados - Desvio médio simples")
 	else:
-		print(f"\n\t    Σ {sum_x3}") #tem que imprimir mais coisas
-	
+		print("Instale o módulo terminaltables para mais detalhes.\n")
+		
+	print(f"\n\t Desvio médio simples é ({sum_fi_x3}/{sum_fi}) = {round(sum_fi_x3/sum_fi, decimal)}")
+	print(f"\n\tCalculando Média aritmética: {x1}\n")
 # ------------------------------------------------------------------------------------------
 
-def total_amplitude1(at_):
-	""" Atualiza a amplitude total da var total_amp."""
-	global total_amp
-	total_amp = at_
 
-def total_amplitude2(initial, amplitude, quant_fi):
-	""" Atualiza a amplitude total da var total_amp."""
-	global total_amp
-	a = initial
-	for i in range(0, quant_fi):
-		a+= amplitude
-	if str(a-initial).endswith(".0"):
-		total_amp = round(a - initial)
-	else:
-		total_amp = a-initial
-	
-	
+def casa_decimal():
+	""" Atualiza a casa decimal."""
+	global decimal
+	try:
+		decimal = int(input("Digite entre 1 a 5: "))
+		if decimal > 5 or decimal < 1:
+			decimal = 2
+	except:
+		pass
 
 # ------------------------------------------------------------------------------------------
 
 def new_xi(initial, amplitude_class, amount_class):
-	#Cria o xi baseado na entrada
+	""" Faz a list_xi com base na entrada. """
 	global decimal
 	list_ = []
 	
@@ -300,21 +387,28 @@ def new_xi(initial, amplitude_class, amount_class):
 # -------------------------------------------------------------------------------
 
 def data_entry(raw_data):
-	#raw_data - bool
+	""" Onde colhe os dados Dados brutos e Agrupados."""
+	global amplitude
+	
 	global list_xi
 	global list_fi
-	global is_error
-	global initial
-	global amplitude
-	global quant_fi
 	
+	global initial
+	global quant_fi
+	global quant_xi
+	
+	#Para dados brutos
 	if raw_data == True:
+		
 		print("Exemplo de Entrada:\n\txi: 14,15,63,10,52,10,59\n")
+		
 		string_xi = str(input("xi: ")).replace(" ","")
 		list_xi = basic.dismemberment(string_xi)
+		quant_xi = len(list_xi)
 		
 		if len(list_xi) == 0:
 			return
+			
 		else:
 			clear_()
 			print(f"xi = {list_xi}")
@@ -329,6 +423,7 @@ def data_entry(raw_data):
 		
 		string_fi = str(input("fi: ")).replace(" ", "")
 		try:
+			
 			initial= float(input("Xmin da 1° Classe "))
 			amplitude= float(input("Amplitude da classe: "))
 			
@@ -346,11 +441,6 @@ def data_entry(raw_data):
 			sum_fi = basic.sum_list(list_fi)
 		except:
 			pass
-		
-		
-		
-		
-		
 		
 		if len(list_xi) == 0 or list_fi == 0 or len(list_xi ) != len(list_fi):
 			return
@@ -390,11 +480,14 @@ while 1:
 		    # -------------------------------- while Dados brutos --------------------------
             # ------------------------------------------------------------------------------------------
 			while 1:
-				reset_var()
 				is_raw_data = True
 				clear_()
 				print(basic.terminal_size(modo_1, "="))
 				print(basic.terminal_size(f"xi:{list_xi}", " "))
+				
+				# Calcula a média aritmética
+				arithmetic_mean(list_xi)
+				total_amp = statistic.total_amplitude1(list_xi)
 				print("\n")
 				
 				for command in commands2:
@@ -404,39 +497,44 @@ while 1:
 				
 				if res2 == "1":
 					#Amplitude total
-					total_amplitude1(statistic.total_amplitude1(statistic.rol_raw_data(list_xi)))
 					print(f"\n\t Amplitude Total:{total_amp}\n")
 					input("...")
+					#Corta o loop e evita de aparecer o print do final
+					continue
 					
 					
 				elif res2 == "2":
 					# Desvio médio simples
-					arithmetic_mean1(list_xi)
 					average_mean_deviation1()
-					input("...")
 				
 				
 				elif res2 == "3":
 					# Desvio Padrão
-					arithmetic_mean1(list_xi)
 					standard_deviation()
-					input("...")
 				
 				
 				elif res2 == "4":
 					#Todos(1,2,3) - Amplitude total - Desvio médio simples - Desvio Padrão
-					total_amplitude(statistic.total_amplitude1(statistic.rol_raw_data(list_xi)))
-					arithmetic_mean1(list_xi)
+					print(f"\n\t Amplitude Total:{total_amp}\n")
 					average_mean_deviation1()
-					reset_var()
 					standard_deviation()
-					input("...")
+					
 				
 				
 				elif res2 == "5":
-					#sair
-					break
+					casa_decimal()
+					#Corta o loop e evita de aparecer o print do final
+					continue
 					
+				elif res2 == "6":
+					#Sair
+					break
+				else:
+					#Corta o loop e evita de aparecer o print do final
+					continue
+					
+				print(f"\tCalculando Média aritmética:{sum_x3}/{len(list_x3)} = {x1}\n")
+				input("...")
 					
 		else:
 			print("Dados Inválidos.")
@@ -457,10 +555,6 @@ while 1:
             # ------------------------------------------------------------------------------------------
 			
 			while 1:
-				#reset_var()
-				clear_()
-				print(" \nRecomenda-se que aumente\n o número de casas decimais,\npara não haver distorção nos valores.\n")
-				input("...")
 				clear_()
 				print(basic.terminal_size(modo_2, "="))
 				print(basic.terminal_size(f"fi:{list_fi}", " "))
@@ -474,20 +568,22 @@ while 1:
 				
 				if res2 =="1":
 					#Amplitude total - Dados Agrupados
-					total_amplitude2(initial, amplitude, quant_fi)
+					total_amp = statistic.total_amplitude2(initial, amplitude, quant_fi)
 					print(f"\n\t Amplitude Total:{total_amp}\n")
 					input("...")
 					
 				elif res2 == "2":
 					#Desvio médio simples - Dados Agrupados
-					
+					#
+					#zerando a lista
+					list_xi_fi = []
 					#Cria a lista nova xi.fi
 					for x in range(0, len(list_fi)):
 						list_xi_fi.append(round(list_xi[x]*list_fi[x], 2)) #xi.fi
-					print(list_xi_fi)
+					
 						
 	
-					arithmetic_mean1(list_xi_fi, True)
+					arithmetic_mean(list_xi_fi, True)
 					average_mean_deviation2()
 					input("...")
 					
@@ -498,6 +594,8 @@ while 1:
 				elif res2 == "4":
 					pass
 				elif res2 == "5":
+					casa_decimal()
+				elif res2 == "6":
 					#exit do submenu dados agrupados
 					break
 					
@@ -517,13 +615,17 @@ while 1:
 	
 	
 	elif res1 == "4":
-		decimal = int(input("Digite entre 1 a 5: "))
-		if decimal > 5 or decimal < 1:
-			decimal = 2
+		print("ATENÇÃO:\nQuanto mais casas decimais, mais chances\ndo o resultado ser absoluto.")
+		input("...")
 			
 		
 	elif res1 == "5":
-		print("exit :)")
+		casa_decimal()
+			
+		
+	elif res1 == "6":
+		#Sai do script
+		print(":)")
 		break
 		
 	
