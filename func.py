@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import math
 
 class Basic(object):
 	def __init__(self):
@@ -26,10 +27,11 @@ class Basic(object):
 	def sum_list(self, list_):
 		""" Faz a soma de uma lista com números."""
 		# return sum
-		sum = 0
-		for n in list_:
-			sum += n
-		return sum
+		#sum = 0
+		#for n in list_:
+			#sum += n
+		#return sum
+		return math.fsum(list_)
 		
 	def dismemberment(self, string):
 		""" Pega uma string com números separados
@@ -108,7 +110,7 @@ class Statistic(object):
 		#Desvio padrão - Dados brutos
 		a = sum/len(list_)
 		#Retorna a raiz
-		return a**0.5
+		return math.sqrt(a)
 		
 		
 		
