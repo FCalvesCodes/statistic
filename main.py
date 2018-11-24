@@ -101,9 +101,13 @@ abount = ["Amplitude Total\nDesvio médio simples\nDesvio padrão\n        githu
 
 #--------------------------------------------------------------------
 
+				
+
+
 def d(x):
 	""" Convert float em Decimal."""
 	return Decimal(x)
+
 
 def truncate(f, n):
     '''Truncates/pads a float f to n decimal places without rounding'''
@@ -260,8 +264,10 @@ def standard_deviation2():
 		#fi
 		list_fi_x4.append(truncate(truncate(list_fi[x], decimal)*truncate(list_x4[x], decimal), decimal))
 		
+		
 		#True caso o terminaltables foi instalado
 		if is_terminaltables:
+		
 			l.append([list_fi[x], list_xi[x], list_xi_fi[x], list_x2[x], list_x4[x], list_fi_x4[x]])
 	
 	#Recebe as somas das list
@@ -622,6 +628,8 @@ def dados_agrupados_while():
 		elif res2 == "6":
 			#exit do submenu dos dados agrupados
 			break
+		else:
+			continue
 				
 		print(f"\tCalculando Média aritmética:{sum_xi_fi}/{len(list_xi_fi)} = {x1}\n")
 		input("...")
@@ -690,7 +698,9 @@ while 1:
 	
 	
 	elif res1 == "4":
-		print("ATENÇÃO:\nQuanto mais casas decimais, mais chances\ndo o resultado ser absoluto.")
+		print("ATENÇÃO:\n\tQuanto mais casas decimais, mais chances\ndo o resultado ser absoluto.\n")
+		print("  \tXmin é o número menor da 1° classe Agrupada.\n")
+		print("  \tAmplitude da classe é a distância de um Xmin ao Xmax da \n\t  mesma classe. Ex: 500|----700 --> 200")
 		input("...")
 			
 		
