@@ -1,8 +1,8 @@
 # dispersion-measure(Medida de dispersão)
 
-##Total amplitude(Amplitude total)
+## Total amplitude(Amplitude total)
 
-##Simple mean deviation(Devio médio simples)
+## Simple mean deviation(Devio médio simples)
 
-##standard deviation(Devio padrão)
+## standard deviation(Devio padrão)
 
