@@ -15,9 +15,9 @@
 					$ python main.py
 """
 
-from tables import TablesTerminal
+from mod.tables import TablesTerminal
 from decimal import Decimal
-from func import Basic, Statistic
+from mod.func import Basic, Statistic
 import os
 import time
 import sys
