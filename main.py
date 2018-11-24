@@ -15,22 +15,15 @@
 					$ python main.py
 """
 
+from tables import TablesTerminal
 from decimal import Decimal
 from func import Basic, Statistic
 import os
 import time
 import sys
 
-
-is_terminaltables = True
-
-try:
-	from terminaltables import AsciiTable
-	
-except:
-	print("Instale o módulo terminaltables para visualizar\n a tabela detalhada.")
-	time.sleep(2)
-	is_terminaltables = False
+t = TablesTerminal()
+is_terminaltables = t.is_terminal()
 	
 
 basic = Basic()
@@ -91,6 +84,7 @@ commands1 = ["[1] - Dados Brutos",\
 commands2 = ["[1] - Amplitude total",\
 								"[2] - Desvio médio simples",\
 								"[3] - Desvio padrão",\
+								"[3.1] - Variância",\
 								"[4] - Todos(1, 2, 3)",\
 								"[5] - Configurar Casa Decimal",\
 								"[6] - Retornar"]
@@ -117,8 +111,8 @@ def truncate(f, n):
         return '{0:.{1}f}'.format(f, n)
     i, p, d = s.partition('.')
     return Decimal('.'.join([i, (d+'0'*n)[:n]]))
-	
-	
+
+
 def clear_():
 	""" Limpa o terminal de acordo com a
 		sua plataforma."""
@@ -129,18 +123,6 @@ def clear_():
 		
 # ----------------------------------------------------
 
-def tables(data, ult_borda= False,title= ""):
-	""" Recebe a tabela em formatos
-			Matriz."""
-	tables_terminal = AsciiTable(data)
-	tables_terminal.inner_footing_row_border = ult_borda
-	tables_terminal.padding_left = 2
-	tables_terminal.title = title
-	if tables_terminal.ok:
-		print(tables_terminal.table)
-	else:
-		print("Tabela não pode ser visualizada, \n Recua o zoom do terminal e tente novamente.")
-	
 #------------------------------------------------------
 	
 def arithmetic_mean(list_, grouped_data=False):
@@ -204,13 +186,13 @@ def standard_deviation():
 			pass
 		
 	#Recebe a soma de todas list
-	sum_x3 = round(basic.sum_list(list_x3), decimal)
-	sum_x4 = round(basic.sum_list(list_x4), decimal)
-	sum_xi = round(basic.sum_list(list_xi), decimal)
+	sum_x3 = truncate(basic.sum_list(list_x3), decimal)
+	sum_x4 = truncate(basic.sum_list(list_x4), decimal)
+	sum_xi = truncate(basic.sum_list(list_xi), decimal)
 	
 	if is_terminaltables:
 		l.append([sum_xi, "Σ",sum_x3, sum_x4])
-		tables(l, True,"Dados brutos - desvio padrão")
+		t.tables(l, True,"Dados brutos - desvio padrão")
 	else:
 		print("Instale o módulo terminaltables para mais detalhes.\n")
 	
@@ -220,7 +202,16 @@ def standard_deviation():
 	print(f"\n\tDesvio padrão é √({sum_x4}/{len(list_x4)}) = {round(dt, decimal)}")
 
 # ---------------------------------------------------------------------
-
+def variance(is_raw_data=True):
+	#Variância
+	global list_xi
+	global list_x3
+	global x1
+	if is_raw_data:
+		pass
+	else:
+		pass
+	
 def standard_deviation2():
 	"""Desvio padrão para dados Agrupados."""
 	global is_terminaltables
@@ -280,7 +271,7 @@ def standard_deviation2():
 	
 	if is_terminaltables:
 		l.append([sum_fi, sum_xi,sum_xi_fi, "Σ", sum_x4, sum_fi_x4])
-		tables(l, True,"Dados Agrupados - desvio padrão")
+		t.tables(l, True,"Dados Agrupados - desvio padrão")
 	else:
 		print("Instale o módulo terminaltables para mais detalhes.\n")
 		
@@ -335,7 +326,7 @@ def average_mean_deviation1():
 	
 	if is_terminaltables:
 		l.append([sum_xi, "    Σ",sum_x3])
-		tables(l, True, "Dados Brutos - Desvio médio simples")
+		t.tables(l, True, "Dados Brutos - Desvio médio simples")
 	else:
 		print("Instale o módulo terminaltables para mais detalhes.\n")
 	
@@ -395,7 +386,7 @@ def average_mean_deviation2():
 	
 	if is_terminaltables:
 		l.append([sum_fi, sum_xi, sum_xi_fi, sum_x3, sum_fi_x3])
-		tables(l, True,"Dados Agrupados - Desvio médio simples")
+		t.tables(l, True,"Dados Agrupados - Desvio médio simples")
 	else:
 		print("Instale o módulo terminaltables para mais detalhes.\n")
 		
@@ -518,6 +509,7 @@ def dados_brutos_while():
 	global total_amp
 	global commands2
 	global sum_x3
+	global sum_xi
 	
 	while 1:
 		is_raw_data = True
@@ -572,8 +564,8 @@ def dados_brutos_while():
 		else:
 			#Corta o loop e evita de aparecer o print do final
 				continue
-					
-		print(f"\tCalculando Média aritmética:{sum_x3}/{len(list_x3)} = {x1}\n")
+		
+		print(f"\tCalculando Média aritmética:{sum_xi}/{len(list_xi)} = {x1}\n")
 		input("...")
 
 
@@ -691,7 +683,7 @@ while 1:
 	elif res1 == "3":
 		if is_terminaltables:
 			l = [["Sobre"], abount]
-			tables(l)
+			t.tables(l)
 		else:
 			print(f"\nSobre:\n\t{abount[0]}")
 		input("...")
