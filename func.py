@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
+from decimal import Decimal
 import os
 import math
 
 class Basic(object):
 	def __init__(self):
-		pass
+		self.decimal = 2
 	
 	def checker_string(self, string, list_allowed=[",","0","1","2","3","4","5","6","7","8","9"]):
 		""" Verifica se a string contém caracteres
@@ -23,15 +24,25 @@ class Basic(object):
 				return False
 		
 		return True
+		
+	def d_(self, x):
+		""" Decimal."""
+		return Decimal(x)
+		
+	def truncate_(self, f, n):
+		'''Truncates/pads a float f to n decimal places without rounding'''
+		s = '{}'.format(f)
+		if 'e' in s or 'E' in s:
+			return '{0:.{1}f}'.format(f, n)
+		i, p, d = s.partition('.')
+		return self.d_('.'.join([i, (d+'0'*n)[:n]]))
 	
 	def sum_list(self, list_):
 		""" Faz a soma de uma lista com números."""
-		# return sum
-		#sum = 0
-		#for n in list_:
-			#sum += n
-		#return sum
-		return math.fsum(list_)
+		sum = self.d_('0')
+		for n in list_:
+			sum += self.truncate_(n, self.decimal)
+		return sum
 		
 	def dismemberment(self, string):
 		""" Pega uma string com números separados

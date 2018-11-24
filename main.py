@@ -1,8 +1,19 @@
 #! data/data/com.termux/files/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
-#Arquivo principal --  Medida de dispersão
+""" 							Arquivo Principal
+	Esse script foi projetado e testado no terminal termux android
+		Não Sei se vai dar problema em outros terminais.
+		
+		Modo de uso:
+			Instale o termux no seu celular
+			Codigos a digitar no termux:
+					$ pkg install python python-dev coreutils git
+					$ pip install terminaltables
+					$ git https://github.com/FelipeAlmeid4/dispersion-measure.git
+					$ cd dispersion-measure
+					$ python main.py
+"""
 
 from decimal import Decimal
 from func import Basic, Statistic
@@ -17,7 +28,7 @@ try:
 	from terminaltables import AsciiTable
 	
 except:
-	print("Instale o módulo terminaltables.")
+	print("Instale o módulo terminaltables para visualizar\n a tabela detalhada.")
 	time.sleep(2)
 	is_terminaltables = False
 	
@@ -32,20 +43,27 @@ modo_2 = "Modo Dados Agrupados"
 
 xmin = 0
 xmax = 0
-amplitude = 0
-x1= 0			   #Média aritmética
+
+amplitude = 0  # Amplitude da classe
+x1= 0			      #Média aritmética
+
+sum_xi_fi = 0
 sum_x3 = 0
 sum_x4 = 0
 sum_xi = 0
 sum_fi = 0
-quant_xi = 0 	   #len(list_xi)
-quant_fi = 0       #len(list_fi)
-decimal = 2
-total_amp = 0
-initial = 0
-sum_xi_fi = 0
 sum_fi_x3 = 0
 sum_fi_x4 = 0
+
+
+quant_xi = 0 	   #len(list_xi)
+quant_fi = 0       #len(list_fi)
+
+decimal = 2
+total_amp = 0   #Amplitude total Xmin da 1°, Xmax da ultima Classe.
+initial = 0			#Xmin da primeira classe
+
+
 
 
 list_x2 = []		  #xi - "x-barra"
@@ -54,8 +72,8 @@ list_x4 = []		  #(xi - "x-barra")²
 list_xi = []		   # xi
 list_fi = []		   # fi
 list_xi_fi = []     # xi.fi
-list_fi_x3 = []
-list_fi_x4 = []
+list_fi_x3 = []	#fi.|xi - "x-barra"|
+list_fi_x4 = []	#fi.(xi - "x-barra")²
 
 # É dados brutos
 is_raw_data = False
@@ -84,8 +102,17 @@ abount = ["Amplitude Total\nDesvio médio simples\nDesvio padrão\n        githu
 #--------------------------------------------------------------------
 
 def d(x):
-	""" Decimal."""
-	return Decimal("{0:.2f}".format(x))
+	""" Convert float em Decimal."""
+	return Decimal(x)
+
+def truncate(f, n):
+    '''Truncates/pads a float f to n decimal places without rounding'''
+    #https://pt.stackoverflow.com/questions/176243/como-limitar-números-decimais-em-python
+    s = '{}'.format(f)
+    if 'e' in s or 'E' in s:
+        return '{0:.{1}f}'.format(f, n)
+    i, p, d = s.partition('.')
+    return Decimal('.'.join([i, (d+'0'*n)[:n]]))
 	
 	
 def clear_():
@@ -160,11 +187,11 @@ def standard_deviation():
 	for x in range(0, quant_xi):
 		
 		#xi-'x-barra'
-		list_x2.append(round(list_xi[x] - x1, decimal))
+		list_x2.append(truncate(truncate(list_xi[x], decimal) - truncate(x1, decimal), decimal))
 		# |xi-'x-barra'|
-		list_x3.append(abs(round(list_xi[x] - x1, decimal)))
+		list_x3.append(truncate(abs(truncate(list_xi[x], decimal) - truncate(x1, decimal)), decimal))
 		#(xi-'x-barra')²
-		list_x4.append(round(list_x3[x]**2, decimal))
+		list_x4.append(truncate(truncate(list_x3[x], decimal)**2,decimal))
 		
 		#True caso o terminaltables foi instalado
 		if is_terminaltables:
@@ -188,7 +215,7 @@ def standard_deviation():
 		
 	print(f"\n\tDesvio padrão é √({sum_x4}/{len(list_x4)}) = {round(dt, decimal)}")
 
-
+# ---------------------------------------------------------------------
 
 def standard_deviation2():
 	"""Desvio padrão para dados Agrupados."""
@@ -225,25 +252,25 @@ def standard_deviation2():
 	
 	for x in range(0, quant_fi):
 		#xi-'x-barra'
-		list_x2.append(round(list_xi[x]- x1, decimal))
+		list_x2.append(truncate(truncate(list_xi[x], decimal) - truncate(x1, decimal), decimal))
 		#|xi-'x-barra'|
-		list_x3.append(abs(round(d(list_xi[x]) - d(x1),decimal)))
+		list_x3.append(truncate(abs(truncate(list_xi[x], decimal) - truncate(x1, decimal)), decimal))
 		#(xi-'x-barra')²
-		list_x4.append(d(list_x3[x])**2)
+		list_x4.append(truncate(truncate(list_x3[x], decimal)**2, decimal))
 		#fi
-		list_fi_x4.append(d(list_fi[x])*d(list_x4[x]))
+		list_fi_x4.append(truncate(truncate(list_fi[x], decimal)*truncate(list_x4[x], decimal), decimal))
 		
 		#True caso o terminaltables foi instalado
 		if is_terminaltables:
 			l.append([list_fi[x], list_xi[x], list_xi_fi[x], list_x2[x], list_x4[x], list_fi_x4[x]])
 	
 	#Recebe as somas das list
-	sum_xi = round(basic.sum_list(list_xi), decimal)
-	sum_fi = round(basic.sum_list(list_fi), decimal)
-	sum_x3 = round(basic.sum_list(list_x3), decimal)
-	sum_x4 = round(basic.sum_list(list_x4), decimal)
-	sum_fi_x4 = round(basic.sum_list(list_fi_x4), decimal)
-	sum_xi_fi = round(basic.sum_list(list_xi_fi), decimal)
+	sum_xi = d(basic.sum_list(list_xi))
+	sum_fi = d(basic.sum_list(list_fi))
+	sum_x3 = d(basic.sum_list(list_x3))
+	sum_x4 = d(basic.sum_list(list_x4))
+	sum_fi_x4 = d(basic.sum_list(list_fi_x4))
+	sum_xi_fi = d(basic.sum_list(list_xi_fi))
 	
 	if is_terminaltables:
 		l.append([sum_fi, sum_xi,sum_xi_fi, "Σ", sum_x4, sum_fi_x4])
@@ -253,7 +280,7 @@ def standard_deviation2():
 		
 	#Recebe o resultado da raiz
 	dt = sum_fi_x4/sum_fi
-	dt = dt**0.5
+	dt = dt**d(0.5)
 		
 	print(f"\n\tDesvio padrão é √({sum_fi_x4}/{sum_fi}) = {round(dt, decimal)}")
 	
@@ -377,6 +404,9 @@ def casa_decimal():
 		decimal = int(input("Digite entre 1 a 5: "))
 		if decimal > 5 or decimal < 1:
 			decimal = 2
+			basic.decimal = 2
+		else:
+			basic.decimal = decimal
 	except:
 		pass
 
