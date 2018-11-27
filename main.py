@@ -71,7 +71,7 @@ commands2 = ["[1] - Amplitude total",\
 commands3 = ["[1] - Amostra",\
 							  "[2] - População"]
 
-abount = ["Amplitude Total\nDesvio médio simples\nDesvio padrão\n        github: FelipeAlmeid4."]
+abount = ["Esse script foi feito para fins didáticos,\nEstá bem estável pelo termux, \ndados inseridos somente dados inteiros\n       github: FelipeAlmeid4."]
 
 #--------------------------------------------------------------------
 def tables(data, ult_borda= False,title= ""):
@@ -311,7 +311,7 @@ def dados_brutos_while():
 				
 		# Calcula a média aritmética
 		arithmetic_mean(process.list_xi)
-		process.total_amplitude = statistic.total_amplitudelitude1(process.list_xi)
+		process.total_amplitude = statistic.total_amplitude1(process.list_xi)
 		print("\n")
 				
 		for command in commands2:
