@@ -1,13 +1,17 @@
-# dispersion-measure(Medida de dispersão)
+## Funcões disponíveis
+## Dispersion-measure(Medida de dispersão)
 
-## Total amplitude(Amplitude total)
+2)Total amplitude(Amplitude total - Dados brutos e Agrupados)
 
-## Simple mean deviation(Devio médio simples)
+3)Simple mean deviation(Devio médio simples - Dados brutos e Agrupados)
 
-## standard deviation(Devio padrão)
+4)Standard deviation(Devio padrão - Dados brutos e Agrupados)
 
-Esse script foi projetado e testado no terminal termux android
-Não Sei se vai dar problema em outros terminais.
+5)Variance(Variância Amostral e populacional - Dados brutos e  Agrupados)
+
+6)Arithmetic_mean(Média Aritmética - Dados brutos e Agrupados)
+
+Esse script foi projetado e testado no terminal termux no android.
 		
 Modo de uso:
 
@@ -19,13 +23,13 @@ Codigos a digitar no termux:
 			
 			$ pip install terminaltables
 			
-			$ git https://github.com/FelipeAlmeid4/dispersion-measure.git
+			$ git clone https://github.com/FelipeAlmeid4/statistic.git
 			
-			$ cd dispersion-measure
+			$ cd statistic
 			
 			$ python main.py
 
-Atualização, Caso houver, digite dentro do diretório dispersion-measure
+Atualização, Caso houver, digite dentro do diretório statistic
 		
 			$ git pull
 

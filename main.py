@@ -8,10 +8,10 @@
 		Modo de uso:
 			Instale o termux no seu celular
 			Codigos a digitar no termux:
-					$ pkg install python python-dev coreutils git
+					$ pkg install python python-dev coreutils git 
 					$ pip install terminaltables
-					$ git https://github.com/FelipeAlmeid4/dispersion-measure.git
-					$ cd dispersion-measure
+					$ git clone https://github.com/FelipeAlmeid4/statistic.git
+					$ cd statistic
 					$ python main.py
 """
 
