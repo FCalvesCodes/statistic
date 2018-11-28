@@ -54,23 +54,22 @@ commands1 = ["[1] - Dados Brutos",\
 								"[2] - Dados Agrupados",\
 								"[3] - Sobre",\
 								"[4] - Informações",\
-								"[5] - Configurar Casa Decimal",\
+								"[5] - Configurações",\
 							    "[6] - Sair"]
 
 commands2 = ["[1] - Amplitude total",\
 								"[2] - Desvio médio simples",\
 								"[3] - Desvio padrão",\
-								"[3.1] - Variância",\
-								"[3.2] - Média aritmética",\
-								"[4] - Todos(1, 2, 3)",\
-								"[5] - Configurar Casa decimal",\
-								"[5.1] - Ativar/Desativar  Amostra",\
-								"[5.2] - Ativa/Desativar População",\
-								"[6] - Retornar"]
+								"[4] - Variância",\
+								"[5] - Média aritmética",\
+								"[6] - Configurações",\
+								"[7] - Retornar"]
 
-commands3 = ["[1] - Amostra",\
-							  "[2] - População"]
-
+commands3 = ["[1] - Ajustar Casa Decimal",\
+							"[2] - Ativar/Desativar Amostra",\
+							"[3] - Ativar/Desativar População",\
+							"[4] - Retornar"]
+							
 abount = ["Esse script foi feito para fins didáticos,\nEstá bem estável pelo termux, \ndados inseridos somente dados inteiros\n       github: FelipeAlmeid4."]
 
 #--------------------------------------------------------------------
@@ -84,6 +83,7 @@ def tables(data, ult_borda= False,title= ""):
 			print(tables_terminal.table)
 		else:
 			print("Tabela não pode ser visualizada, \n Recua o zoom do terminal e tente novamente.")
+
 
 def truncate(f, n):
     '''Truncates/pads a float f to n process.decimal places without rounding'''
@@ -112,18 +112,18 @@ def variance():
 		#Para dados brutos
 		if process.sample:
 			process.gerar_matriz_table((["i","xi", "xi-ㄡ", "|xi-ㄡ"]), False, 3)
-			print(f"\n\tVariância amostral é {process.sum_x4}/{process.quant_xi-1} = {truncate(process.sum_x4/(process.quant_xi-1), process.decimal)}\n")
+			print(f"\nAmostra:↴\nVariância é {process.sum_x4}/{process.quant_xi-1} = {truncate(process.sum_x4/(process.quant_xi-1), process.decimal)}\n")
 		if process.populational:
 			process.gerar_matriz_table((["i","xi", "xi-ㄡ", "|xi-ㄡ"]) , False, 3)
-			print(f"\n\tVariância populacional é {process.sum_x4}/{process.quant_xi} = {truncate(process.sum_x4/process.quant_xi,  process.decimal)}\n")
+			print(f"\nPopulação:↴\nVariância é {process.sum_x4}/{process.quant_xi} = {truncate(process.sum_x4/process.quant_xi,  process.decimal)}\n")
 	else:
 		#para dados Agrupados
 		if process.sample:
 			process.gerar_matriz_table((["i","fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]) , True, 3)
-			print(f"\n\tVariância amostral é {process.sum_fi_x4}/{process.quant_xi-1} = {truncate(process.sum_fi_x4/(process.quant_xi-1), process.decimal)}\n")
+			print(f"\nAmostra:↴\nVariância é {process.sum_fi_x4}/{process.quant_fi-1} = {truncate(process.sum_fi_x4/(process.quant_fi-1), process.decimal)}\n")
 		if process.populational:
-			process.gerar_matriz_table((["i", "fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]), False, 3)
-			print(f"\n\tVariância populacional é {process.sum_fi_x4}/{process.quant_xi} = {truncate(process.sum_fi_x4/process.quant_xi, process.decimal)}\n")
+			process.gerar_matriz_table((["i", "fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]), True, 3)
+			print(f"\nPopulação:↴\nVariância é {process.sum_fi_x4}/{process.quant_fi} = {truncate(process.sum_fi_x4, process.decimal)/truncate(process.quant_fi, process.decimal)}\n")
 		
 
 
@@ -167,11 +167,14 @@ def standard_deviation2():
 	escopo = (["fi", "xi","xi.fi","xi-ㄡ","(xi-ㄡ)²", "fi.(xi-ㄡ)²"])
 	process.gerar_matriz_table(escopo, True, 2)
 	
-	#Recebe o resultado da raiz
-	dt = truncate(process.sum_fi_x4/process.sum_fi, process.decimal)
-	dt = dt**Decimal("0.5")
-	print(f"\n\tDesvio padrão é √({process.sum_fi_x4}/{process.sum_fi}) = {truncate(dt, process.decimal)}")
-	
+	if process.sample:
+		dt = truncate(process.sum_fi_x4/process.sum_fi-1, process.decimal)
+		dt = dt**Decimal("0.5")
+		print(f"\nAmostra:↴\nDesvio padrão é √({process.sum_fi_x4}/{process.sum_fi-1}) = {truncate(dt, process.decimal)}")
+	if process.populational:
+		dt = truncate(process.sum_fi_x4/process.sum_fi, process.decimal)
+		dt = dt**Decimal("0.5")
+		print(f"\nPopulação:↴\nDesvio padrão é √({process.sum_fi_x4}/{process.sum_fi}) = {truncate(dt, process.decimal)}")
 # -------------------------------------------------------------------------------
 
 def average_mean_deviation1():
@@ -180,19 +183,23 @@ def average_mean_deviation1():
 	#Escopo da tabela
 	escopo = ([" i", "xi", "xi-ㄡ","|xi-ㄡ|"])
 	process.gerar_matriz_table(escopo, False, 1)
-	
-	print(f"\n\t Desvio médio simples é ({process.sum_x3}/{len(process.list_x3)}) = {truncate(process.sum_x3/len(process.list_x3), process.decimal)}")
-		
+	if process.sample:
+		print(f"\nAmostra:↴\nDesvio médio simples é ({process.sum_x3}/{len(process.list_x3)-1}) = {truncate(process.sum_x3/len(process.list_x3)-1, process.decimal)}")
+	if process.populational:
+		print(f"\nPopulação:↴\nDesvio médio simples é ({process.sum_x3}/{len(process.list_x3)}) = {truncate(process.sum_x3/len(process.list_x3), process.decimal)}")
 # ----------------------------------------------------------------------------
 
 def average_mean_deviation2():
 	""" Desvio médio simples dados agrupados."""
 	
 	#Escopo da tabela
-	escopo = (["fi", "xi", "xi.fi","|xi-ㄡ|", "fi.|x-'barra|'"])
+	escopo = (["fi", "xi", "xi.fi","|xi-ㄡ|", "fi.|xi-ㄡ|'"])
 	process.gerar_matriz_table(escopo, True, 1)
+	if process.sample:
+		print(f"\nAmostra:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi-1}) = {truncate(process.sum_fi_x3/process.sum_fi-1, process.decimal)}")
+	if process.populational:
+		print(f"\nPopulação:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi}) = {truncate(process.sum_fi_x3/process.sum_fi, process.decimal)}")
 	
-	print(f"\n\t Desvio médio simples é ({process.sum_fi_x3}/{process.sum_fi}) = {truncate(process.sum_fi_x3/process.sum_fi, process.decimal)}")
 # ------------------------------------------------------------------------------------------
 
 
@@ -226,7 +233,63 @@ def new_xi(initial, amplitude_class, amount_class):
 	return list_
 
 # -------------------------------------------------------------------------------
-
+def config():
+	"""Menu de configurações."""
+	global commands3
+	
+	while 1:
+		clear_()
+		if process.sample:
+			sample = "Ativado"
+		else:
+			sample = "Desativado"
+		if process.populational:
+			populational= "Ativado"
+		else:
+			populational = "Desativado"
+		
+		print(terminal.terminal_size(" Configurações ", "="))
+		print(terminal.terminal_size("", "━"))
+		print(terminal.terminal_size(f" Amostra: {sample} ", " "))
+		print(terminal.terminal_size("", "━"))
+		print(terminal.terminal_size(f" População: {populational} ", " "))
+		print(terminal.terminal_size("", "━"))
+		print(terminal.terminal_size(f" Casa Decimal: {process.decimal} ", " "))
+		print(terminal.terminal_size("", "━"))
+		print("\n")
+		
+		for command in commands3:
+			print(command)
+		
+		resposta = str(input("Opção"))
+		
+		if resposta == "1":
+			casa_decimal()
+			
+		elif resposta == "2":
+			if process.sample:
+				if process.populational == False:
+					process.populational = True
+				process.sample= False
+			else:
+				process.sample = True
+				
+		elif resposta == "3":
+			if process.populational:
+				if process.sample == False:
+					process.sample= True
+				process.populational= False
+			else:
+				process.populational = True
+		elif resposta == "4":
+			break
+		else:
+			pass
+			
+		
+		
+		
+		
 # -------------------------------------------------------------------------------
 
 def data_entry(raw_data):
@@ -267,13 +330,15 @@ def data_entry(raw_data):
 			#Recebe a lista fi desmembrada 
 			process.list_fi = func2.dismemberment(string_fi)
 			
-			#Calcula a quantidade de classes com base na process.list_fi
 			process.quant_fi = len(process.list_fi)
-			
-			process.quant_xi = len(process.list_xi)
 			
 			#Calcula o xi com base nos dados de entrada e return uma lista
 			process.list_xi = new_xi(initial, amplitude, process.quant_fi)
+			
+			#Calcula a quantidade de classes com base na process.list_xi
+			process.quant_xi = len(process.list_xi)
+			
+			
 			
 			#Cria a lista nova xi.fi
 			for x in range(0, len(process.list_fi)):
@@ -332,44 +397,19 @@ def dados_brutos_while():
 			# Desvio Padrão
 			standard_deviation()
 		
-		elif res2 == "3.1":
+		elif res2 == "4":
 			#Variância
 			variance()
 			
-		elif res2 == "3.2":
+		elif res2 == "5":
 			print(f"\tCalculando Média aritmética:{process.sum_xi}/{len(process.list_xi)} = {truncate(process.x1, process.decimal)}\n")
 				
-				
-		elif res2 == "4":
-			pass
-					
-				
-				
-		elif res2 == "5":
-			casa_decimal()
-			continue
-		
-		elif res2 == "5.2":
-			#Ajustar os dados (Amostral) (Populacional)
-			if process.populational:
-				if process.sample == False:
-					process.sample= True
-				process.populational= False
-			else:
-				process.populational = True
-				
-			continue
-		
-		elif res2 == "5.1":
-			if process.sample:
-				if process.populational == False:
-					process.populational = True
-				process.sample= False
-			else:
-				process.sample = True
-			continue
-					
 		elif res2 == "6":
+			#Configurações
+			config()
+			
+			
+		elif res2 == "7":
 			#Sair
 			break
 		else:
@@ -410,43 +450,18 @@ def dados_agrupados_while():
 		elif res2 == "3":
 			standard_deviation2()
 			
-		elif res2 == "3.1":
+		elif res2 == "4":
 			#Variância
 			variance()
 			
-		elif res2 == "3.2":
+		elif res2 == "5":
 			print(f"\tCalculando Média aritmética:{process.sum_fi_xi}/{len(process.list_fi_xi)} = {truncate(process.x1, process.decimal)}\n")
 			
-				
-		elif res2 == "4":
-			pass
-				
-		elif res2 == "5":
-			#Ajustar a casa decimal
-			casa_decimal()
-			continue
-		
-		elif res2 == "5.2":
-			#Ajustar os dados (Amostral) (Populacional)
-			if process.populational:
-				if process.sample == False:
-					process.sample = True
-				process.populational= False
-			else:
-				process.populational = True
-			continue
-		
-		elif res2 == "5.1":
-			if process.sample:
-				if process.populational == False:
-					process.populational = True
-				process.sample= False
-			else:
-				process.sample = True
-			continue
-			
-				
 		elif res2 == "6":
+			#Configurações
+			config()
+			
+		elif res2 == "7":
 			#exit do submenu dos dados agrupados
 			break
 		else:
@@ -460,7 +475,7 @@ while 1:
 	clear_()
 	
 	#Escopo do While principal
-	print(terminal.terminal_size(" Medida de dispersão ", "+"))
+	print(terminal.terminal_size(" Estatística ", "+"))
 	print(terminal.terminal_size(f" Casa decimal: {process.decimal} ", " "))
 	
 	for command in commands1:
@@ -522,7 +537,7 @@ while 1:
 			
 		
 	elif res1 == "5":
-		casa_decimal()
+			config()
 			
 		
 	elif res1 == "6":

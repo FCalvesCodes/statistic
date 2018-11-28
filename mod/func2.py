@@ -164,7 +164,7 @@ class Process(object):
 				#Dados agrupados - Desvio padrão
 				l.append([self.list_fi[x], self.list_xi[x], self.list_fi_xi[x], self.list_x2[x], self.list_x4[x], self.list_fi_x4[x]])
 			elif grouped == True and modo == 3:
-				l.append([self.list_fi[x], self.list_xi[x], self.list_fi_xi[x], self.list_x2[x], self.list_x4[x], self.list_fi_x4[x]])
+				l.append([x+1, self.list_fi[x], self.list_xi[x], self.list_fi_xi[x], self.list_x2[x], self.list_x4[x], self.list_fi_x4[x]])
 			
 		#Recebe as somas
 		self.sum_xi = truncate(sum_list(self.list_xi), self.decimal)
@@ -177,7 +177,7 @@ class Process(object):
 		
 		if grouped == False and modo == 1 and self.is_terminaltables:
 			#Dados Brutos - Desvio médio simples
-			l.append([x+1, self.sum_xi, "    Σ",self.sum_x3])
+			l.append([x+1, self.sum_xi, "    Σ", self.sum_x3])
 			self.tables(l, True, "Dados Brutos - Desvio médio simples")
 		elif grouped == False and modo == 2 and self.is_terminaltables:
 			#Dados brutos - Desvio padrão
@@ -185,7 +185,7 @@ class Process(object):
 			self.tables(l, True,"Dados brutos - desvio padrão")
 		elif grouped == False and modo == 3 and self.is_terminaltables:
 			#Dados brutos - Variância
-			l.append([x+1, self.sum_xi, "Σ",self.sum_x4])
+			l.append([x+1, self.sum_xi, "Σ", self.sum_x4])
 			self.tables(l, True,"Dados brutos - Variância")
 		elif grouped == True and modo == 1 and self.is_terminaltables:
 			#Dados agrupados - Desvio médio  simples
