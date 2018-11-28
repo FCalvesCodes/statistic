@@ -57,6 +57,15 @@ commands1 = ["[1] - Dados Brutos",\
 								"[5] - Configurações",\
 							    "[6] - Sair"]
 
+commands2_agr = ["[1] - Amplitude total",\
+								"[2] - Desvio médio simples",\
+								"[3] - Desvio padrão",\
+								"[4] - Variância",\
+								"[5] - Média aritmética",\
+								"[6] - Configurações",\
+								"[7] - Visualizar tabela de frequência",\
+								"[8] - Retornar"]
+
 commands2 = ["[1] - Amplitude total",\
 								"[2] - Desvio médio simples",\
 								"[3] - Desvio padrão",\
@@ -123,7 +132,7 @@ def variance():
 			print(f"\nAmostra:↴\nVariância é {process.sum_fi_x4}/{process.quant_fi-1} = {truncate(process.sum_fi_x4/(process.quant_fi-1), process.decimal)}\n")
 		if process.populational:
 			process.gerar_matriz_table((["i", "fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]), True, 3)
-			print(f"\nPopulação:↴\nVariância é {process.sum_fi_x4}/{process.quant_fi} = {truncate(process.sum_fi_x4, process.decimal)/truncate(process.quant_fi, process.decimal)}\n")
+			print(f"\nPopulação:↴\nVariância é {process.sum_fi_x4}/{process.quant_fi} = {truncate(truncate(process.sum_fi_x4, process.decimal)/process.quant_fi, process.decimal)}\n")
 		
 
 
@@ -248,20 +257,17 @@ def config():
 		else:
 			populational = "Desativado"
 		
-		print(terminal.terminal_size(" Configurações ", "="))
-		print(terminal.terminal_size("", "━"))
-		print(terminal.terminal_size(f" Amostra: {sample} ", " "))
-		print(terminal.terminal_size("", "━"))
-		print(terminal.terminal_size(f" População: {populational} ", " "))
-		print(terminal.terminal_size("", "━"))
-		print(terminal.terminal_size(f" Casa Decimal: {process.decimal} ", " "))
+		
+		
 		print(terminal.terminal_size("", "━"))
 		print("\n")
-		
+		escopo = [ "            Configurações             "]
+		process.gerar_matriz_table(escopo, None, 5)
+		print("\n")
 		for command in commands3:
 			print(command)
 		
-		resposta = str(input("Opção"))
+		resposta = str(input("Opção: "))
 		
 		if resposta == "1":
 			casa_decimal()
@@ -294,8 +300,6 @@ def config():
 
 def data_entry(raw_data):
 	""" Onde colhe os dados Dados brutos e Agrupados."""
-	global amplitude
-	global initial
 	
 	#Para dados brutos
 	if raw_data == True:
@@ -324,8 +328,8 @@ def data_entry(raw_data):
 		string_fi = str(input("fi: ")).replace(" ", "")
 		try:
 			
-			initial= float(input("Xmin da 1° Classe: "))
-			amplitude= float(input("Amplitude da classe: "))
+			process.initial= float(input("Xmin da 1° Classe: "))
+			process.amplitude= float(input("Amplitude da classe: "))
 			
 			#Recebe a lista fi desmembrada 
 			process.list_fi = func2.dismemberment(string_fi)
@@ -333,7 +337,7 @@ def data_entry(raw_data):
 			process.quant_fi = len(process.list_fi)
 			
 			#Calcula o xi com base nos dados de entrada e return uma lista
-			process.list_xi = new_xi(initial, amplitude, process.quant_fi)
+			process.list_xi = new_xi(process.initial, process.amplitude, process.quant_fi)
 			
 			#Calcula a quantidade de classes com base na process.list_xi
 			process.quant_xi = len(process.list_xi)
@@ -346,6 +350,8 @@ def data_entry(raw_data):
 			#Pegando a soma das listas
 			process.sum_xi = func2.sum_list(process.list_xi)
 			process.sum_fi = func2.sum_list(process.list_fi)
+			process.sum_fi_xi = func2.sum_list(process.list_fi_xi)
+			
 		except:
 			pass
 		
@@ -353,8 +359,10 @@ def data_entry(raw_data):
 			return
 			
 		else:
-			print(f"xi = {process.list_xi}")
-			print(f"fi = {process.list_fi}")
+			#Gera a tabela de frequência
+			print("\n")
+			escopo = ["i", "Dados", "fi", "xi"]
+			process.gerar_matriz_table(escopo, True, 4)
 			input("...")
 
 
@@ -421,11 +429,12 @@ def dados_brutos_while():
 def dados_agrupados_while():
 	""" While dos dados agrupados. """
 	global modo_2
+	global commands2_agr
 	
 	while 1:
 		clear_()
 		
-		process.total_amplitude = statistic.total_amplitude2(initial, amplitude, process.quant_fi)
+		process.total_amplitude = statistic.total_amplitude2(process.initial, process.amplitude, process.quant_fi)
 		#Escopo do menu Dados agrupados
 		print(terminal.terminal_size(modo_2, "="))
 		print(terminal.terminal_size(f" Amostra: {process.sample} ", "-"))
@@ -434,7 +443,7 @@ def dados_agrupados_while():
 		print(terminal.terminal_size(f"xi:{process.list_xi}", " "))
 		print("\n")
 				
-		for command in commands2:
+		for command in commands2_agr:
 			print(command)
 					
 		res2 = input("Opção: ")
@@ -455,13 +464,22 @@ def dados_agrupados_while():
 			variance()
 			
 		elif res2 == "5":
-			print(f"\tCalculando Média aritmética:{process.sum_fi_xi}/{len(process.list_fi_xi)} = {truncate(process.x1, process.decimal)}\n")
+			print(f"\tCalculando Média aritmética:{process.sum_fi_xi}/{process.sum_fi} = {truncate(process.x1, process.decimal)}\n")
+			print(process.sum_fi_xi)
 			
 		elif res2 == "6":
 			#Configurações
 			config()
-			
+			continue
+		
 		elif res2 == "7":
+			#Visualizar tabela Dados agrupados
+			clear_()
+			print("\n")
+			escopo = ["i", "Dados", "fi", "xi"]
+			process.gerar_matriz_table(escopo, True, 4)
+			
+		elif res2 == "8":
 			#exit do submenu dos dados agrupados
 			break
 		else:
@@ -508,6 +526,7 @@ while 1:
 		
 		#Verifica se a algo errado com os dados
 		if len(process.list_xi) > 1 and len(process.list_fi) > 1 and len(process.list_xi) == len(process.list_fi):
+			
 			#Calcula a média aritmética
 			arithmetic_mean(process.list_fi_xi, True)
 			
@@ -530,7 +549,7 @@ while 1:
 	
 	
 	elif res1 == "4":
-		print("ATENÇÃO:\n\tQuanto mais casas decimais, mais chances\ndo o resultado ser absoluto.\n")
+		print("ATENÇÃO:\n")
 		print("  \tXmin é o número menor da 1° classe Agrupada.\n")
 		print("  \tAmplitude da classe é a distância de um Xmin ao Xmax da \n\t  mesma classe. Ex: 500|----700 --> 200")
 		input("...")

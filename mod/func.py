@@ -3,7 +3,7 @@
 from decimal import Decimal
 import os
 import math
- 
+
 class Statistic(object):
 	
 	def __init__(self):

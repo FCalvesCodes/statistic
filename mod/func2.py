@@ -99,19 +99,21 @@ class Process(object):
 		
 		self.total_amplitude = 0
 		
+		#Variáveis de entrada de dados
+		self.amplitude = 0
+		self.initial = 0
+		self.xmin = 0
+		self.xmax = 0
+		
 		self.is_terminaltables = is_terminaltables
-	
-	def xxx(self, list_xi, list_fi, list_fi_xi):
-		self.list_xi = list_xi
-		self.list_fi = list_fi
-		self.list_fi_xi = list_fi_xi
 		
 		
-	def tables(self, data, ult_borda= False,title= ""):
+	def tables(self, data, ult_borda= False,title= "", separar_colunas=False, separar_linhas=False):
 		""" Recebe a tabela em formatos Matriz."""
 		self.tables_terminal = AsciiTable(data)
 		self.tables_terminal.inner_footing_row_border = ult_borda
-		self.tables_terminal.padding_left = 2
+		self.tables_terminal.inner_column_border = separar_colunas
+		self.tables_terminal.inner_row_border = separar_linhas
 		self.tables_terminal.title = title
 		if self.tables_terminal.ok:
 			print(self.tables_terminal.table)
@@ -126,11 +128,23 @@ class Process(object):
 				modo = 3 - Variância
 		"""
 		
+		#Usados para construir a tabela de entrada de dados
+		xmin = self.initial
+		amp = self.amplitude
+		
 		l = []
-	
 		l.append(escopo)
+		
+		self.list_config = [f"Casa Decimal: {self.decimal}", f"Amostra: {self.sample}", f"População: {self.populational}"]
 	
 		self.list_x2, self.list_x3, self.list_x4,self.list_fi_x3, self.list_fi_x4 = [],[],[],[],[]
+		
+		#Gerar uma matriz para configurações
+		if grouped == None and modo == 5:
+			for x in range(0, len(self.list_config)):
+				l.append([self.list_config[x]])
+			self.tables(l, True,"" ,True, True)
+			return
 	
 		for x in range(0, len(self.list_xi)):
 		
@@ -156,6 +170,7 @@ class Process(object):
 			elif grouped == False and modo == 3:
 				#Dados brutos e Agrupados - Variância
 				l.append([x+1, self.list_xi[x], self.list_x2[x], self.list_x4[x]])
+			
 			elif grouped == True and modo == 1:
 				#Dados agrupados - Desvio médio simples
 				l.append([self.list_fi[x], self.list_xi[x], self.list_fi_xi[x], self.list_x3[x], self.list_fi_x3[x]])
@@ -163,8 +178,15 @@ class Process(object):
 			elif grouped == True and modo == 2:
 				#Dados agrupados - Desvio padrão
 				l.append([self.list_fi[x], self.list_xi[x], self.list_fi_xi[x], self.list_x2[x], self.list_x4[x], self.list_fi_x4[x]])
+				
 			elif grouped == True and modo == 3:
+				#Dados agrupados - Variância
 				l.append([x+1, self.list_fi[x], self.list_xi[x], self.list_fi_xi[x], self.list_x2[x], self.list_x4[x], self.list_fi_x4[x]])
+				
+			elif grouped == True and modo == 4:
+				#Dados Agrupados - Simples demotração da tabela de frêquencia
+				xmin += amp
+				l.append([x+1, f"{xmin-amp}|-----{xmin}", self.list_fi[x], self.list_xi[x]])
 			
 		#Recebe as somas
 		self.sum_xi = truncate(sum_list(self.list_xi), self.decimal)
@@ -177,7 +199,7 @@ class Process(object):
 		
 		if grouped == False and modo == 1 and self.is_terminaltables:
 			#Dados Brutos - Desvio médio simples
-			l.append([x+1, self.sum_xi, "    Σ", self.sum_x3])
+			l.append([" ", self.sum_xi, "    Σ", self.sum_x3])
 			self.tables(l, True, "Dados Brutos - Desvio médio simples")
 		elif grouped == False and modo == 2 and self.is_terminaltables:
 			#Dados brutos - Desvio padrão
@@ -185,7 +207,7 @@ class Process(object):
 			self.tables(l, True,"Dados brutos - desvio padrão")
 		elif grouped == False and modo == 3 and self.is_terminaltables:
 			#Dados brutos - Variância
-			l.append([x+1, self.sum_xi, "Σ", self.sum_x4])
+			l.append([" ", self.sum_xi, "Σ", self.sum_x4])
 			self.tables(l, True,"Dados brutos - Variância")
 		elif grouped == True and modo == 1 and self.is_terminaltables:
 			#Dados agrupados - Desvio médio  simples
@@ -198,6 +220,10 @@ class Process(object):
 		elif grouped == True and modo == 3 and self.is_terminaltables:
 			l.append([x+1, self.sum_fi, self.sum_xi, self.sum_fi_xi, "Σ", self.sum_x4, self.sum_fi_x4])
 			self.tables(l, True,"Dados Agrupados - Variância")
+		elif grouped == True and modo == 4 and self.is_terminaltables:
+			#Dados Agrupados - Simples demotração da tabela de frêquencia
+			l.append([" ", " Σ ", self.sum_fi, self.sum_xi])
+			self.tables(l, True,"Tabela de frequência")
 		elif is_terminalself.tables == False:
 			print("Instale o módulo terminalself.tables para mais detalhes.\n")
 	
