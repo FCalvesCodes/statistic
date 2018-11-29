@@ -1,35 +1,51 @@
-## Funcões disponíveis
-## Dispersion-measure(Medida de dispersão)
+# Calculadora de estatística (via terminal) #
 
-2)Total amplitude(Amplitude total - Dados brutos e Agrupados)
+Esse Script foi feito para fins didáticos, é uma calculadora de estatística que aceita dados brutos e dados agrupados,
+ faz os cálculos exibindo uma tabela para orientação do resultado.
 
-3)Simple mean deviation(Devio médio simples - Dados brutos e Agrupados)
 
-4)Standard deviation(Devio padrão - Dados brutos e Agrupados)
+### Calcula! ###
 
-5)Variance(Variância Amostral e populacional - Dados brutos e  Agrupados)
+ - **Dados Brutos**
+   - Amplitude Total
+   - Desvio Médio Simples (Amostra e população)
+   - Desvio Padrão (Amostra e população)
+   - Variância (Amostra e população)
+   - Moda
+   - Mediana
+   - Média Aritmética
+ 
+ - **Dados agrupados**
+   - Amplitude Total 
+   - Desvio Médio Simples (Amostra e população)
+   - Desvio Padrão (Amostra e população)
+   - Variância (Amostra e população)
+   - Média Aritmética
+   
 
-6)Arithmetic_mean(Média Aritmética - Dados brutos e Agrupados)
+### Configurações ###
+Existe um menu de configurações o de pode alterar (Amostra e população) e definir as casas decimais.
 
-Esse script foi projetado e testado no terminal termux no android.
-		
-Modo de uso:
 
-Instale o termux no seu celular
+- **Modo de uso:**
+
+ **Obs: Esse script foi feito pelo celular e usando terminal do termux para testes, pode haver erros em terminais diferentes**
+
+Instale o termux no seu celular(google play)
 
 Codigos a digitar no termux:
 			
-			$ pkg install python python-dev coreutils git
+			pkg install python python-dev coreutils git
 			
-			$ pip install terminaltables
+			pip install terminaltables
 			
-			$ git clone https://github.com/FelipeAlmeid4/statistic.git
+			git clone https://github.com/FelipeAlmeid4/statistic.git
 			
-			$ cd statistic
+			cd statistic
 			
-			$ python main.py
+			python main.py
 
-Atualização, Caso houver, digite dentro do diretório statistic
+Atualização, Caso houver, digite dentro do diretório **statistic**
 		
-			$ git pull
+			git pull
 

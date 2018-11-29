@@ -99,6 +99,11 @@ class Process(object):
 		
 		self.total_amplitude = 0
 		
+		self.moda_0 = "Amodal"
+		self.moda_1 = "Unimodal"
+		self.moda_2 = "Bimodal"
+		self.moda_3 = "Trimodal"
+		
 		#Variáveis de entrada de dados
 		self.amplitude = 0
 		self.initial = 0
@@ -108,7 +113,7 @@ class Process(object):
 		self.is_terminaltables = is_terminaltables
 		
 		
-	def tables(self, data, ult_borda= False,title= "", separar_colunas=False, separar_linhas=False):
+	def tables(self, data, ult_borda= False,title= "", separar_colunas=True, separar_linhas=False):
 		""" Recebe a tabela em formatos Matriz."""
 		self.tables_terminal = AsciiTable(data)
 		self.tables_terminal.inner_footing_row_border = ult_borda

@@ -16,6 +16,7 @@
 """
 
 from decimal import Decimal
+from collections import defaultdict
 from mod.func import Statistic
 from mod import func2
 from mod.func2 import Process
@@ -66,11 +67,13 @@ commands2_agr = ["[1] - Amplitude total",\
 								"[7] - Visualizar tabela de frequência",\
 								"[8] - Retornar"]
 
-commands2 = ["[1] - Amplitude total",\
-								"[2] - Desvio médio simples",\
-								"[3] - Desvio padrão",\
-								"[4] - Variância",\
-								"[5] - Média aritmética",\
+commands2 = ["[1]  -  Amplitude total",\
+								"[2]  -  Desvio médio simples",\
+								"[3]  -  Desvio padrão",\
+								"[4]  -  Variância",\
+								"[5]  -  Média aritmética",\
+								"[5.1] - Moda",\
+								"[5.2]  - Mediana",\
 								"[6] - Configurações",\
 								"[7] - Retornar"]
 
@@ -81,6 +84,21 @@ commands3 = ["[1] - Ajustar Casa Decimal",\
 							
 abount = ["Esse script foi feito para fins didáticos,\nEstá bem estável pelo termux, \ndados inseridos somente dados inteiros\n       github: FelipeAlmeid4."]
 
+def print_c(string, cor):
+	# Um print colorido
+	vermelho = "\033[31m"
+	verde = "\033[32m"
+	amarelo = "\033[33m"
+	azul = "\033[34m"
+	fechar = "\033[0;0m"
+	try:
+		if cor.lower() == "vermelho":
+			print(vermelho+string+fechar)
+		elif cor.lower() == "azul":
+			print(azul+string+fechar)
+	except:
+		print(string)
+		
 #--------------------------------------------------------------------
 def tables(data, ult_borda= False,title= ""):
 		""" Recebe a tabela em formatos Matriz."""
@@ -166,7 +184,69 @@ def standard_deviation():
 	dt = statistic.standard_deviation(process.sum_x4, process.list_x4)
 		
 	print(f"\n\tDesvio padrão é √({process.sum_x4}/{len(process.list_x4)}) = {truncate(dt, process.decimal)}")
+	
 
+def moda1():
+	"""Verifica qual os números que mais se repete."""
+	#https://pt.stackoverflow.com/questions/216413/identificar-elementos-repetidos-em-lista-com-python
+	
+	clear_()
+	
+	#Rastreia o maior número repetido
+	n = 1
+	for x in process.list_xi:
+		if process.list_xi.count(x) > n:
+			n = process.list_xi.count(x)
+
+	# Define o objeto que armazenará os índices de cada elemento:
+	keys = defaultdict(list);
+
+	# Percorre todos os elementos da lista:
+	for key, value in enumerate(process.list_xi):
+
+  	  # Adiciona o índice do valor na lista de índices:
+		keys[value].append(key)
+
+	m = []
+	
+	# Extrai os valores que mais se repete
+	for value in keys:
+		if len(keys[value]) >= n:
+			m.append(value)
+	
+	if len(m) == 0:
+		print("\n\tAmodal")
+	elif len(m) == 1:
+		print(f"\n\t{m}  -  Unimodal")
+	elif len(m) == 2:
+		print(f"\n\t{m}  -  Bimodal")
+	elif len(m) == 3:
+		print(f"\n\t{m}  -  Trimodal")
+		
+		
+		
+def mediana1():
+	""" Calcula a mediana de uma lista de dados brutos"""
+	#Recebe a lista em ordem crescente
+	clear_()
+	list_= statistic.rol_raw_data(process.list_xi)
+	print(terminal.terminal_size(f"Lista em ROL: {list_}", "━"))
+	
+	
+	quantidade = len(process.list_xi)
+	
+	
+	if quantidade%2==0:
+		#Lista Par
+		n = (quantidade//2)-1
+		mediana = truncate((list_[n] + list_[-(n+1)])/2, process.decimal)
+		print(f"\nLista Par:↴\n\tMediana é ({list_[n]} + {list_[-(n+1)]})/2 = {truncate(mediana, process.decimal)}")
+	else:
+		#Lista Impar
+		n = (quantidade-1)//2
+		mediana = list_[n]
+		print(f"\nLista Ímpar:↴\n\tMediana é {mediana}")
+		
 # ---------------------------------------------------------------------
 	
 def standard_deviation2():
@@ -248,17 +328,8 @@ def config():
 	
 	while 1:
 		clear_()
-		if process.sample:
-			sample = "Ativado"
-		else:
-			sample = "Desativado"
-		if process.populational:
-			populational= "Ativado"
-		else:
-			populational = "Desativado"
 		
-		
-		
+		#Tabela de configuraçãoes
 		print(terminal.terminal_size("", "━"))
 		print("\n")
 		escopo = [ "            Configurações             "]
@@ -323,7 +394,14 @@ def data_entry(raw_data):
 	# Pede os dados e faz o pré- processamento das variáveis necessarias para funções em seguida
 	else:
 		#Demostração de entrada 
-		print("Exemplo de Entradas:\n\tfi: 18,31,15,10,7,5,4 \n\txi:\n\t  Xmin da 1° Classe:500\n\t  Amplitude_classe:200\n")
+		print("Exemplo de Entradas:")
+		print("\n\tfi:", end=" ")
+		print_c( "18,31,15,10,7,5,4","vermelho")
+		print("\n\txi:\n\t  Xmin da 1° Classe:", end=" ")
+		print_c("500", "vermelho")
+		print("\n\t  Amplitude_classe:", end=" ")
+		print_c("200", "vermelho")
+		print("\n")
 		
 		string_fi = str(input("fi: ")).replace(" ", "")
 		try:
@@ -360,6 +438,7 @@ def data_entry(raw_data):
 			
 		else:
 			#Gera a tabela de frequência
+			clear_()
 			print("\n")
 			escopo = ["i", "Dados", "fi", "xi"]
 			process.gerar_matriz_table(escopo, True, 4)
@@ -411,6 +490,12 @@ def dados_brutos_while():
 			
 		elif res2 == "5":
 			print(f"\tCalculando Média aritmética:{process.sum_xi}/{len(process.list_xi)} = {truncate(process.x1, process.decimal)}\n")
+		
+		elif res2 == "5.1":
+			moda1()
+		
+		elif res2 == "5.2":
+			mediana1()
 				
 		elif res2 == "6":
 			#Configurações
@@ -549,9 +634,9 @@ while 1:
 	
 	
 	elif res1 == "4":
-		print("ATENÇÃO:\n")
-		print("  \tXmin é o número menor da 1° classe Agrupada.\n")
-		print("  \tAmplitude da classe é a distância de um Xmin ao Xmax da \n\t  mesma classe. Ex: 500|----700 --> 200")
+		print_c("\nATENÇÃO:\n", "vermelho")
+		print("  Xmin é o número menor da 1° classe Agrupada.\n")
+		print("  Amplitude da classe é a distância de um Xmin ao Xmax da \n  mesma classe. Ex: 500|----700 --> 200")
 		input("...")
 			
 		
