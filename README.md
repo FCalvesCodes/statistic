@@ -39,6 +39,8 @@ Codigos a digitar no termux:
 			
 			pip install terminaltables
 			
+			pip install termcolor
+			
 			git clone https://github.com/FelipeAlmeid4/statistic.git
 			
 			cd statistic

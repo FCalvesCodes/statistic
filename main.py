@@ -132,7 +132,7 @@ def clear_():
 		os.system("clear")
 		
 	elif sys.platform == "win32":
-		os.system("mode con cols=110")
+		os.system("mode con cols=110 lines=80")
 		os.system("cls")
 		
 # ----------------------------------------------------

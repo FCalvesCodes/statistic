@@ -2,11 +2,19 @@
 
 import string
 from decimal import Decimal
+import sys
 
-is_terminaltables = True
+try:
+	from termcolor import colored
+	color = True
+except:
+	color = False
+
+
 
 try:
 	from terminaltables import AsciiTable
+	is_terminaltables = True
 except:
 	is_terminaltables = False
 	print("Instale o módulo terminaltables para visualizar\n a tabela detalhada.")
@@ -116,7 +124,7 @@ class Process(object):
 		self.xmin = 0
 		self.xmax = 0
 		
-		
+		#Trocar cor no linux
 		self.vermelho = "\033[31m"
 		self.verde = "\033[32m"
 		self.amarelo = "\033[33m"
@@ -141,11 +149,12 @@ class Process(object):
 	def f_c(self, string):
 		try:
 			if string == True:
-				return self.verde+str(string)+self.fechar
+				return colored(str(string), "green")
 			elif string == False:
-				return self.vermelho+str(string)+self.fechar
+				return colored(str(string), "red")
 		except:
-			return string
+				return string
+		
 		
 	def gerar_matriz_table(self, escopo, grouped, modo):
 		"""  grouped = True - Dados agrupados
