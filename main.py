@@ -25,6 +25,12 @@ import os
 import time
 import sys
 
+try:
+	from termcolor import colored
+	color = True
+except:
+	color = False
+
 is_terminaltables = True
 
 try:
@@ -89,18 +95,12 @@ commands3 = ["[1] - Ajustar Casa Decimal",\
 abount = ["Esse script foi feito para fins didáticos,\nEstá bem estável pelo termux, \ndados inseridos somente dados inteiros\n       github: FelipeAlmeid4."]
 
 def print_c(string, cor):
-	# Um print colorido
-	vermelho = "\033[31m"
-	verde = "\033[32m"
-	amarelo = "\033[33m"
-	azul = "\033[34m"
-	fechar = "\033[0;0m"
-	try:
-		if cor.lower() == "vermelho":
-			print(vermelho+string+fechar)
-		elif cor.lower() == "azul":
-			print(azul+string+fechar)
-	except:
+	global color
+	
+	if color and sys.platform == "linux":
+		a = colored(str(string), cor)
+		print(a)
+	else:
 		print(string)
 		
 #--------------------------------------------------------------------
@@ -665,7 +665,7 @@ while 1:
 	
 	
 	elif res1 == "4":
-		print_c("\nATENÇÃO:\n", "vermelho")
+		print_c("\nATENÇÃO:\n", "red")
 		print("  Xmin é o número menor da 1° classe Agrupada.\n")
 		print("  Amplitude da classe é a distância de um Xmin ao Xmax da \n  mesma classe. Ex: 500|----700 --> 200")
 		input("...")
