@@ -124,13 +124,6 @@ class Process(object):
 		self.xmin = 0
 		self.xmax = 0
 		
-		#Trocar cor no linux
-		self.vermelho = "\033[31m"
-		self.verde = "\033[32m"
-		self.amarelo = "\033[33m"
-		self.azul = "\033[34m"
-		self.fechar = "\033[0;0m"
-		
 		self.is_terminaltables = is_terminaltables
 		
 		
@@ -147,13 +140,16 @@ class Process(object):
 			print("Tabela não pode ser visualizada, \n Recua o zoom do terminal e tente novamente.")
 		
 	def f_c(self, string):
-		try:
-			if string == True:
-				return colored(str(string), "green")
-			elif string == False:
-				return colored(str(string), "red")
-		except:
-				return string
+		if sys.platform == "linux":
+			try:
+				if string == True:
+					return colored(str(string), "green")
+				elif string == False:
+					return colored(str(string), "red")
+			except:
+					return string
+		else:
+			return string
 		
 		
 	def gerar_matriz_table(self, escopo, grouped, modo):

@@ -337,7 +337,7 @@ def config():
 		clear_()
 		
 		#Tabela de configuraçãoes
-		print(terminal.terminal_size("", "━"))
+		print(terminal.terminal_size("", "-"))
 		print("\n")
 		escopo = [ "            Configurações             ", " Status"]
 		process.gerar_matriz_table(escopo, None, 5)
