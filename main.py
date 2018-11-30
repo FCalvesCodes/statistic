@@ -78,9 +78,13 @@ commands2 = ["[1]  -  Amplitude total",\
 								"[7] - Retornar"]
 
 commands3 = ["[1] - Ajustar Casa Decimal",\
-							"[2] - Ativar/Desativar Amostra",\
-							"[3] - Ativar/Desativar População",\
-							"[4] - Retornar"]
+							"[2] - Ativar/Desativar - Amostra",\
+							"[3] - Ativar/Desativar - População",\
+							"[4] - Ativar/Desativar - Freq. Relativa % (fri%)",\
+							"[5] - Ativar/Desativar - Freq. Absoluta Acumulada (Fi)",\
+							"[6] - Ativar/Desativar - Freq. Relativa Acumulada (Fri%)",\
+							"[7] - Ativar/Desativar - Ponto Médio (xi)",\
+							"[8] - Retornar"]
 							
 abount = ["Esse script foi feito para fins didáticos,\nEstá bem estável pelo termux, \ndados inseridos somente dados inteiros\n       github: FelipeAlmeid4."]
 
@@ -176,7 +180,7 @@ def standard_deviation():
 	"""Desvio padrão para dados brutos."""
 	
 	#Escopo da tabela
-	escopo = (["xi", "xi-ㄡ","|xi-ㄡ|", "(xi-ㄡ)²"])
+	escopo = (["i", "xi", "xi-ㄡ","|xi-ㄡ|", "(xi-ㄡ)²"])
 	
 	process.gerar_matriz_table(escopo, False, 2)
 	
@@ -186,21 +190,21 @@ def standard_deviation():
 	print(f"\n\tDesvio padrão é √({process.sum_x4}/{len(process.list_x4)}) = {truncate(dt, process.decimal)}")
 	
 
-def moda1():
+def moda1(agrouped= False):
 	"""Verifica qual os números que mais se repete."""
 	#https://pt.stackoverflow.com/questions/216413/identificar-elementos-repetidos-em-lista-com-python
 	
 	clear_()
-	
-	#Rastreia o maior número repetido
 	n = 1
+		
+	#Rastreia o maior número repetido
 	for x in process.list_xi:
 		if process.list_xi.count(x) > n:
 			n = process.list_xi.count(x)
 
 	# Define o objeto que armazenará os índices de cada elemento:
 	keys = defaultdict(list);
-
+	
 	# Percorre todos os elementos da lista:
 	for key, value in enumerate(process.list_xi):
 
@@ -224,7 +228,10 @@ def moda1():
 		print(f"\n\t{m}  -  Trimodal")
 		
 		
-		
+def moda2():
+	""" Localiza  a classe modal."""
+	pass
+
 def mediana1():
 	""" Calcula a mediana de uma lista de dados brutos"""
 	#Recebe a lista em ordem crescente
@@ -253,7 +260,7 @@ def standard_deviation2():
 	"""Desvio padrão para dados Agrupados."""
 	
 	#Escopo da tabela
-	escopo = (["fi", "xi","xi.fi","xi-ㄡ","(xi-ㄡ)²", "fi.(xi-ㄡ)²"])
+	escopo = (["i", "fi", "xi","xi.fi","xi-ㄡ","(xi-ㄡ)²", "fi.(xi-ㄡ)²"])
 	process.gerar_matriz_table(escopo, True, 2)
 	
 	if process.sample:
@@ -270,7 +277,7 @@ def average_mean_deviation1():
 	""" Desvio médio simples dados brutos."""
 	
 	#Escopo da tabela
-	escopo = ([" i", "xi", "xi-ㄡ","|xi-ㄡ|"])
+	escopo = (["i", "xi", "xi-ㄡ","|xi-ㄡ|"])
 	process.gerar_matriz_table(escopo, False, 1)
 	if process.sample:
 		print(f"\nAmostra:↴\nDesvio médio simples é ({process.sum_x3}/{len(process.list_x3)-1}) = {truncate(process.sum_x3/len(process.list_x3)-1, process.decimal)}")
@@ -282,7 +289,7 @@ def average_mean_deviation2():
 	""" Desvio médio simples dados agrupados."""
 	
 	#Escopo da tabela
-	escopo = (["fi", "xi", "xi.fi","|xi-ㄡ|", "fi.|xi-ㄡ|'"])
+	escopo = (["i", "fi", "xi", "xi.fi","|xi-ㄡ|", "fi.|xi-ㄡ|'"])
 	process.gerar_matriz_table(escopo, True, 1)
 	if process.sample:
 		print(f"\nAmostra:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi-1}) = {truncate(process.sum_fi_x3/process.sum_fi-1, process.decimal)}")
@@ -332,7 +339,7 @@ def config():
 		#Tabela de configuraçãoes
 		print(terminal.terminal_size("", "━"))
 		print("\n")
-		escopo = [ "            Configurações             "]
+		escopo = [ "            Configurações             ", " Status"]
 		process.gerar_matriz_table(escopo, None, 5)
 		print("\n")
 		for command in commands3:
@@ -358,7 +365,32 @@ def config():
 				process.populational= False
 			else:
 				process.populational = True
+				
 		elif resposta == "4":
+			if process.list_config[0] == False:
+				process.list_config[0] = True
+			else:
+				process.list_config[0] = False
+		
+		elif resposta == "5":
+			if process.list_config[1] == False:
+				process.list_config[1] = True
+			else:
+				process.list_config[1] = False
+		
+		elif resposta == "6":
+			if process.list_config[2] == False:
+				process.list_config[2] = True
+			else:
+				process.list_config[2] = False
+		
+		elif resposta == "7":
+			if process.list_config[3] == False:
+				process.list_config[3] = True
+			else:
+				process.list_config[3] = False
+		
+		elif resposta == "8":
 			break
 		else:
 			pass
@@ -440,7 +472,7 @@ def data_entry(raw_data):
 			#Gera a tabela de frequência
 			clear_()
 			print("\n")
-			escopo = ["i", "Dados", "fi", "xi"]
+			escopo = ["i", "Dados", "fi"]
 			process.gerar_matriz_table(escopo, True, 4)
 			input("...")
 
@@ -561,7 +593,7 @@ def dados_agrupados_while():
 			#Visualizar tabela Dados agrupados
 			clear_()
 			print("\n")
-			escopo = ["i", "Dados", "fi", "xi"]
+			escopo = ["i", "Dados", "fi"]
 			process.gerar_matriz_table(escopo, True, 4)
 			
 		elif res2 == "8":

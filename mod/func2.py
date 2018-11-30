@@ -92,6 +92,9 @@ class Process(object):
 		self.list_fi_xi = []     # xi.fi
 		self.list_fi_x3 = []	#fi.|xi - "x-barra"|
 		self.list_fi_x4 = []	#fi.(xi - "x-barra")²
+		self.list_fri = []         #fri% - Freq. Relativa %
+		self.list_Fi = []          #Fi  - Freq. Absoluta Acumulado
+		self.list_Fri = []        #Fri - Freq. Relativa Acumulada %
 		
 		#Amostral e populacional
 		self.sample = True
@@ -99,14 +102,15 @@ class Process(object):
 		
 		self.total_amplitude = 0
 		
-		self.moda_0 = "Amodal"
-		self.moda_1 = "Unimodal"
-		self.moda_2 = "Bimodal"
-		self.moda_3 = "Trimodal"
+		#Configurações para visualizar tabela de frequencia
+		# indice    0 - fri%     1- Fi        2 - Fri%     3- xi
+		self.list_config = [False, False, False, True]
+
 		
 		#Variáveis de entrada de dados
 		self.amplitude = 0
 		self.initial = 0
+		
 		self.xmin = 0
 		self.xmax = 0
 		
@@ -138,51 +142,88 @@ class Process(object):
 		amp = self.amplitude
 		
 		l = []
+		
+		if grouped == True and modo == 4:
+			if self.list_config[0] == True:
+				escopo.append("fri %")
+			if self.list_config[1] == True:
+				escopo.append("Fi")
+			if self.list_config[2] == True:
+				escopo.append("Fri %")
+			if self.list_config[3] == True:
+				escopo.append("xi")
+				
 		l.append(escopo)
 		
-		self.list_config = [f"Casa Decimal: {self.decimal}", f"Amostra: {self.sample}", f"População: {self.populational}"]
-	
-		self.list_x2, self.list_x3, self.list_x4,self.list_fi_x3, self.list_fi_x4 = [],[],[],[],[]
+		#Auxilia a criação da lista Fi
+		n = 0
+		#Auxilia na criação da lista Fri
+		b = 0
+		
+		#Indice para configurar a tabela
+		ind = 0
+		self.list_config2 = [["Casa Decimal",f"{self.decimal}"], ["Amostra", f"{self.sample}"], ["População", f"{self.populational}"], ["fri %", f"{self.list_config[0]}"], ["Fi", f"{self.list_config[1]}"], ["Fri %" , f"{self.list_config[2]}"],["xi", f"{self.list_config[3]}"]]
+		self.list_x2, self.list_x3, self.list_x4,self.list_fi_x3, self.list_fi_x4, self.list_fri, self.list_Fri, self.list_Fi = [],[],[],[],[],[],[],[]
+		
 		
 		#Gerar uma matriz para configurações
 		if grouped == None and modo == 5:
-			for x in range(0, len(self.list_config)):
-				l.append([self.list_config[x]])
+			for x in range(0, len(self.list_config2)):
+				l.append(self.list_config2[x])
 			self.tables(l, True,"" ,True, True)
+			l = []
 			return
-	
+		
 		for x in range(0, len(self.list_xi)):
 		
 			#xi-ㄡ
 			self.list_x2.append(truncate(truncate(self.list_xi[x], self.decimal) - truncate(self.x1, self.decimal), self.decimal))
 			#|xi-ㄡ|
 			self.list_x3.append(abs(truncate(self.list_x2[x], self.decimal)))
-			#(xi-ㄡ)
+			#(xi-ㄡ)²
 			self.list_x4.append(truncate(truncate(self.list_x3[x], self.decimal)**2, self.decimal))
+			
+			
 		
 			if grouped == True:
-				#fi. |xi-ㄡ|
+				#fi.|xi-ㄡ|
 				self.list_fi_x3.append(truncate(truncate(self.list_fi[x]*self.list_x3[x], self.decimal), self.decimal))
-				#fi
+				
+				#fi.(xi-ㄡ)²
 				self.list_fi_x4.append(truncate(truncate(self.list_fi[x], self.decimal)*truncate(self.list_x4[x], self.decimal), self.decimal))
 				
+				#fri%
+				#Foi usado o Round para casas decimais pois, func truncate não apresentou bons resultados.
+				base = Decimal(self.list_fi[x])*100
+				self.list_fri.append(round(base/self.sum_fi, self.decimal))
+				
+				#Fi
+				n+=self.list_fi[x]
+				self.list_Fi.append(n)
+				
+				#Fri%
+				base = Decimal(self.list_fi[x])*100
+				b += round(base/self.sum_fi, self.decimal)
+				self.list_Fri.append(b)
+				
+			#Monta as matrizes
 			if grouped == False and modo == 1:
 				#Dados brutos - Desvio médio simples
 				l.append([x+1, self.list_xi[x], self.list_x2[x], self.list_x3[x]])
 			elif grouped == False and modo == 2:
 				#Dados Brutos - Desvio Padrão
-				l.append([self.list_xi[x], self.list_x2[x], self.list_x3[x], self.list_x4[x]])
+				l.append([x+1, self.list_xi[x], self.list_x2[x], self.list_x3[x], self.list_x4[x]])
 			elif grouped == False and modo == 3:
 				#Dados brutos e Agrupados - Variância
 				l.append([x+1, self.list_xi[x], self.list_x2[x], self.list_x4[x]])
 			
 			elif grouped == True and modo == 1:
 				#Dados agrupados - Desvio médio simples
-				l.append([self.list_fi[x], self.list_xi[x], self.list_fi_xi[x], self.list_x3[x], self.list_fi_x3[x]])
+				l.append([x+1, self.list_fi[x], self.list_xi[x], self.list_fi_xi[x], self.list_x3[x], self.list_fi_x3[x]])
 		
 			elif grouped == True and modo == 2:
 				#Dados agrupados - Desvio padrão
-				l.append([self.list_fi[x], self.list_xi[x], self.list_fi_xi[x], self.list_x2[x], self.list_x4[x], self.list_fi_x4[x]])
+				l.append([x+1, self.list_fi[x], self.list_xi[x], self.list_fi_xi[x], self.list_x2[x], self.list_x4[x], self.list_fi_x4[x]])
 				
 			elif grouped == True and modo == 3:
 				#Dados agrupados - Variância
@@ -190,8 +231,23 @@ class Process(object):
 				
 			elif grouped == True and modo == 4:
 				#Dados Agrupados - Simples demotração da tabela de frêquencia
+				
 				xmin += amp
-				l.append([x+1, f"{xmin-amp}|-----{xmin}", self.list_fi[x], self.list_xi[x]])
+				l.append([x+1, f"{xmin-amp}|-----{xmin}", self.list_fi[x]])
+				
+				if self.list_config[0] == True:
+					#Adicionar os dados
+					l[x+1].append(self.list_fri[x])
+				
+				if self.list_config[1] == True:
+					l[x+1].append(self.list_Fi[x])
+		
+				if self.list_config[2] == True:
+					l[x+1].append(self.list_Fri[x])
+				
+				if self.list_config[3] == True:
+					l[x+1].append(self.list_xi[x])
+				
 			
 		#Recebe as somas
 		self.sum_xi = truncate(sum_list(self.list_xi), self.decimal)
@@ -208,7 +264,7 @@ class Process(object):
 			self.tables(l, True, "Dados Brutos - Desvio médio simples")
 		elif grouped == False and modo == 2 and self.is_terminaltables:
 			#Dados brutos - Desvio padrão
-			l.append([self.sum_xi, "Σ",self.sum_x3, self.sum_x4])
+			l.append([" ", self.sum_xi, "Σ",self.sum_x3, self.sum_x4])
 			self.tables(l, True,"Dados brutos - desvio padrão")
 		elif grouped == False and modo == 3 and self.is_terminaltables:
 			#Dados brutos - Variância
@@ -216,18 +272,33 @@ class Process(object):
 			self.tables(l, True,"Dados brutos - Variância")
 		elif grouped == True and modo == 1 and self.is_terminaltables:
 			#Dados agrupados - Desvio médio  simples
-			l.append([self.sum_fi, self.sum_xi, self.sum_fi_xi, self.sum_x3, self.sum_fi_x3])
+			l.append([" ", self.sum_fi, self.sum_xi, self.sum_fi_xi, self.sum_x3, self.sum_fi_x3])
 			self.tables(l, True,"Dados Agrupados - Desvio médio simples")
 		elif grouped == True and modo == 2 and self.is_terminaltables:
 			#Dados agrupados - Desvio padrão
-			l.append([self.sum_fi, self.sum_xi,self.sum_fi_xi, "Σ", self.sum_x4, self.sum_fi_x4])
+			l.append([" ", self.sum_fi, self.sum_xi,self.sum_fi_xi, "Σ", self.sum_x4, self.sum_fi_x4])
 			self.tables(l, True,"Dados Agrupados - desvio padrão")
 		elif grouped == True and modo == 3 and self.is_terminaltables:
-			l.append([x+1, self.sum_fi, self.sum_xi, self.sum_fi_xi, "Σ", self.sum_x4, self.sum_fi_x4])
+			l.append([" ", self.sum_fi, self.sum_xi, self.sum_fi_xi, "Σ", self.sum_x4, self.sum_fi_x4])
 			self.tables(l, True,"Dados Agrupados - Variância")
 		elif grouped == True and modo == 4 and self.is_terminaltables:
 			#Dados Agrupados - Simples demotração da tabela de frêquencia
-			l.append([" ", " Σ ", self.sum_fi, self.sum_xi])
+			l.append([" ", " Σ ", self.sum_fi])
+			
+			if self.list_config[0] == True:
+				#Adicionar os dados
+				l[-1].append(" ")
+				
+			if self.list_config[1] == True:
+				l[-1].append(" ")
+		
+			if self.list_config[2] == True:
+				l[-1].append(" ")
+				
+			if self.list_config[3] == True:
+				l[-1].append(self.sum_xi)
+				
+				
 			self.tables(l, True,"Tabela de frequência")
 		elif is_terminalself.tables == False:
 			print("Instale o módulo terminalself.tables para mais detalhes.\n")

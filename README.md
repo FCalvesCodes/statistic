@@ -24,7 +24,7 @@ Esse Script foi feito para fins didáticos, é uma calculadora de estatística q
    
 
 ### Configurações ###
-Existe um menu de configurações o de pode alterar (Amostra e população) e definir as casas decimais.
+Existe um menu de configurações onde pode alterar (Amostra e população) e definir as casas decimais.
 
 
 - **Modo de uso:**
