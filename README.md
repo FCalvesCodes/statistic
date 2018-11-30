@@ -37,9 +37,9 @@ Codigos a digitar no termux:
 			
 			pkg install python python-dev coreutils git
 			
-			pip install terminaltables
+			pip install terminaltables     #Necessário para ver as tabelas
 			
-			pip install termcolor
+			pip install termcolor  			#Apenas para terminal linux
 			
 			git clone https://github.com/FelipeAlmeid4/statistic.git
 			
