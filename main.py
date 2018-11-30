@@ -172,7 +172,7 @@ def arithmetic_mean(list_, grouped_data=False):
 		quantidade = process.sum_fi
 	else:
 		quantidade = len(list_)
-	process.x1 = truncate(total/quantidade, process.decimal)
+	process.x1 = truncate(total/quantidade, 5)
 
 # ------------------------------------------------------------------------------
 
@@ -521,7 +521,7 @@ def dados_brutos_while():
 			variance()
 			
 		elif res2 == "5":
-			print(f"\tCalculando Média aritmética:{process.sum_xi}/{len(process.list_xi)} = {truncate(process.x1, process.decimal)}\n")
+			print(f"\n\tMédia aritmética: {process.sum_xi}/{len(process.list_xi)} = {truncate(process.x1, process.decimal)}\n")
 		
 		elif res2 == "5.1":
 			moda1()
@@ -581,8 +581,7 @@ def dados_agrupados_while():
 			variance()
 			
 		elif res2 == "5":
-			print(f"\tCalculando Média aritmética:{process.sum_fi_xi}/{process.sum_fi} = {truncate(process.x1, process.decimal)}\n")
-			print(process.sum_fi_xi)
+			print(f"\n\tMédia aritmética:{process.sum_fi_xi}/{process.sum_fi} = {truncate(process.x1, process.decimal)}\n")
 			
 		elif res2 == "6":
 			#Configurações

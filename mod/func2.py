@@ -20,6 +20,8 @@ def truncate(f, n):
 		return Decimal('{0:.{1}f}'.format(f, n))
 	i, p, d = s.partition('.')
 	return Decimal('.'.join([i, (d+'0'*n)[:n]]))
+	
+
 
 
 
@@ -114,6 +116,13 @@ class Process(object):
 		self.xmin = 0
 		self.xmax = 0
 		
+		
+		self.vermelho = "\033[31m"
+		self.verde = "\033[32m"
+		self.amarelo = "\033[33m"
+		self.azul = "\033[34m"
+		self.fechar = "\033[0;0m"
+		
 		self.is_terminaltables = is_terminaltables
 		
 		
@@ -128,6 +137,15 @@ class Process(object):
 			print(self.tables_terminal.table)
 		else:
 			print("Tabela não pode ser visualizada, \n Recua o zoom do terminal e tente novamente.")
+		
+	def f_c(self, string):
+		try:
+			if string == True:
+				return self.verde+str(string)+self.fechar
+			elif string == False:
+				return self.vermelho+str(string)+self.fechar
+		except:
+			return string
 		
 	def gerar_matriz_table(self, escopo, grouped, modo):
 		"""  grouped = True - Dados agrupados
@@ -162,7 +180,7 @@ class Process(object):
 		
 		#Indice para configurar a tabela
 		ind = 0
-		self.list_config2 = [["Casa Decimal",f"{self.decimal}"], ["Amostra", f"{self.sample}"], ["População", f"{self.populational}"], ["fri %", f"{self.list_config[0]}"], ["Fi", f"{self.list_config[1]}"], ["Fri %" , f"{self.list_config[2]}"],["xi", f"{self.list_config[3]}"]]
+		self.list_config2 = [["Casa Decimal",f"{self.decimal}"], ["Amostra", self.f_c(self.sample)], ["População", self.f_c(self.populational)], ["fri %", self.f_c(self.list_config[0])], ["Fi", self.f_c(self.list_config[1])], ["Fri %", self.f_c(self.list_config[2])], ["xi", self.f_c(self.list_config[3])]]
 		self.list_x2, self.list_x3, self.list_x4,self.list_fi_x3, self.list_fi_x4, self.list_fri, self.list_Fri, self.list_Fi = [],[],[],[],[],[],[],[]
 		
 		
