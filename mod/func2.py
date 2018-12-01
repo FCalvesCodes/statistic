@@ -61,8 +61,7 @@ def sum_list(list_):
 	for n in list_:
 		sum += Decimal(str(n))
 	return sum
-	
-	
+
 	
 	
 
@@ -107,10 +106,21 @@ class Process(object):
 		self.list_Fri = []        #Fri - Freq. Relativa Acumulada %
 		
 		#Amostral e populacional
-		self.sample = True
-		self.populational = False
+		self.sample = False
+		self.populational = True
 		
 		self.total_amplitude = 0
+		
+		#Para Moda de dados agrupados
+		self.lmo = []
+		self.indice = []
+		self.value = 0  # self.value == self.fmo
+		self.ffant =[]
+		self.fpost= []
+		self.delta_2 = []
+		self.delta_1 = []
+		self.modal = ["Amodal", "Unimodal", "Bimodal", "Trimodal"]
+		#self.c == self.amplitude
 		
 		#Configurações para visualizar tabela de frequencia
 		# indice    0 - fri%     1- Fi        2 - Fri%     3- xi
@@ -188,7 +198,6 @@ class Process(object):
 		self.list_config2 = [["Casa Decimal",f"{self.decimal}"], ["Amostra", self.f_c(self.sample)], ["População", self.f_c(self.populational)], ["fri %", self.f_c(self.list_config[0])], ["Fi", self.f_c(self.list_config[1])], ["Fri %", self.f_c(self.list_config[2])], ["xi", self.f_c(self.list_config[3])]]
 		self.list_x2, self.list_x3, self.list_x4,self.list_fi_x3, self.list_fi_x4, self.list_fri, self.list_Fri, self.list_Fi = [],[],[],[],[],[],[],[]
 		
-		
 		#Gerar uma matriz para configurações
 		if grouped == None and modo == 5:
 			for x in range(0, len(self.list_config2)):
@@ -254,7 +263,6 @@ class Process(object):
 				
 			elif grouped == True and modo == 4:
 				#Dados Agrupados - Simples demotração da tabela de frêquencia
-				
 				xmin += amp
 				l.append([x+1, f"{xmin-amp}|-----{xmin}", self.list_fi[x]])
 				
@@ -281,6 +289,7 @@ class Process(object):
 		self.sum_fi_x3 = truncate(sum_list(self.list_fi_x3), self.decimal)
 		self.sum_fi_xi = truncate(sum_list(self.list_fi_xi), self.decimal)
 		
+	
 		if grouped == False and modo == 1 and self.is_terminaltables:
 			#Dados Brutos - Desvio médio simples
 			l.append([" ", self.sum_xi, "    Σ", self.sum_x3])

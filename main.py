@@ -64,20 +64,22 @@ commands1 = ["[1] - Dados Brutos",\
 								"[5] - Configurações",\
 							    "[6] - Sair"]
 
-commands2_agr = ["[1] - Amplitude total",\
-								"[2] - Desvio médio simples",\
-								"[3] - Desvio padrão",\
-								"[4] - Variância",\
-								"[5] - Média aritmética",\
-								"[6] - Configurações",\
-								"[7] - Visualizar tabela de frequência",\
-								"[8] - Retornar"]
+commands2_agr = ["[1]  -  Amplitude Total",\
+								"[2]  -  Desvio Médio Simples",\
+								"[3]  -  Desvio Padrão",\
+								"[4]  -  Variância (Em desenvolvimento)",\
+								"[5]  -  Média Aritmética",\
+								"[5.1] - Moda",\
+								"[5.2] - Mediana",\
+								"[6]  -  Configurações",\
+								"[7]  -  Visualizar tabela de frequência",\
+								"[8]  -  Retornar"]
 
 commands2 = ["[1]  -  Amplitude total",\
-								"[2]  -  Desvio médio simples",\
-								"[3]  -  Desvio padrão",\
+								"[2]  -  Desvio médio Simples",\
+								"[3]  -  Desvio Padrão",\
 								"[4]  -  Variância",\
-								"[5]  -  Média aritmética",\
+								"[5]  -  Média Aritmética",\
 								"[5.1] - Moda",\
 								"[5.2]  - Mediana",\
 								"[6] - Configurações",\
@@ -95,6 +97,7 @@ commands3 = ["[1] - Ajustar Casa Decimal",\
 abount = ["Esse script foi feito para fins didáticos,\nEstá bem estável pelo termux, \ndados inseridos somente dados inteiros\n       github: FelipeAlmeid4."]
 
 def print_c(string, cor):
+	""" Coloca cores no terminal"""
 	global color
 	
 	if color and sys.platform == "linux":
@@ -102,13 +105,26 @@ def print_c(string, cor):
 		print(a)
 	else:
 		print(string)
+
+
+def tr(list_):
+	""" Retira as casas decimais"""
+	new_list = []
+	for n in list_:
+		if str(n).endswith(".0") or str(n).endswith(".00"):
+			indice  = str(n).find["."]
+			n = str(n)[:-indice]
+			new_list.append(int(n))
+		else:
+			new_list.append(n)
+	return new_list
 		
 #--------------------------------------------------------------------
-def tables(data, ult_borda= False,title= ""):
+def tables(data, ult_borda= False,title= "",separar_linhas=False):
 		""" Recebe a tabela em formatos Matriz."""
 		tables_terminal = AsciiTable(data)
 		tables_terminal.inner_footing_row_border = ult_borda
-		tables_terminal.padding_left = 2
+		tables_terminal.inner_row_border = separar_linhas
 		tables_terminal.title = title
 		if tables_terminal.ok:
 			print(tables_terminal.table)
@@ -130,6 +146,7 @@ def clear_():
 	""" Limpa o terminal de acordo com a sua plataforma."""
 	if sys.platform == "linux":
 		os.system("clear")
+		os.system("reset")
 		
 	elif sys.platform == "win32":
 		os.system("mode con cols=110 lines=80")
@@ -156,8 +173,6 @@ def variance():
 			process.gerar_matriz_table((["i", "fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]), True, 3)
 			print(f"\nPopulação:↴\nVariância é {process.sum_fi_x4}/{process.quant_fi} = {truncate(truncate(process.sum_fi_x4, process.decimal)/process.quant_fi, process.decimal)}\n")
 		
-
-
 #------------------------------------------------------
 	
 def arithmetic_mean(list_, grouped_data=False):
@@ -190,47 +205,98 @@ def standard_deviation():
 	print(f"\n\tDesvio padrão é √({process.sum_x4}/{len(process.list_x4)}) = {truncate(dt, process.decimal)}")
 	
 
-def moda1(agrouped= False):
+def moda1(grouped=False):
 	"""Verifica qual os números que mais se repete."""
 	#https://pt.stackoverflow.com/questions/216413/identificar-elementos-repetidos-em-lista-com-python
 	
 	clear_()
 	n = 1
+	m = []
 		
-	#Rastreia o maior número repetido
-	for x in process.list_xi:
-		if process.list_xi.count(x) > n:
-			n = process.list_xi.count(x)
+	if grouped:
+		#Rastreia o número mais repetido
+		for x in process.list_fi:
+			if x > n:
+				n = x
+	else:
+		#Rastreia o número mais repetido
+		for x in process.list_xi:
+			if process.list_xi.count(x) > n:
+				n = process.list_xi.count(x)
+		
+		if n == 1:
+			#Corrigi um bug quando não há modas em dados brutos
+			print(f"\n\t {m} -- {process.modal[len(m)]}")
+			return
+	
 
 	# Define o objeto que armazenará os índices de cada elemento:
 	keys = defaultdict(list);
 	
-	# Percorre todos os elementos da lista:
-	for key, value in enumerate(process.list_xi):
+	if grouped:
+		# Percorre todos os elementos da lista:
+		for key, value in enumerate(process.list_fi):
 
-  	  # Adiciona o índice do valor na lista de índices:
-		keys[value].append(key)
-
-	m = []
+  		  # Adiciona o índice do valor na lista de índices:
+			keys[value].append(key)
+	else:
+		# Percorre todos os elementos da lista:
+		for key, value in enumerate(process.list_xi):
+			# Adiciona o índice do valor na lista de índices:
+			keys[value].append(key)
+			
 	
-	# Extrai os valores que mais se repete
-	for value in keys:
-		if len(keys[value]) >= n:
-			m.append(value)
+	num = 0
 	
-	if len(m) == 0:
-		print("\n\tAmodal")
-	elif len(m) == 1:
-		print(f"\n\t{m}  -  Unimodal")
-	elif len(m) == 2:
-		print(f"\n\t{m}  -  Bimodal")
-	elif len(m) == 3:
-		print(f"\n\t{m}  -  Trimodal")
-		
+	if grouped:
+		# Extrai os valores que mais se repete
+		for value in keys:
+			if value >= num:
+				num = value
+				ind = keys[value]
+		return ind, num
+				
+	else:
+		# Extrai os valores que mais se repete
+		for value in keys:
+			if len(keys[value]) >= n:
+				m.append(value)
+	
+	if grouped:
+		pass
+	else:
+		print(f"\n\t {m} -- {process.modal[len(m)]}")
+			
 		
 def moda2():
 	""" Localiza  a classe modal."""
-	pass
+	
+	
+	n = 1
+	for x in range(0, len(process.indice)):
+		l = []
+		l.append([f"     Moda  - Classe modal é {process.indice[x]+1}°", "Valores"])
+		l.append(["Limite inferior da classe modal (lmo)", f"{process.lmo[x]}"])
+		l.append(["Freq. Absoluta Simples Classe modal (fmo)", f"{process.value}"])
+		l.append(["Freq. Absoluta Simples Classe Anterior (fant)", f"{process.ffant[x]}"])
+		l.append(["Freq. Absoluta Simples Classe Posterior (fpost)" , f"{process.fpost[x]}"])
+		l.append(["Amplitude da Classe Modal (c)", f"{process.amplitude}"])
+		l.append([" ∆1 = lmo - fant", f"{process.value - process.ffant[x]}"])
+		l.append([" ∆2 = lmo - fpost", f"{process.value - process.fpost[x]}"])
+		delta_down = truncate(process.delta_1[x], process.decimal)+ truncate(process.delta_2[x], process.decimal)
+		delta_up = truncate(process.delta_1[x], process.decimal)
+		lmo = truncate(process.lmo[x], process.decimal)
+		c = truncate(process.amplitude,process.decimal)
+	
+		base = delta_up/delta_down
+		base = base*c
+		base = lmo+base
+		tables(data=l, separar_linhas=True)
+		
+		print(f"\n\t{n} - Moda é {truncate(base, process.decimal)}")
+		
+		n+=1
+		
 
 def mediana1():
 	""" Calcula a mediana de uma lista de dados brutos"""
@@ -311,13 +377,95 @@ def casa_decimal():
 	except:
 		pass
 
+
+def localizar_moda():
+	""" Para Moda Agrupada"""
+	process.indice, process.value = moda1(True) #Recebe o numero maior e seu indice
+	
+	xmin = process.initial
+	amp = process.amplitude
+	
+	
+	#Descobre o lmo
+	for p in range(0, len(process.list_fi)):
+		if p in process.indice:
+			process.lmo.append(xmin)
+		xmin += amp
+	
+	process.delta_1 =[]
+	process.delta_2 = []
+	process.ffant = []
+	process.fpost =[]
+	for x in range(0, len(process.indice)):
+		
+		#Cria ∆1
+		fmo = process.value
+		if process.indice[x] >= 1:
+			process.delta_1.append(fmo - process.list_fi[process.indice[x]-1])
+			process.ffant.append(process.list_fi[process.indice[x]-1])
+		else:
+			process.delta_1.append(process.value)
+			process.ffant.append(0)
+		
+		#Cria ∆2
+		fpost = []
+		if process.indice[x] < len(process.list_fi)-1:
+			process.delta_2.append(fmo - process.list_fi[process.indice[x]+1])
+			process.fpost.append(process.list_fi[process.indice[x]+1])
+		else:
+			process.delta_2.append(fmo)
+			process.fpost.append(0)
+		
+		
+	
+	
+def mediana2():
+	""" Media para dados agrupados"""
+	#Elemento mediano 
+	emd = truncate(process.sum_fi/2, process.decimal)
+	
+	
+	#Extrai os dados (emd, fant, fmd, indice)
+	for i, x in enumerate(process.list_Fi):
+		if x >= emd:
+			if i == 0:
+				fant = 0
+			else:
+				fant = process.list_Fi[i-1]
+			indice = i
+			fmd = process.list_fi[i]
+			break
+		
+	xmin = process.initial
+	amp = process.amplitude
+	
+	for x in range(0, len(process.list_fi)):
+		if x == indice:
+			lmd = xmin
+		else:
+			xmin += amp
+			
+	for x in range(0, len(process.indice)):
+		l = []
+		l.append([f"     Mediana  - Classe Mediana é {indice+1}°", "Valores"])
+		l.append(["Limite inferior da classe mediana (lmd)", f"{lmd}"])
+		l.append(["Elemento Mediano (emd)", f"{emd}"])
+		l.append(["Freq. Absoluta Acumulada Classe Anterior (fant)", f"{fant}"])
+		l.append(["Freq. Absoluta Simples da Classe meidana (fmd)" , f"{fmd}"])
+		l.append(["Amplitude da Classe Modal (c)", f"{process.amplitude}"])
+	
+	base = truncate((emd-fant)/fmd, process.decimal)
+	base = truncate(process.amplitude, process.decimal)*truncate(base, process.decimal)
+	base = truncate(base, process.decimal)+truncate(lmd, process.decimal)
+	tables(data=l, separar_linhas=True)
+	print(f"\n\tMediana  é {truncate(base, process.decimal)}")
+	
 # ------------------------------------------------------------------------------------------
 
 def new_xi(initial, amplitude_class, amount_class):
-	""" Faz a process.list_xi com base na entrada. """
+	"""Cria Dados xi em process.list_xi com base na entrada. """
 	
 	list_ = []
-	
 	for x in range(0, amount_class):
 		if str(initial+(amplitude_class/2)).endswith(".0"):
 			list_.append(round(initial+(amplitude_class/2)))
@@ -336,10 +484,9 @@ def config():
 	while 1:
 		clear_()
 		
-		#Tabela de configuraçãoes
-		print(terminal.terminal_size("", "-"))
+		#Tabela de configuração
 		print("\n")
-		escopo = [ "            Configurações             ", " Status"]
+		escopo = [ "Configurações", " Status"]
 		process.gerar_matriz_table(escopo, None, 5)
 		print("\n")
 		for command in commands3:
@@ -428,11 +575,11 @@ def data_entry(raw_data):
 		#Demostração de entrada 
 		print("Exemplo de Entradas:")
 		print("\n\tfi:", end=" ")
-		print_c( "18,31,15,10,7,5,4","vermelho")
+		print_c( "18,31,15,10,7,5,4","red")
 		print("\n\txi:\n\t  Xmin da 1° Classe:", end=" ")
-		print_c("500", "vermelho")
+		print_c("500", "red")
 		print("\n\t  Amplitude_classe:", end=" ")
-		print_c("200", "vermelho")
+		print_c("200", "red")
 		print("\n")
 		
 		string_fi = str(input("fi: ")).replace(" ", "")
@@ -485,9 +632,11 @@ def dados_brutos_while():
 	global modo_1
 	global commands2
 	
+	
 	while 1:
 		is_raw_data = True
 		clear_()
+		
 		print(terminal.terminal_size(modo_1, "="))
 		print(terminal.terminal_size(f" Amostra: {process.sample} ", "-"))
 		print(terminal.terminal_size(f" População: {process.populational} ", "-"))
@@ -550,6 +699,11 @@ def dados_agrupados_while():
 	
 	while 1:
 		clear_()
+		process.lmo = []
+		#Ajuda alocalizar a classe modal e já antecipa os dados
+		localizar_moda()
+	
+		
 		
 		process.total_amplitude = statistic.total_amplitude2(process.initial, process.amplitude, process.quant_fi)
 		#Escopo do menu Dados agrupados
@@ -582,6 +736,12 @@ def dados_agrupados_while():
 			
 		elif res2 == "5":
 			print(f"\n\tMédia aritmética:{process.sum_fi_xi}/{process.sum_fi} = {truncate(process.x1, process.decimal)}\n")
+		
+		elif res2 == "5.1":
+			moda2()
+		
+		elif res2 == "5.2":
+			mediana2()
 			
 		elif res2 == "6":
 			#Configurações
@@ -666,7 +826,7 @@ while 1:
 	
 	elif res1 == "4":
 		print_c("\nATENÇÃO:\n", "red")
-		print("  Xmin é o número menor da 1° classe Agrupada.\n")
+		print("  Xmin é o número menor da 1° classe P/ Dados Agrupados.\n")
 		print("  Amplitude da classe é a distância de um Xmin ao Xmax da \n  mesma classe. Ex: 500|----700 --> 200")
 		input("...")
 			
