@@ -19,7 +19,9 @@ Esse Script foi feito para fins didáticos, é uma calculadora de estatística q
    - Amplitude Total 
    - Desvio Médio Simples (Amostra e população)
    - Desvio Padrão (Amostra e população)
-   - Variância (Amostra e população)
+   - Moda
+   - Mediana
+   - ~Variância (Amostra e população)~
    - Média Aritmética
    
 
