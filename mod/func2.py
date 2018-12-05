@@ -4,6 +4,8 @@ import string
 from decimal import Decimal
 import sys
 
+
+
 try:
 	from termcolor import colored
 	color = True
@@ -23,6 +25,7 @@ except:
 
 def truncate(f, n):
 	'''Truncates/pads a float f to n decimal places without rounding'''
+	#https://pt.stackoverflow.com/questions/176243/como-limitar-números-decimais-em-python
 	s = '{}'.format(f)
 	if 'e' in s or 'E' in s:
 		return Decimal('{0:.{1}f}'.format(f, n))

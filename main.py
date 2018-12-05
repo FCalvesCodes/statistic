@@ -14,7 +14,7 @@
 					$ cd statistic
 					$ python main.py
 """
-
+from mod.modo_audit import ModoAudit
 from decimal import Decimal
 from collections import defaultdict
 from mod.func import Statistic
@@ -43,6 +43,10 @@ except:
 	
 statistic = Statistic()
 process =  Process()
+
+#Para fazer auditoria das variáveis(Em Desenvolvimento)
+modoaudit = ModoAudit(statistic)
+
 
 
 modo_1 = "Modo Dados Brutos"
@@ -76,7 +80,7 @@ commands2_agr = ["[1]  -  Amplitude Total",\
 								"[8]  -  Retornar"]
 
 commands2 = ["[1]  -  Amplitude total",\
-								"[2]  -  Desvio médio Simples",\
+								"[2]  -  Desvio Médio Simples",\
 								"[3]  -  Desvio Padrão",\
 								"[4]  -  Variância",\
 								"[5]  -  Média Aritmética",\
@@ -88,7 +92,7 @@ commands2 = ["[1]  -  Amplitude total",\
 commands3 = ["[1] - Ajustar Casa Decimal",\
 							"[2] - Ativar/Desativar - Amostra",\
 							"[3] - Ativar/Desativar - População",\
-							"[4] - Ativar/Desativar - Freq. Relativa % (fri%)",\
+							"[4] - Ativar/Desativar - Freq. Relativa (fri%)",\
 							"[5] - Ativar/Desativar - Freq. Absoluta Acumulada (Fi)",\
 							"[6] - Ativar/Desativar - Freq. Relativa Acumulada (Fri%)",\
 							"[7] - Ativar/Desativar - Ponto Médio (xi)",\
@@ -129,7 +133,7 @@ def tables(data, ult_borda= False,title= "",separar_linhas=False):
 		if tables_terminal.ok:
 			print(tables_terminal.table)
 		else:
-			print("Tabela não pode ser visualizada, \n Recua o zoom do terminal e tente novamente.")
+			print("Tabela não pode ser visualizada, \n Recua o zoom ou aumente \n a janela do terminal e tente novamente.")
 
 
 def truncate(f, n):
@@ -160,24 +164,23 @@ def variance():
 		#Para dados brutos
 		if process.sample:
 			process.gerar_matriz_table((["i","xi", "xi-ㄡ", "|xi-ㄡ"]), False, 3)
-			print(f"\nAmostra:↴\nVariância é {process.sum_x4}/{process.quant_xi-1} = {truncate(process.sum_x4/(process.quant_xi-1), process.decimal)}\n")
+			print(f"\nAmostra:↴\nVariância é {process.sum_x4}/{process.quant_xi-1} = {round(process.sum_x4/(process.quant_xi-1), process.decimal)}\n")
 		if process.populational:
 			process.gerar_matriz_table((["i","xi", "xi-ㄡ", "|xi-ㄡ"]) , False, 3)
-			print(f"\nPopulação:↴\nVariância é {process.sum_x4}/{process.quant_xi} = {truncate(process.sum_x4/process.quant_xi,  process.decimal)}\n")
+			print(f"\nPopulação:↴\nVariância é {process.sum_x4}/{process.quant_xi} = {round(process.sum_x4/process.quant_xi,  process.decimal)}\n")
 	else:
 		#para dados Agrupados
 		if process.sample:
 			process.gerar_matriz_table((["i","fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]) , True, 3)
-			print(f"\nAmostra:↴\nVariância é {process.sum_fi_x4}/{process.quant_fi-1} = {truncate(process.sum_fi_x4/(process.quant_fi-1), process.decimal)}\n")
+			print(f"\nAmostra:↴\nVariância é {process.sum_fi_x4}/{process.quant_fi-1} = {round(process.sum_fi_x4/(process.quant_fi-1), process.decimal)}\n")
 		if process.populational:
 			process.gerar_matriz_table((["i", "fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]), True, 3)
-			print(f"\nPopulação:↴\nVariância é {process.sum_fi_x4}/{process.quant_fi} = {truncate(truncate(process.sum_fi_x4, process.decimal)/process.quant_fi, process.decimal)}\n")
+			print(f"\nPopulação:↴\nVariância é {process.sum_fi_x4}/{process.quant_fi} = {round(truncate(process.sum_fi_x4, process.decimal)/process.quant_fi, process.decimal)}\n")
 		
 #------------------------------------------------------
 	
 def arithmetic_mean(list_, grouped_data=False):
-	""" Faz a operação para obter a média 
-		aritimética  e guarda na var x1."""
+	""" Faz a operação para obter a média aritimética  e guarda na var x1."""
 		
 	total = func2.sum_list(list_)
 	
@@ -187,7 +190,9 @@ def arithmetic_mean(list_, grouped_data=False):
 		quantidade = process.sum_fi
 	else:
 		quantidade = len(list_)
-	process.x1 = truncate(total/quantidade, 5)
+		
+	#process.x1 = truncate(total/quantidade, 5)
+	process.x1 = Decimal(total/quantidade)
 
 # ------------------------------------------------------------------------------
 
@@ -202,7 +207,7 @@ def standard_deviation():
 	#Recebe o resultado da raiz
 	dt = statistic.standard_deviation(process.sum_x4, process.list_x4)
 		
-	print(f"\n\tDesvio padrão é √({process.sum_x4}/{len(process.list_x4)}) = {truncate(dt, process.decimal)}")
+	print(f"\n\tDesvio padrão é √({process.sum_x4}/{len(process.list_x4)}) = {round(dt, process.decimal)}")
 	
 
 def moda1(grouped=False):
@@ -293,7 +298,7 @@ def moda2():
 		base = lmo+base
 		tables(data=l, separar_linhas=True)
 		
-		print(f"\n\t{n} - Moda é {truncate(base, process.decimal)}")
+		print(f"\n\t{n} - Moda é {round(base, process.decimal)}")
 		
 		n+=1
 		
@@ -303,7 +308,7 @@ def mediana1():
 	#Recebe a lista em ordem crescente
 	clear_()
 	list_= statistic.rol_raw_data(process.list_xi)
-	print(terminal.terminal_size(f"Lista em ROL: {list_}", "━"))
+	print(terminal.terminal_size(f" Lista em ROL: {list_}", "━"))
 	
 	
 	quantidade = len(process.list_xi)
@@ -313,7 +318,7 @@ def mediana1():
 		#Lista Par
 		n = (quantidade//2)-1
 		mediana = truncate((list_[n] + list_[-(n+1)])/2, process.decimal)
-		print(f"\nLista Par:↴\n\tMediana é ({list_[n]} + {list_[-(n+1)]})/2 = {truncate(mediana, process.decimal)}")
+		print(f"\nLista Par:↴\n\tMediana é ({list_[n]} + {list_[-(n+1)]})/2 = {round(mediana, process.decimal)}")
 	else:
 		#Lista Impar
 		n = (quantidade-1)//2
@@ -332,11 +337,11 @@ def standard_deviation2():
 	if process.sample:
 		dt = truncate(process.sum_fi_x4/process.sum_fi-1, process.decimal)
 		dt = dt**Decimal("0.5")
-		print(f"\nAmostra:↴\nDesvio padrão é √({process.sum_fi_x4}/{process.sum_fi-1}) = {truncate(dt, process.decimal)}")
+		print(f"\nAmostra:↴\nDesvio padrão é √({process.sum_fi_x4}/{process.sum_fi-1}) = {round(dt, process.decimal)}")
 	if process.populational:
 		dt = truncate(process.sum_fi_x4/process.sum_fi, process.decimal)
 		dt = dt**Decimal("0.5")
-		print(f"\nPopulação:↴\nDesvio padrão é √({process.sum_fi_x4}/{process.sum_fi}) = {truncate(dt, process.decimal)}")
+		print(f"\nPopulação:↴\nDesvio padrão é √({process.sum_fi_x4}/{process.sum_fi}) = {round(dt, process.decimal)}")
 # -------------------------------------------------------------------------------
 
 def average_mean_deviation1():
@@ -346,9 +351,9 @@ def average_mean_deviation1():
 	escopo = (["i", "xi", "xi-ㄡ","|xi-ㄡ|"])
 	process.gerar_matriz_table(escopo, False, 1)
 	if process.sample:
-		print(f"\nAmostra:↴\nDesvio médio simples é ({process.sum_x3}/{len(process.list_x3)-1}) = {truncate(process.sum_x3/len(process.list_x3)-1, process.decimal)}")
+		print(f"\nAmostra:↴\nDesvio médio simples é ({process.sum_x3}/{len(process.list_x3)-1}) = {round(process.sum_x3/len(process.list_x3)-1, process.decimal)}")
 	if process.populational:
-		print(f"\nPopulação:↴\nDesvio médio simples é ({process.sum_x3}/{len(process.list_x3)}) = {truncate(process.sum_x3/len(process.list_x3), process.decimal)}")
+		print(f"\nPopulação:↴\nDesvio médio simples é ({process.sum_x3}/{len(process.list_x3)}) = {round(process.sum_x3/len(process.list_x3), process.decimal)}")
 # ----------------------------------------------------------------------------
 
 def average_mean_deviation2():
@@ -358,9 +363,9 @@ def average_mean_deviation2():
 	escopo = (["i", "fi", "xi", "xi.fi","|xi-ㄡ|", "fi.|xi-ㄡ|'"])
 	process.gerar_matriz_table(escopo, True, 1)
 	if process.sample:
-		print(f"\nAmostra:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi-1}) = {truncate(process.sum_fi_x3/process.sum_fi-1, process.decimal)}")
+		print(f"\nAmostra:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi-1}) = {round(process.sum_fi_x3/process.sum_fi-1, process.decimal)}")
 	if process.populational:
-		print(f"\nPopulação:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi}) = {truncate(process.sum_fi_x3/process.sum_fi, process.decimal)}")
+		print(f"\nPopulação:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi}) = {round(process.sum_fi_x3/process.sum_fi, process.decimal)}")
 	
 # ------------------------------------------------------------------------------------------
 
@@ -458,7 +463,7 @@ def mediana2():
 	base = truncate(process.amplitude, process.decimal)*truncate(base, process.decimal)
 	base = truncate(base, process.decimal)+truncate(lmd, process.decimal)
 	tables(data=l, separar_linhas=True)
-	print(f"\n\tMediana  é {truncate(base, process.decimal)}")
+	print(f"\n\tMediana  é {round(base, process.decimal)}")
 	
 # ------------------------------------------------------------------------------------------
 
