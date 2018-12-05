@@ -126,16 +126,13 @@ class Process(object):
 		#self.c == self.amplitude
 		
 		#Configurações para visualizar tabela de frequencia
-		# indice    0 - fri%     1- Fi        2 - Fri%     3- xi
-		self.list_config = [False, False, False, True]
+		# indice    0 - fri%     1- Fi        2 - Fri%     3- xi. 4- xi.fi
+		self.list_config = [False, False, False, True, False]
 
 		
 		#Variáveis de entrada de dados
 		self.amplitude = 0
 		self.initial = 0
-		
-		self.xmin = 0
-		self.xmax = 0
 		
 		self.is_terminaltables = is_terminaltables
 		
@@ -188,6 +185,8 @@ class Process(object):
 				escopo.append("Fri %")
 			if self.list_config[3] == True:
 				escopo.append("xi")
+			if self.list_config[-1] == True:
+				escopo.append("xi.fi")
 				
 		l.append(escopo)
 		
@@ -205,7 +204,7 @@ class Process(object):
 		if grouped == None and modo == 5:
 			for x in range(0, len(self.list_config2)):
 				l.append(self.list_config2[x])
-			self.tables(l, True,"" ,True, True)
+			self.tables(l, True," " ,True, True)
 			l = []
 			return
 		
@@ -282,6 +281,9 @@ class Process(object):
 				if self.list_config[3] == True:
 					l[x+1].append(self.list_xi[x])
 				
+				if self.list_config[-1] == True:
+					l[x+1].append(self.list_fi_xi[x])
+				
 			
 		#Recebe as somas
 		self.sum_xi = truncate(sum_list(self.list_xi), self.decimal)
@@ -332,6 +334,9 @@ class Process(object):
 				
 			if self.list_config[3] == True:
 				l[-1].append(self.sum_xi)
+				
+			if self.list_config[-1] == True:
+				l[-1].append(self.sum_fi_xi)
 				
 				
 			self.tables(l, True,"Tabela de frequência")

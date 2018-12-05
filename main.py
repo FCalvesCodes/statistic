@@ -659,7 +659,7 @@ def dados_brutos_while():
 				
 		if res2 == "1":
 			#Amplitude total
-			print(f"\n\t Amplitude Total:{process.total_amplitude}\n")
+			print(f"\n\t Amplitude Total {statistic.xmax} - {statistic.xmin}: {process.total_amplitude}\n")
 					
 		elif res2 == "2":
 			# Desvio médio simples
@@ -726,7 +726,7 @@ def dados_agrupados_while():
 				
 		if res2 =="1":
 			#Amplitude total - Dados Agrupados
-			print(f"\n\t Amplitude Total:{process.total_amplitude}\n")
+			print(f"\n\t Amplitude Total {statistic.xmax} - {statistic.xmin}: {process.total_amplitude}\n")
 					
 		elif res2 == "2":
 			#Desvio médio simples - Dados Agrupados
@@ -740,8 +740,13 @@ def dados_agrupados_while():
 			variance()
 			
 		elif res2 == "5":
+			#Média aritmetica
+			copy = process.list_config
+			process.list_config = [False, False, False, True]
+			escopo = ["i", "Dados", "fi"]
+			process.gerar_matriz_table(escopo, True, 4)
 			print(f"\n\tMédia aritmética:{process.sum_fi_xi}/{process.sum_fi} = {truncate(process.x1, process.decimal)}\n")
-		
+			process.list_config = copy
 		elif res2 == "5.1":
 			moda2()
 		
