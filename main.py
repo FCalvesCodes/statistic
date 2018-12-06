@@ -84,10 +84,11 @@ commands2 = ["[1]  -  Amplitude total",\
 								"[3]  -  Desvio Padrão",\
 								"[4]  -  Variância",\
 								"[5]  -  Média Aritmética",\
-								"[5.1] - Moda",\
-								"[5.2]  - Mediana",\
-								"[6] - Configurações",\
-								"[7] - Retornar"]
+								"[5.1] - Média Aritmética ponderada",\
+								"[6] - Moda",\
+								"[6.1]  - Mediana",\
+								"[7] - Configurações",\
+								"[8] - Retornar"]
 
 commands3 = ["[1] - Ajustar Casa Decimal",\
 							"[2] - Ativar/Desativar - Amostra",\
@@ -678,17 +679,47 @@ def dados_brutos_while():
 			print(f"\n\tMédia aritmética: {process.sum_xi}/{len(process.list_xi)} = {truncate(process.x1, process.decimal)}\n")
 		
 		elif res2 == "5.1":
+			error = 0
+			while error < 2:
+				try:
+					string_fi = str(input("fi: ")).replace(" ","")
+					process.list_fi = func2.dismemberment(string_fi)
+					#Cria a lista nova xi.fi
+					for x in range(0, len(process.list_fi)):
+						process.list_fi_xi.append(truncate(process.list_xi[x]*process.list_fi[x], 2)) #xi.fi
+					#Pegando a soma das listas
+					process.sum_fi = func2.sum_list(process.list_fi)
+					process.sum_fi_xi = func2.sum_list(process.list_fi_xi)
+					error += 1
+					if len(process.list_fi) > 0:
+						copy = process.list_config
+						process.list_config = [False, False, False, False, True]
+						escopo = ["i", "xi", "fi"]
+						process.gerar_matriz_table(escopo, True, 4, True)
+						x1_p = process.sum_fi_xi/process.sum_fi
+						print(f"\n\tMédia aritmética ponderada:{process.sum_fi_xi}/{process.sum_fi} = {round(x1_p, process.decimal)}\n")
+						process.list_config = copy
+						break
+					else:
+						return
+				except:
+					error += 1
+					
+			
+		
+		
+		elif res2 == "6":
 			moda1()
 		
-		elif res2 == "5.2":
+		elif res2 == "6.1":
 			mediana1()
 				
-		elif res2 == "6":
+		elif res2 == "7":
 			#Configurações
 			config()
 			
 			
-		elif res2 == "7":
+		elif res2 == "8":
 			#Sair
 			break
 		else:
@@ -742,7 +773,7 @@ def dados_agrupados_while():
 		elif res2 == "5":
 			#Média aritmetica
 			copy = process.list_config
-			process.list_config = [False, False, False, True]
+			process.list_config = [False, False, False, True, True]
 			escopo = ["i", "Dados", "fi"]
 			process.gerar_matriz_table(escopo, True, 4)
 			print(f"\n\tMédia aritmética:{process.sum_fi_xi}/{process.sum_fi} = {truncate(process.x1, process.decimal)}\n")

@@ -3,6 +3,7 @@
 import string
 from decimal import Decimal
 import sys
+import time
 
 
 
@@ -162,7 +163,7 @@ class Process(object):
 			return string
 		
 		
-	def gerar_matriz_table(self, escopo, grouped, modo):
+	def gerar_matriz_table(self, escopo, grouped, modo,is_weighted=False ):
 		"""  grouped = True - Dados agrupados
 		   	 grouped = False - Dados Brutos
 				modo = 1 - Desvio médio simples
@@ -247,6 +248,7 @@ class Process(object):
 			elif grouped == False and modo == 2:
 				#Dados Brutos - Desvio Padrão
 				l.append([x+1, self.list_xi[x], self.list_x2[x], self.list_x3[x], self.list_x4[x]])
+			
 			elif grouped == False and modo == 3:
 				#Dados brutos e Agrupados - Variância
 				l.append([x+1, self.list_xi[x], self.list_x2[x], self.list_x4[x]])
@@ -265,8 +267,11 @@ class Process(object):
 				
 			elif grouped == True and modo == 4:
 				#Dados Agrupados - Simples demotração da tabela de frêquencia
-				xmin += amp
-				l.append([x+1, f"{xmin-amp}|-----{xmin}", self.list_fi[x]])
+				if is_weighted:
+					l.append([x+1, self.list_xi[x], self.list_fi[x]])
+				else:
+					xmin += amp
+					l.append([x+1, f"{xmin-amp}|-----{xmin}", self.list_fi[x]])
 				
 				if self.list_config[0] == True:
 					#Adicionar os dados
@@ -320,7 +325,11 @@ class Process(object):
 			self.tables(l, True,"Dados Agrupados - Variância")
 		elif grouped == True and modo == 4 and self.is_terminaltables:
 			#Dados Agrupados - Simples demotração da tabela de frêquencia
-			l.append([" ", " Σ ", self.sum_fi])
+			if is_weighted:
+				#Caso seja para média ponderada
+				l.append([" ", self.sum_xi, self.sum_fi])
+			else:
+				l.append([" ", " Σ ", self.sum_fi])
 			
 			if self.list_config[0] == True:
 				#Adicionar os dados
@@ -340,8 +349,8 @@ class Process(object):
 				
 				
 			self.tables(l, True,"Tabela de frequência")
-		elif is_terminalself.tables == False:
-			print("Instale o módulo terminalself.tables para mais detalhes.\n")
+		elif is_terminaltables == False:
+			print("Instale o módulo terminaltables para mais detalhes.\n")
 	
 	
 		

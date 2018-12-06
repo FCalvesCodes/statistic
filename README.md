@@ -14,6 +14,7 @@ Esse Script foi feito para fins didáticos, é uma calculadora de estatística q
    - Moda
    - Mediana
    - Média Aritmética
+   - Media Aritmética Ponderada
  
  - **Dados agrupados**
    - Amplitude Total 
@@ -26,7 +27,7 @@ Esse Script foi feito para fins didáticos, é uma calculadora de estatística q
    
 
 ### Configurações ###
-Existe um menu de configurações onde pode alterar (Amostra e população) e definir as casas decimais.
+Existe um menu de configurações onde pode alterar (Amostra e população) e definir as casas decimais e etc.
 
 
 - **Modo de uso:**
@@ -44,6 +45,8 @@ Codigos a digitar no termux:
 			pip install termcolor  			#Apenas para terminal linux
 			
 			git clone https://github.com/FelipeAlmeid4/statistic.git
+
+Para execultar o script: 
 			
 			cd statistic
 			

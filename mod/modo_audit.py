@@ -8,6 +8,12 @@ class ModoAudit(object):
 		self.obj = obj
 		
 	def features(self, list_):
-		pass
+		#Mostra uma lista.
+		for i in range(0, len(list_)):
+			print(f"{list_[i]}[{i}]")
+			
+	
+	
+	
 
 
