@@ -1,42 +1,30 @@
 #! data/data/com.termux/files/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" 							Arquivo Principal
-	Esse script foi projetado e testado no terminal termux android
-		Não Sei se vai dar problema em outros terminais.
-		
-		Modo de uso:
-			Instale o termux no seu celular
-			Codigos a digitar no termux:
-					$ pkg install python python-dev coreutils git 
-					$ pip install terminaltables
-					$ git clone https://github.com/FelipeAlmeid4/statistic.git
-					$ cd statistic
-					$ python main.py
-"""
+
 from mod.modo_audit import ModoAudit
-from decimal import Decimal
 from collections import defaultdict
-from mod.func import Statistic
-from mod import func2
 from mod.func2 import Process
+from mod.func import Statistic
+from decimal import Decimal
 from mod import terminal 
-import os
+from mod import func2
 import time
 import sys
+import os
+
 
 try:
 	from termcolor import colored
-	color = True
+	install_termcolor = True
 except:
-	color = False
-
-is_terminaltables = True
+	install_termcolor = False
 
 try:
 	from terminaltables import AsciiTable
+	install_terminaltables = True
 except:
-	is_terminaltables = False
+	install_terminaltables = False
 	print("Instale o módulo terminaltables para visualizar\n a tabela detalhada.")
 	time.sleep(2)
 	
@@ -103,27 +91,16 @@ abount = ["Esse script foi feito para fins didáticos,\nEstá bem estável pelo 
 
 def print_c(string, cor):
 	""" Coloca cores no terminal"""
-	global color
+	global install_termcolor
 	
-	if color and sys.platform == "linux":
+	if install_termcolor and sys.platform == "linux":
 		a = colored(str(string), cor)
 		print(a)
 	else:
 		print(string)
 
 
-def tr(list_):
-	""" Retira as casas decimais"""
-	new_list = []
-	for n in list_:
-		if str(n).endswith(".0") or str(n).endswith(".00"):
-			indice  = str(n).find["."]
-			n = str(n)[:-indice]
-			new_list.append(int(n))
-		else:
-			new_list.append(n)
-	return new_list
-		
+
 #--------------------------------------------------------------------
 def tables(data, ult_borda= False,title= "",separar_linhas=False):
 		""" Recebe a tabela em formatos Matriz."""
@@ -857,7 +834,7 @@ while 1:
 	
 	
 	elif res1 == "3":
-		if is_terminaltables:
+		if install_terminaltables:
 			l = [["Sobre"], abount]
 			tables(l)
 		else:

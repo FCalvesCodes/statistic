@@ -52,6 +52,25 @@ class Statistic(object):
 		#Retorna a raiz
 		return math.sqrt(a)
 		
+	def tr(self, obj):
+		""" Retira as casas decimais"""
+		if type(obj) == list:
+			new_list = []
+			for n in obj:
+				if str(n).endswith(".0") or str(n).endswith(".00"):
+					n = round(n)
+					new_list.append(n)
+				else:
+					new_list.append(n)
+					
+			return new_list
+		else:
+			if str(obj).endswith(".0") or str(obj).endswith(".00"):
+				return round(obj)
+			else:
+				return obj
+		
+		
 		
 		
 		

@@ -1,26 +1,28 @@
 # -*- coding: utf-8 -*-
 
-import string
+
+from mod.func import Statistic
 from decimal import Decimal
+import string
 import sys
 import time
 
-
+statistic = Statistic()
 
 try:
 	from termcolor import colored
-	color = True
+	install_termcolor = True
 except:
-	color = False
+	install_termcolor = False
 
 
 
 try:
 	from terminaltables import AsciiTable
-	is_terminaltables = True
+	install_terminaltables = True
 except:
-	is_terminaltables = False
-	print("Instale o módulo terminaltables para visualizar\n a tabela detalhada.")
+	install_terminaltables = False
+	print("\nModulo terminaltables não está instalado,\n Favor instalar para funcionar corretamente.")
 	time.sleep(2)
 
 
@@ -40,20 +42,20 @@ def truncate(f, n):
 def dismemberment(string):
 		""" Pega uma string com números separados por vírgula e retorna lista com os números  separados. """
 		list_ = []
-		base = ""
+		text = ""
 			
 		for i, letter in enumerate(string):
 			if letter == "," or i == len(string)-1:
 				if i == len(string)-1:
-					base += letter
+					text += letter
 				try:
-					list_.append(int(base))
-					base = ""
+					list_.append(int(text))
+					text = ""
 				except:
 					print("Error ao verificar dados.")
 					return []
 			else:
-				base += letter
+				text += letter
 		return list_
 		
 
@@ -135,7 +137,7 @@ class Process(object):
 		self.amplitude = 0
 		self.initial = 0
 		
-		self.is_terminaltables = is_terminaltables
+		self.install_terminaltables = install_terminaltables
 		
 		
 	def tables(self, data, ult_borda= False,title= "", separar_colunas=True, separar_linhas=False):
@@ -171,9 +173,9 @@ class Process(object):
 				modo = 3 - Variância
 		"""
 		
-		#Usados para construir a tabela de entrada de dados
-		xmin = self.initial
-		amp = self.amplitude
+		#Será a manipulação de xmin|-------xmin+amplitude
+		xmin = statistic.tr(self.initial)
+		amplitude = statistic.tr(self.amplitude)
 		
 		l = []
 		
@@ -198,8 +200,9 @@ class Process(object):
 		
 		#Indice para configurar a tabela
 		ind = 0
+		
+		#Tabela de configurações
 		self.list_config2 = [["Casa Decimal",f"{self.decimal}"], ["Amostra", self.f_c(self.sample)], ["População", self.f_c(self.populational)], ["fri %", self.f_c(self.list_config[0])], ["Fi", self.f_c(self.list_config[1])], ["Fri %", self.f_c(self.list_config[2])], ["xi", self.f_c(self.list_config[3])]]
-		self.list_x2, self.list_x3, self.list_x4,self.list_fi_x3, self.list_fi_x4, self.list_fri, self.list_Fri, self.list_Fi = [],[],[],[],[],[],[],[]
 		
 		#Gerar uma matriz para configurações
 		if grouped == None and modo == 5:
@@ -208,6 +211,9 @@ class Process(object):
 			self.tables(l, True," " ,True, True)
 			l = []
 			return
+			
+		#Zera as listas
+		self.list_x2, self.list_x3, self.list_x4,self.list_fi_x3, self.list_fi_x4, self.list_fri, self.list_Fri, self.list_Fi = [],[],[],[],[],[],[],[]
 		
 		for x in range(0, len(self.list_xi)):
 		
@@ -240,7 +246,20 @@ class Process(object):
 				base = Decimal(self.list_fi[x])*100
 				b += round(base/self.sum_fi, self.decimal)
 				self.list_Fri.append(b)
-				
+			
+			#Retira os zeros de todas as listas
+			self.list_x2  = statistic.tr(self.list_x2)	  #xi - "x-barra"
+			self.list_x3 = statistic.tr(self.list_x3)	  #|xi - "x-barra"|
+			self.list_x4 = statistic.tr(self.list_x4)	  #(xi - "x-barra")²
+			self.list_xi = statistic.tr(self.list_xi)	   # xi
+			self.list_fi = statistic.tr(self.list_fi)		   # fi
+			self.list_fi_xi = statistic.tr(self.list_fi_xi)    # xi.fi
+			self.list_fi_x3 = statistic.tr(self.list_fi_x3)	#fi.|xi - "x-barra"|
+			self.list_fi_x4 = statistic.tr(self.list_fi_x4)	#fi.(xi - "x-barra")²
+			self.list_fri = statistic.tr(self.list_fri)       #fri% - Freq. Relativa %
+			self.list_Fi = statistic.tr(self.list_Fi)        #Fi  - Freq. Absoluta Acumulado
+			self.list_Fri = statistic.tr(self.list_Fri) 	# Fri - Freq. Relativa Acumulada
+			
 			#Monta as matrizes
 			if grouped == False and modo == 1:
 				#Dados brutos - Desvio médio simples
@@ -270,8 +289,8 @@ class Process(object):
 				if is_weighted:
 					l.append([x+1, self.list_xi[x], self.list_fi[x]])
 				else:
-					xmin += amp
-					l.append([x+1, f"{xmin-amp}|-----{xmin}", self.list_fi[x]])
+					xmin += amplitude
+					l.append([x+1, f"{xmin-amplitude}|-----{xmin}", self.list_fi[x]])
 				
 				if self.list_config[0] == True:
 					#Adicionar os dados
@@ -299,31 +318,40 @@ class Process(object):
 		self.sum_fi_x3 = truncate(sum_list(self.list_fi_x3), self.decimal)
 		self.sum_fi_xi = truncate(sum_list(self.list_fi_xi), self.decimal)
 		
+		#Retira os zeros
+		self.sum_xi = statistic.tr(self.sum_xi)
+		self.sum_fi = statistic.tr(self.sum_fi)
+		self.sum_x3 = statistic.tr(self.sum_x3)
+		self.sum_x4 = statistic.tr(self.sum_x4)
+		self.sum_fi_x4 = statistic.tr(self.sum_fi_x4)
+		self.sum_fi_x3 = statistic.tr(self.sum_fi_x3)
+		self.sum_fi_xi = statistic.tr(self.sum_fi_xi)
+		
 	
-		if grouped == False and modo == 1 and self.is_terminaltables:
+		if grouped == False and modo == 1 and self.install_terminaltables:
 			#Dados Brutos - Desvio médio simples
 			l.append([" ", self.sum_xi, "    Σ", self.sum_x3])
 			self.tables(l, True, "Dados Brutos - Desvio médio simples")
-		elif grouped == False and modo == 2 and self.is_terminaltables:
+		elif grouped == False and modo == 2 and self.install_terminaltables:
 			#Dados brutos - Desvio padrão
 			l.append([" ", self.sum_xi, "Σ",self.sum_x3, self.sum_x4])
 			self.tables(l, True,"Dados brutos - desvio padrão")
-		elif grouped == False and modo == 3 and self.is_terminaltables:
+		elif grouped == False and modo == 3 and self.install_terminaltables:
 			#Dados brutos - Variância
 			l.append([" ", self.sum_xi, "Σ", self.sum_x4])
 			self.tables(l, True,"Dados brutos - Variância")
-		elif grouped == True and modo == 1 and self.is_terminaltables:
+		elif grouped == True and modo == 1 and self.install_terminaltables:
 			#Dados agrupados - Desvio médio  simples
 			l.append([" ", self.sum_fi, self.sum_xi, self.sum_fi_xi, self.sum_x3, self.sum_fi_x3])
 			self.tables(l, True,"Dados Agrupados - Desvio médio simples")
-		elif grouped == True and modo == 2 and self.is_terminaltables:
+		elif grouped == True and modo == 2 and self.install_terminaltables:
 			#Dados agrupados - Desvio padrão
 			l.append([" ", self.sum_fi, self.sum_xi,self.sum_fi_xi, "Σ", self.sum_x4, self.sum_fi_x4])
 			self.tables(l, True,"Dados Agrupados - desvio padrão")
-		elif grouped == True and modo == 3 and self.is_terminaltables:
+		elif grouped == True and modo == 3 and self.install_terminaltables:
 			l.append([" ", self.sum_fi, self.sum_xi, self.sum_fi_xi, "Σ", self.sum_x4, self.sum_fi_x4])
 			self.tables(l, True,"Dados Agrupados - Variância")
-		elif grouped == True and modo == 4 and self.is_terminaltables:
+		elif grouped == True and modo == 4 and self.install_terminaltables:
 			#Dados Agrupados - Simples demotração da tabela de frêquencia
 			if is_weighted:
 				#Caso seja para média ponderada
@@ -349,7 +377,7 @@ class Process(object):
 				
 				
 			self.tables(l, True,"Tabela de frequência")
-		elif is_terminaltables == False:
+		elif install_terminaltables == False:
 			print("Instale o módulo terminaltables para mais detalhes.\n")
 	
 	
