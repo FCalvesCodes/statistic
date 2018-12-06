@@ -125,7 +125,7 @@ class Process(object):
 		self.fpost= []
 		self.delta_2 = []
 		self.delta_1 = []
-		self.modal = ["Amodal", "Unimodal", "Bimodal", "Trimodal"]
+		self.modal = ["Amodal", "Unimodal", "Bimodal", "Trimodal", "Quadrimodal"]
 		#self.c == self.amplitude
 		
 		#Configurações para visualizar tabela de frequencia
@@ -136,6 +136,8 @@ class Process(object):
 		#Variáveis de entrada de dados
 		self.amplitude = 0
 		self.initial = 0
+		
+		self.modo_agrupados = None
 		
 		self.install_terminaltables = install_terminaltables
 		
@@ -180,13 +182,13 @@ class Process(object):
 		l = []
 		
 		if grouped == True and modo == 4:
-			if self.list_config[0] == True:
+			if self.list_config[0] == True and self.modo_agrupados:
 				escopo.append("fri %")
-			if self.list_config[1] == True:
+			if self.list_config[1] == True and self.modo_agrupados:
 				escopo.append("Fi")
-			if self.list_config[2] == True:
+			if self.list_config[2] == True and self.modo_agrupados:
 				escopo.append("Fri %")
-			if self.list_config[3] == True:
+			if self.list_config[3] == True and self.modo_agrupados:
 				escopo.append("xi")
 			if self.list_config[-1] == True:
 				escopo.append("xi.fi")
@@ -207,7 +209,11 @@ class Process(object):
 		#Gerar uma matriz para configurações
 		if grouped == None and modo == 5:
 			for x in range(0, len(self.list_config2)):
-				l.append(self.list_config2[x])
+				if self.modo_agrupados:
+					l.append(self.list_config2[x])
+				else:
+					if x < 3:
+						l.append(self.list_config2[x])
 			self.tables(l, True," " ,True, True)
 			l = []
 			return

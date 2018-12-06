@@ -35,6 +35,8 @@ process =  Process()
 #Para fazer auditoria das variáveis(Em Desenvolvimento)
 modoaudit = ModoAudit(statistic)
 
+#Retira algumas configurações no modo dados brutos
+modo_agrupados = None
 
 
 modo_1 = "Modo Dados Brutos"
@@ -286,7 +288,7 @@ def mediana1():
 	#Recebe a lista em ordem crescente
 	clear_()
 	list_= statistic.rol_raw_data(process.list_xi)
-	print(terminal.terminal_size(f" Lista em ROL: {list_}", "━"))
+	print(terminal.terminal_size(f" ROL: {list_} ", "━"))
 	
 	
 	quantidade = len(process.list_xi)
@@ -463,6 +465,7 @@ def new_xi(initial, amplitude_class, amount_class):
 def config():
 	"""Menu de configurações."""
 	global commands3
+	global modo_agrupados
 	
 	while 1:
 		clear_()
@@ -472,8 +475,12 @@ def config():
 		escopo = [ "Configurações", " Status"]
 		process.gerar_matriz_table(escopo, None, 5)
 		print("\n")
-		for command in commands3:
-			print(command)
+		for i, command in enumerate(commands3):
+			if modo_agrupados == True:
+				print(command)
+			else:
+				if i < 3 or len(commands3)-1 == i:
+					print(command)
 		
 		resposta = str(input("Opção: "))
 		
@@ -614,7 +621,10 @@ def dados_brutos_while():
 	global is_raw_data
 	global modo_1
 	global commands2
+	global modo_agrupados
 	
+	modo_agrupados = False
+	process.modo_agrupados = False
 	
 	while 1:
 		is_raw_data = True
@@ -709,6 +719,10 @@ def dados_agrupados_while():
 	""" While dos dados agrupados. """
 	global modo_2
 	global commands2_agr
+	global modo_agrupados
+	
+	modo_agrupados = True
+	process.modo_agrupados = True
 	
 	while 1:
 		clear_()
@@ -850,7 +864,9 @@ while 1:
 			
 		
 	elif res1 == "5":
-			config()
+		modo_agrupados = False
+		process.modo_agrupados = False
+		config()
 			
 		
 	elif res1 == "6":

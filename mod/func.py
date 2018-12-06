@@ -38,8 +38,8 @@ class Statistic(object):
 		for i in range(0, quant_fi):
 			a+= amplitude
 		
-		self.xmin = initial
-		self.xmax = a
+		self.xmin = self.tr(initial)
+		self.xmax = self.tr(a)
 		
 		if str(a-initial).endswith(".0"):
 			return round(a - initial)
