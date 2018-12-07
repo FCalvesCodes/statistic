@@ -9,7 +9,9 @@ from mod.func import Statistic
 from decimal import Decimal
 from mod import terminal 
 from mod import func2
+import decimal
 import time
+import math
 import sys
 import os
 
@@ -75,10 +77,11 @@ commands2 = ["[1]  -  Amplitude total",\
 								"[4]  -  Variância",\
 								"[5]  -  Média Aritmética",\
 								"[5.1] - Média Aritmética ponderada",\
-								"[6] - Moda",\
-								"[6.1]  - Mediana",\
-								"[7] - Configurações",\
-								"[8] - Retornar"]
+								"[6]  -  Moda",\
+								"[6.1] - Mediana",\
+								"[6.2] - Erro Padrão (Em desenvolvimento)",\
+								"[7]  -  Configurações",\
+								"[8]  -  Retornar"]
 
 commands3 = ["[1] - Ajustar Casa Decimal",\
 							"[2] - Ativar/Desativar - Amostra",\
@@ -101,9 +104,8 @@ def print_c(string, cor):
 	else:
 		print(string)
 
-
-
 #--------------------------------------------------------------------
+
 def tables(data, ult_borda= False,title= "",separar_linhas=False):
 		""" Recebe a tabela em formatos Matriz."""
 		tables_terminal = AsciiTable(data)
@@ -114,7 +116,8 @@ def tables(data, ult_borda= False,title= "",separar_linhas=False):
 			print(tables_terminal.table)
 		else:
 			print("Tabela não pode ser visualizada, \n Recua o zoom ou aumente \n a janela do terminal e tente novamente.")
-
+			
+# ------------------------------------------------------------------------------
 
 def truncate(f, n):
     '''Truncates/pads a float f to n process.decimal places without rounding'''
@@ -125,6 +128,7 @@ def truncate(f, n):
     i, p, d = s.partition('.')
     return Decimal('.'.join([i, (d+'0'*n)[:n]]))
 
+# ------------------------------------------------------------------------------
 
 def clear_():
 	""" Limpa o terminal de acordo com a sua plataforma."""
@@ -172,7 +176,12 @@ def arithmetic_mean(list_, grouped_data=False):
 		quantidade = len(list_)
 		
 	#process.x1 = truncate(total/quantidade, 5)
-	process.x1 = Decimal(total/quantidade)
+	process.x1 = Decimal(f"{total}")/Decimal(f"{quantidade}")
+
+
+def error_padr():
+	""" Erro padrão dados brutos"""
+	pass
 
 # ------------------------------------------------------------------------------
 
@@ -184,11 +193,16 @@ def standard_deviation():
 	
 	process.gerar_matriz_table(escopo, False, 2)
 	
-	#Recebe o resultado da raiz
-	dt = statistic.standard_deviation(process.sum_x4, process.list_x4)
-		
-	print(f"\n\tDesvio padrão é √({process.sum_x4}/{len(process.list_x4)}) = {round(dt, process.decimal)}")
+	if process.sample:
+		dt = Decimal(f"{process.sum_x4}")/Decimal(f"{process.quant_xi-1}")
+		dt = math.sqrt(dt)
+		print(f"\nAmostra:↴\nDesvio padrão é √({process.sum_x4}/{process.quant_xi-1}) = {round(dt, process.decimal)}")
+	if process.populational:
+		dt1 = Decimal(f" {process.sum_x4}")/Decimal(f"{process.quant_xi}")
+		dt1 = math.sqrt(dt1)
+		print(f"\nPopulação:↴\nDesvio padrão é √({process.sum_x4}/{process.quant_xi}) = {round(dt1, process.decimal)}")
 	
+# ------------------------------------------------------------------------------
 
 def moda1(grouped=False):
 	"""Verifica qual os números que mais se repete."""
@@ -251,7 +265,8 @@ def moda1(grouped=False):
 		pass
 	else:
 		print(f"\n\t {m} -- {process.modal[len(m)]}")
-			
+
+# ------------------------------------------------------------------------------
 		
 def moda2():
 	""" Localiza  a classe modal."""
@@ -268,20 +283,21 @@ def moda2():
 		l.append(["Amplitude da Classe Modal (c)", f"{process.amplitude}"])
 		l.append([" ∆1 = lmo - fant", f"{process.value - process.ffant[x]}"])
 		l.append([" ∆2 = lmo - fpost", f"{process.value - process.fpost[x]}"])
-		delta_down = truncate(process.delta_1[x], process.decimal)+ truncate(process.delta_2[x], process.decimal)
-		delta_up = truncate(process.delta_1[x], process.decimal)
-		lmo = truncate(process.lmo[x], process.decimal)
-		c = truncate(process.amplitude,process.decimal)
+		delta_down = Decimal(f"{process.delta_1[x]}")+Decimal(f"{process.delta_2[x]}")
+		delta_up = Decimal(f"{process.delta_1[x]}")
+		lmo = Decimal(f"{process.lmo[x]}")
+		c = Decimal(f"{process.amplitude}")
 	
-		base = delta_up/delta_down
-		base = base*c
-		base = lmo+base
+		base = Decimal(f"{delta_up}")/Decimal(f"{delta_down}")
+		base = Decimal(f"{base}")*Decimal(f"{c}")
+		base = Decimal(f"{lmo}")+Decimal(f"{base}")
 		tables(data=l, separar_linhas=True)
 		
 		print(f"\n\t{n} - Moda é {round(base, process.decimal)}")
 		
 		n+=1
 		
+# ------------------------------------------------------------------------------
 
 def mediana1():
 	""" Calcula a mediana de uma lista de dados brutos"""
@@ -315,11 +331,11 @@ def standard_deviation2():
 	process.gerar_matriz_table(escopo, True, 2)
 	
 	if process.sample:
-		dt = truncate(process.sum_fi_x4/process.sum_fi-1, process.decimal)
+		dt = Decimal(f" {process.sum_fi_x4}")/Decimal(f"{process.sum_fi-1}")
 		dt = dt**Decimal("0.5")
 		print(f"\nAmostra:↴\nDesvio padrão é √({process.sum_fi_x4}/{process.sum_fi-1}) = {round(dt, process.decimal)}")
 	if process.populational:
-		dt = truncate(process.sum_fi_x4/process.sum_fi, process.decimal)
+		dt = Decimal(f"{process.sum_fi_x4}")/Decimal(f"{process.sum_fi}")
 		dt = dt**Decimal("0.5")
 		print(f"\nPopulação:↴\nDesvio padrão é √({process.sum_fi_x4}/{process.sum_fi}) = {round(dt, process.decimal)}")
 # -------------------------------------------------------------------------------
@@ -343,9 +359,9 @@ def average_mean_deviation2():
 	escopo = (["i", "fi", "xi", "xi.fi","|xi-ㄡ|", "fi.|xi-ㄡ|'"])
 	process.gerar_matriz_table(escopo, True, 1)
 	if process.sample:
-		print(f"\nAmostra:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi-1}) = {round(process.sum_fi_x3/process.sum_fi-1, process.decimal)}")
+		print(f"\nAmostra:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi-1}) = {round(Decimal(process.sum_fi_x3)/Decimal(process.sum_fi-1), process.decimal)}")
 	if process.populational:
-		print(f"\nPopulação:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi}) = {round(process.sum_fi_x3/process.sum_fi, process.decimal)}")
+		print(f"\nPopulação:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi}) = {round(Decimal(process.sum_fi_x3)/Decimal(process.sum_fi), process.decimal)}")
 	
 # ------------------------------------------------------------------------------------------
 
@@ -365,6 +381,7 @@ def casa_decimal():
 
 def localizar_moda():
 	""" Para Moda Agrupada"""
+	process.lmo = []
 	process.indice, process.value = moda1(True) #Recebe o numero maior e seu indice
 	
 	xmin = process.initial
@@ -407,7 +424,7 @@ def localizar_moda():
 def mediana2():
 	""" Media para dados agrupados"""
 	#Elemento mediano 
-	emd = truncate(process.sum_fi/2, process.decimal)
+	emd = Decimal(f"{process.sum_fi}")/Decimal("2")
 	
 	
 	#Extrai os dados (emd, fant, fmd, indice)
@@ -439,9 +456,9 @@ def mediana2():
 		l.append(["Freq. Absoluta Simples da Classe meidana (fmd)" , f"{fmd}"])
 		l.append(["Amplitude da Classe Modal (c)", f"{process.amplitude}"])
 	
-	base = truncate((emd-fant)/fmd, process.decimal)
-	base = truncate(process.amplitude, process.decimal)*truncate(base, process.decimal)
-	base = truncate(base, process.decimal)+truncate(lmd, process.decimal)
+	base = Decimal(f"{emd-fant}")/Decimal(f"{fmd}")
+	base = Decimal(f"{process.amplitude}")*Decimal(f"{base}")
+	base = Decimal(f"{base}")+Decimal(f"{lmd}")
 	tables(data=l, separar_linhas=True)
 	print(f"\n\tMediana  é {round(base, process.decimal)}")
 	
@@ -591,9 +608,9 @@ def data_entry(raw_data):
 			
 			
 			
-			#Cria a lista nova xi.fi
+			#Cria a lista nova xi.fi para média aritmetica dados agrupados
 			for x in range(0, len(process.list_fi)):
-				process.list_fi_xi.append(truncate(process.list_xi[x]*process.list_fi[x], 2)) #xi.fi
+				process.list_fi_xi.append(Decimal(f"{process.list_xi[x]}")*Decimal(f"{process.list_fi[x]}")) #xi.fi
 			#Pegando a soma das listas
 			process.sum_xi = func2.sum_list(process.list_xi)
 			process.sum_fi = func2.sum_list(process.list_fi)
@@ -609,7 +626,7 @@ def data_entry(raw_data):
 			#Gera a tabela de frequência
 			clear_()
 			print("\n")
-			escopo = ["i", "Dados", "fi"]
+			escopo = ["i", "  Dados", "fi", "xi"]
 			process.gerar_matriz_table(escopo, True, 4)
 			input("...")
 
@@ -626,6 +643,11 @@ def dados_brutos_while():
 	modo_agrupados = False
 	process.modo_agrupados = False
 	
+	# Calcula a média aritmética
+	arithmetic_mean(process.list_xi)
+	process.total_amplitude = statistic.total_amplitude1(process.list_xi)
+	process.start(modo_agrupados)
+	
 	while 1:
 		is_raw_data = True
 		clear_()
@@ -634,10 +656,6 @@ def dados_brutos_while():
 		print(terminal.terminal_size(f" Amostra: {process.sample} ", "-"))
 		print(terminal.terminal_size(f" População: {process.populational} ", "-"))
 		print(terminal.terminal_size(f"xi:{process.list_xi}", " "))
-				
-		# Calcula a média aritmética
-		arithmetic_mean(process.list_xi)
-		process.total_amplitude = statistic.total_amplitude1(process.list_xi)
 		print("\n")
 				
 		for command in commands2:
@@ -704,6 +722,7 @@ def dados_brutos_while():
 		elif res2 == "7":
 			#Configurações
 			config()
+			continue
 			
 			
 		elif res2 == "8":
@@ -724,15 +743,17 @@ def dados_agrupados_while():
 	modo_agrupados = True
 	process.modo_agrupados = True
 	
+	#Calcula a média aritmética
+	arithmetic_mean(process.list_fi_xi, True)
+	process.total_amplitude = statistic.total_amplitude2(process.initial, process.amplitude, process.quant_fi)
+	process.start(True)
+	
+	#Ajuda alocalizar a classe modal e já antecipa os dados
+	localizar_moda()
+	
 	while 1:
 		clear_()
-		process.lmo = []
-		#Ajuda alocalizar a classe modal e já antecipa os dados
-		localizar_moda()
 	
-		
-		
-		process.total_amplitude = statistic.total_amplitude2(process.initial, process.amplitude, process.quant_fi)
 		#Escopo do menu Dados agrupados
 		print(terminal.terminal_size(modo_2, "="))
 		print(terminal.terminal_size(f" Amostra: {process.sample} ", "-"))
@@ -834,9 +855,6 @@ while 1:
 		
 		#Verifica se a algo errado com os dados
 		if len(process.list_xi) > 1 and len(process.list_fi) > 1 and len(process.list_xi) == len(process.list_fi):
-			
-			#Calcula a média aritmética
-			arithmetic_mean(process.list_fi_xi, True)
 			
 			#while dos dados agrupados
 			dados_agrupados_while()
