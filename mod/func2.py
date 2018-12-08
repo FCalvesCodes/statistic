@@ -145,14 +145,14 @@ class Process(object):
 	
 		for x in range(0, len(self.list_xi)):
 			
-			self.list_x2.append(Decimal(f"{self.list_xi[x]}") - Decimal(f"{self.x1}")) #xi-ㄡ
+			self.list_x2.append(truncate(Decimal(f"{self.list_xi[x]}") - Decimal(f"{self.x1}"), self.decimal)) #xi-ㄡ
 			self.list_x3.append(abs(Decimal(f"{self.list_x2[x]}"))) #|xi-ㄡ|
-			self.list_x4.append(Decimal(f"{self.list_x3[x]}")**Decimal("2")) #(xi-ㄡ)²
+			self.list_x4.append(truncate(Decimal(f"{self.list_x3[x]}")**Decimal("2"), self.decimal)) #(xi-ㄡ)²
 			
 			if grouped == True:
 				
-				self.list_fi_x3.append(Decimal(f"{self.list_fi[x]}")*Decimal(f"{self.list_x3[x]}")) #fi.|xi-ㄡ|
-				self.list_fi_x4.append(Decimal(f"{self.list_fi[x]}")*Decimal(f"{self.list_x4[x]}")) #fi.(xi-ㄡ)²
+				self.list_fi_x3.append(truncate(Decimal(f"{self.list_fi[x]}")*Decimal(f"{self.list_x3[x]}"), self.decimal)) #fi.|xi-ㄡ|
+				self.list_fi_x4.append(truncate(Decimal(f"{self.list_fi[x]}")*Decimal(f"{self.list_x4[x]}"), self.decimal)) #fi.(xi-ㄡ)²
 				
 				base = Decimal(self.list_fi[x])*Decimal("100")
 				self.list_fri.append(round(Decimal(f"{base}")/Decimal(f"{self.sum_fi}"), self.decimal)) #fri%
@@ -178,13 +178,13 @@ class Process(object):
 			self.list_Fri = statistic.tr(self.list_Fri) 	   # Fri - Freq. Relativa Acumulada
 			
 			#Recebe as somas
-			self.sum_xi = truncate(sum_list(self.list_xi), self.decimal)
-			self.sum_fi = truncate(sum_list(self.list_fi), self.decimal)
-			self.sum_x3 = truncate(sum_list(self.list_x3), self.decimal)
-			self.sum_x4 = truncate(sum_list(self.list_x4), self.decimal)
-			self.sum_fi_x4 = truncate(sum_list(self.list_fi_x4), self.decimal)
-			self.sum_fi_x3 = truncate(sum_list(self.list_fi_x3), self.decimal)
-			self.sum_fi_xi = truncate(sum_list(self.list_fi_xi), self.decimal)
+			self.sum_xi = sum_list(self.list_xi)
+			self.sum_fi = sum_list(self.list_fi)
+			self.sum_x3 = sum_list(self.list_x3)
+			self.sum_x4 = sum_list(self.list_x4)
+			self.sum_fi_x4 = sum_list(self.list_fi_x4)
+			self.sum_fi_x3 = sum_list(self.list_fi_x3)
+			self.sum_fi_xi = sum_list(self.list_fi_xi)
 			
 			#Retira os zeros finais 1.0 --> 1
 			self.sum_xi = statistic.tr(self.sum_xi)

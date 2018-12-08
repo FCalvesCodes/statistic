@@ -47,12 +47,6 @@ modo_2 = "Modo Dados Agrupados"
 # -------------- Variáveis em geral ------------------
 
 
-# É dados brutos
-is_raw_data = False
-
-
-
-
 commands1 = ["[1] - Dados Brutos",\
 								"[2] - Dados Agrupados",\
 								"[3] - Sobre",\
@@ -80,6 +74,7 @@ commands2 = ["[1]  -  Amplitude total",\
 								"[6]  -  Moda",\
 								"[6.1] - Mediana",\
 								"[6.2] - Erro Padrão (Em desenvolvimento)",\
+								"[6.3] - Adicionar (fi)", \
 								"[7]  -  Configurações",\
 								"[8]  -  Retornar"]
 
@@ -143,8 +138,9 @@ def clear_():
 # ----------------------------------------------------
 
 def variance():
+	global modo_agrupados
 	#Variância amostral e populacional
-	if len(process.list_fi) == 0:
+	if modo_agrupados == False:
 		#Para dados brutos
 		if process.sample:
 			process.gerar_matriz_table((["i","xi", "xi-ㄡ", "|xi-ㄡ"]), False, 3)
@@ -156,19 +152,19 @@ def variance():
 		#para dados Agrupados
 		if process.sample:
 			process.gerar_matriz_table((["i","fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]) , True, 3)
-			print(f"\nAmostra:↴\nVariância é {process.sum_fi_x4}/{process.quant_fi-1} = {round(process.sum_fi_x4/(process.quant_fi-1), process.decimal)}\n")
+			print(f"\nAmostra:↴\nVariância é {process.sum_fi_x4}/{process.sum_fi-1} = {round(Decimal(process.sum_fi_x4)/(process.sum_fi-1), process.decimal)}\n")
 		if process.populational:
 			process.gerar_matriz_table((["i", "fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]), True, 3)
-			print(f"\nPopulação:↴\nVariância é {process.sum_fi_x4}/{process.quant_fi} = {round(truncate(process.sum_fi_x4, process.decimal)/process.quant_fi, process.decimal)}\n")
+			print(f"\nPopulação:↴\nVariância é {process.sum_fi_x4}/{process.sum_fi} = {round(Decimal(process.sum_fi_x4)/process.sum_fi, process.decimal)}\n")
 		
 #------------------------------------------------------
 	
-def arithmetic_mean(list_, grouped_data=False):
+def arithmetic_mean(list_):
 	""" Faz a operação para obter a média aritimética  e guarda na var x1."""
-		
+	global modo_agrupados
 	total = func2.sum_list(list_)
 	
-	if grouped_data:
+	if modo_agrupados:
 		#Para dados Agrupados
 		process.sum_fi = round(func2.sum_list(process.list_fi), process.decimal)
 		quantidade = process.sum_fi
@@ -176,7 +172,7 @@ def arithmetic_mean(list_, grouped_data=False):
 		quantidade = len(list_)
 		
 	#process.x1 = truncate(total/quantidade, 5)
-	process.x1 = Decimal(f"{total}")/Decimal(f"{quantidade}")
+	process.x1 = truncate(Decimal(f"{total}")/Decimal(f"{quantidade}"), process.decimal)
 
 
 def error_padr():
@@ -204,15 +200,16 @@ def standard_deviation():
 	
 # ------------------------------------------------------------------------------
 
-def moda1(grouped=False):
+def moda1():
 	"""Verifica qual os números que mais se repete."""
 	#https://pt.stackoverflow.com/questions/216413/identificar-elementos-repetidos-em-lista-com-python
+	global modo_agrupados
 	
 	clear_()
 	n = 1
 	m = []
 		
-	if grouped:
+	if modo_agrupados:
 		#Rastreia o número mais repetido
 		for x in process.list_fi:
 			if x > n:
@@ -232,7 +229,7 @@ def moda1(grouped=False):
 	# Define o objeto que armazenará os índices de cada elemento:
 	keys = defaultdict(list);
 	
-	if grouped:
+	if modo_agrupados:
 		# Percorre todos os elementos da lista:
 		for key, value in enumerate(process.list_fi):
 
@@ -247,7 +244,7 @@ def moda1(grouped=False):
 	
 	num = 0
 	
-	if grouped:
+	if modo_agrupados:
 		# Extrai os valores que mais se repete
 		for value in keys:
 			if value >= num:
@@ -261,7 +258,7 @@ def moda1(grouped=False):
 			if len(keys[value]) >= n:
 				m.append(value)
 	
-	if grouped:
+	if modo_agrupados:
 		pass
 	else:
 		print(f"\n\t {m} -- {process.modal[len(m)]}")
@@ -338,30 +335,30 @@ def standard_deviation2():
 		dt = Decimal(f"{process.sum_fi_x4}")/Decimal(f"{process.sum_fi}")
 		dt = dt**Decimal("0.5")
 		print(f"\nPopulação:↴\nDesvio padrão é √({process.sum_fi_x4}/{process.sum_fi}) = {round(dt, process.decimal)}")
-# -------------------------------------------------------------------------------
-
-def average_mean_deviation1():
-	""" Desvio médio simples dados brutos."""
-	
-	#Escopo da tabela
-	escopo = (["i", "xi", "xi-ㄡ","|xi-ㄡ|"])
-	process.gerar_matriz_table(escopo, False, 1)
-	if process.sample:
-		print(f"\nAmostra:↴\nDesvio médio simples é ({process.sum_x3}/{len(process.list_x3)-1}) = {round(process.sum_x3/len(process.list_x3)-1, process.decimal)}")
-	if process.populational:
-		print(f"\nPopulação:↴\nDesvio médio simples é ({process.sum_x3}/{len(process.list_x3)}) = {round(process.sum_x3/len(process.list_x3), process.decimal)}")
 # ----------------------------------------------------------------------------
 
-def average_mean_deviation2():
-	""" Desvio médio simples dados agrupados."""
+def average_mean_deviation():
+	""" Desvio médio simples dados agrupados e dados brutos."""
+	global modo_agrupados
 	
-	#Escopo da tabela
-	escopo = (["i", "fi", "xi", "xi.fi","|xi-ㄡ|", "fi.|xi-ㄡ|'"])
-	process.gerar_matriz_table(escopo, True, 1)
-	if process.sample:
-		print(f"\nAmostra:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi-1}) = {round(Decimal(process.sum_fi_x3)/Decimal(process.sum_fi-1), process.decimal)}")
-	if process.populational:
-		print(f"\nPopulação:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi}) = {round(Decimal(process.sum_fi_x3)/Decimal(process.sum_fi), process.decimal)}")
+	if modo_agrupados:
+		"""Dados Agrupados."""
+		#Escopo da tabela
+		escopo = (["i", "fi", "xi", "xi.fi","|xi-ㄡ|", "fi.|xi-ㄡ|'"])
+		process.gerar_matriz_table(escopo, True, 1)
+		if process.sample:
+			print(f"\nAmostra:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi-1}) = {round(Decimal(process.sum_fi_x3)/Decimal(process.sum_fi-1), process.decimal)}")
+		if process.populational:
+			print(f"\nPopulação:↴\nDesvio médio simples é ({process.sum_fi_x3}/{process.sum_fi}) = {round(Decimal(process.sum_fi_x3)/Decimal(process.sum_fi), process.decimal)}")
+	else:
+		""" Dados brutos."""
+		#Escopo da tabela
+		escopo = (["i", "xi", "xi-ㄡ","|xi-ㄡ|"])
+		process.gerar_matriz_table(escopo, False, 1)
+		if process.sample:
+			print(f"\nAmostra:↴\nDesvio médio simples é ({process.sum_x3}/{len(process.list_x3)-1}) = {round(process.sum_x3/len(process.list_x3)-1, process.decimal)}")
+		if process.populational:
+			print(f"\nPopulação:↴\nDesvio médio simples é ({process.sum_x3}/{len(process.list_x3)}) = {round(process.sum_x3/len(process.list_x3), process.decimal)}")
 	
 # ------------------------------------------------------------------------------------------
 
@@ -374,15 +371,15 @@ def casa_decimal():
 			process.decimal = 2
 			basic.process.decimal = 2
 		else:
-			basic.process.decimal = process.decimal
+			process.decimal = process.decimal
 	except:
 		pass
 
 
 def localizar_moda():
-	""" Para Moda Agrupada"""
+	""" Moda para dados Agrupados"""
 	process.lmo = []
-	process.indice, process.value = moda1(True) #Recebe o numero maior e seu indice
+	process.indice, process.value = moda1() #Recebe o numero maior e seu indice
 	
 	xmin = process.initial
 	amp = process.amplitude
@@ -417,15 +414,12 @@ def localizar_moda():
 		else:
 			process.delta_2.append(fmo)
 			process.fpost.append(0)
-		
-		
 	
 	
 def mediana2():
 	""" Media para dados agrupados"""
 	#Elemento mediano 
 	emd = Decimal(f"{process.sum_fi}")/Decimal("2")
-	
 	
 	#Extrai os dados (emd, fant, fmd, indice)
 	for i, x in enumerate(process.list_Fi):
@@ -434,8 +428,7 @@ def mediana2():
 				fant = 0
 			else:
 				fant = process.list_Fi[i-1]
-			indice = i
-			fmd = process.list_fi[i]
+			indice, fmd = i, process.list_fi[i]
 			break
 		
 	xmin = process.initial
@@ -634,8 +627,6 @@ def data_entry(raw_data):
 
 def dados_brutos_while():
 	""" While dos dados brutos. """
-	
-	global is_raw_data
 	global modo_1
 	global commands2
 	global modo_agrupados
@@ -649,7 +640,6 @@ def dados_brutos_while():
 	process.start(modo_agrupados)
 	
 	while 1:
-		is_raw_data = True
 		clear_()
 		
 		print(terminal.terminal_size(modo_1, "="))
@@ -669,7 +659,7 @@ def dados_brutos_while():
 					
 		elif res2 == "2":
 			# Desvio médio simples
-			average_mean_deviation1()
+			average_mean_deviation()
 				
 				
 		elif res2 == "3":
@@ -710,14 +700,18 @@ def dados_brutos_while():
 				except:
 					error += 1
 					
-			
-		
 		
 		elif res2 == "6":
 			moda1()
 		
 		elif res2 == "6.1":
 			mediana1()
+			
+		elif res2 == "6.2":
+			pass
+		
+		elif res2 == "6.3":
+			pass
 				
 		elif res2 == "7":
 			#Configurações
@@ -744,7 +738,7 @@ def dados_agrupados_while():
 	process.modo_agrupados = True
 	
 	#Calcula a média aritmética
-	arithmetic_mean(process.list_fi_xi, True)
+	arithmetic_mean(process.list_fi_xi)
 	process.total_amplitude = statistic.total_amplitude2(process.initial, process.amplitude, process.quant_fi)
 	process.start(True)
 	
@@ -773,7 +767,7 @@ def dados_agrupados_while():
 					
 		elif res2 == "2":
 			#Desvio médio simples - Dados Agrupados
-			average_mean_deviation2()
+			average_mean_deviation()
 			
 		elif res2 == "3":
 			standard_deviation2()
