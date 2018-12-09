@@ -25,12 +25,25 @@ Esse Script foi feito para fins didáticos, é uma calculadora de estatística q
    - Média Aritmética
    
 
-### Configurações ###
+### Configurações dados brutos###
+   
    - Casas decimais (1 até 5)
-   - Ativar e Desativar (Amostra e População)
+   - # Ativar e Desativar#
+		- Amostra
+		- População
+
+### Configurações dados agrupados###
+	- Casas decimais (1 até 5)
+	- #Ativar e Desativar#
+		- Amostra
+		- População
+		- Frequência relativa (fri%) -- (Para vizualizar a tabela na opção 7)
+		- Frequência absoluta acumulada (Fi) -- (Para vizualizar a tabela na opção 7)
+		- Frequência relativa acomulada (Fri%) -- (Para vizualizar a tabela na opção 7)
+		- Ponto média (xi) -- (Para vizualizar a tabela na opção 7)
 
 
-- **Modo de uso:**
+**Modo de uso:**
 
  **Obs: Esse script foi feito pelo celular e usando terminal do termux para testes, pode haver erros em terminais diferentes**
 
