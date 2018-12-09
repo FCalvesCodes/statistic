@@ -27,7 +27,7 @@ try:
 	install_terminaltables = True
 except:
 	install_terminaltables = False
-	print("Instale o módulo terminaltables para visualizar\n a tabela detalhada.")
+	print("\nInstale o módulo terminaltables para visualizar\n a tabela detalhada.")
 	time.sleep(2)
 	
 	
@@ -35,9 +35,9 @@ statistic = Statistic()
 process =  Process()
 
 #Para fazer auditoria das variáveis(Em Desenvolvimento)
-modoaudit = ModoAudit(statistic)
+#modoaudit = ModoAudit(process)
 
-#Retira algumas configurações no modo dados brutos
+#Var para confirgurar entre dados brutos e dados agruapdos
 modo_agrupados = None
 
 
@@ -57,7 +57,7 @@ commands1 = ["[1] - Dados Brutos",\
 commands2_agr = ["[1]  -  Amplitude Total",\
 								"[2]  -  Desvio Médio Simples",\
 								"[3]  -  Desvio Padrão",\
-								"[4]  -  Variância (Em desenvolvimento)",\
+								"[4]  -  Variância",\
 								"[5]  -  Média Aritmética",\
 								"[5.1] - Moda",\
 								"[5.2] - Mediana",\
@@ -74,7 +74,7 @@ commands2 = ["[1]  -  Amplitude total",\
 								"[6]  -  Moda",\
 								"[6.1] - Mediana",\
 								"[6.2] - Erro Padrão (Em desenvolvimento)",\
-								"[6.3] - Adicionar (fi)", \
+								"[6.3] - Adicionar (fi) (Em desenvolvimento)", \
 								"[7]  -  Configurações",\
 								"[8]  -  Retornar"]
 
@@ -157,7 +157,7 @@ def variance():
 			process.gerar_matriz_table((["i", "fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]), True, 3)
 			print(f"\nPopulação:↴\nVariância é {process.sum_fi_x4}/{process.sum_fi} = {round(Decimal(process.sum_fi_x4)/process.sum_fi, process.decimal)}\n")
 		
-#------------------------------------------------------
+#------------------------------------------------------------------------------
 	
 def arithmetic_mean(list_):
 	""" Faz a operação para obter a média aritimética  e guarda na var x1."""
@@ -318,7 +318,7 @@ def mediana1():
 		mediana = list_[n]
 		print(f"\nLista Ímpar:↴\n\tMediana é {mediana}")
 		
-# ---------------------------------------------------------------------
+# -------------------------------------------------------------------------------------
 	
 def standard_deviation2():
 	"""Desvio padrão para dados Agrupados."""
@@ -414,7 +414,8 @@ def localizar_moda():
 		else:
 			process.delta_2.append(fmo)
 			process.fpost.append(0)
-	
+
+# ------------------------------------------------------------------------------
 	
 def mediana2():
 	""" Media para dados agrupados"""
@@ -623,7 +624,7 @@ def data_entry(raw_data):
 			process.gerar_matriz_table(escopo, True, 4)
 			input("...")
 
-
+# ------------------------------------------------------------------------------
 
 def dados_brutos_while():
 	""" While dos dados brutos. """
@@ -726,7 +727,8 @@ def dados_brutos_while():
 			continue
 			
 		input("...")
-		
+
+# ------------------------------------------------------------------------------
 		
 def dados_agrupados_while():
 	""" While dos dados agrupados. """

@@ -20,14 +20,14 @@ Esse Script foi feito para fins didáticos, é uma calculadora de estatística q
    - Amplitude Total 
    - Desvio Médio Simples (Amostra e população)
    - Desvio Padrão (Amostra e população)
+   - Variância (Amostra e população)
    - Moda
-   - Mediana
-   - ~Variância (Amostra e população)~
    - Média Aritmética
    
 
 ### Configurações ###
-Existe um menu de configurações onde pode alterar (Amostra e população) e definir as casas decimais e etc.
+   - Casas decimais (1 até 5)
+   - Ativar e Desativar (Amostra e População)
 
 
 - **Modo de uso:**

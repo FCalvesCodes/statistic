@@ -22,9 +22,11 @@ def truncate(f, n):
 	#https://pt.stackoverflow.com/questions/176243/como-limitar-números-decimais-em-python
 	s = '{}'.format(f)
 	if 'e' in s or 'E' in s:
-		return Decimal('{0:.{1}f}'.format(f, n))
+		bin = statistic.tr(Decimal('{0:.{1}f}'.format(f, n)))
+		return bin
 	i, p, d = s.partition('.')
-	return Decimal('.'.join([i, (d+'0'*n)[:n]]))
+	bin = statistic.tr(Decimal('.'.join([i, (d+'0'*n)[:n]])))
+	return bin
 	
 
 def dismemberment(string):
@@ -255,7 +257,7 @@ class Process(object):
 			elif grouped == False and modo == 3:
 				#Dados Brutos - Variância
 				tabela.append([x+1, truncate(self.list_xi[x], self.decimal), truncate(self.list_x2[x],self.decimal), truncate(self.list_x4[x], self.decimal)])
-			
+
 ############# Dados Agrupados #################
 			
 			elif grouped == True and modo == 1:
