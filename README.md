@@ -26,15 +26,15 @@ Esse Script foi feito para fins didáticos, é uma calculadora de estatística q
    
 
 ### Configurações dados brutos
-   
-   - Casas decimais (1 até 5)
-   - Ativar e Desativar#
+
+- Casas decimais (1 até 5)
+- **Ativar e Desativar**
 	- Amostra
 	- População
 
 ### Configurações dados agrupados
 - Casas decimais (1 até 5)
-- ###Ativar e Desativar
+- **Ativar e Desativar**
 	- Amostra
 	- População
 	- Frequência relativa (fri%) -- (Para vizualizar a tabela na opção 7)
