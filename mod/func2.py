@@ -22,11 +22,9 @@ def truncate(f, n):
 	#https://pt.stackoverflow.com/questions/176243/como-limitar-números-decimais-em-python
 	s = '{}'.format(f)
 	if 'e' in s or 'E' in s:
-		bin = statistic.tr(Decimal('{0:.{1}f}'.format(f, n)))
-		return bin
+		return Decimal('{0:.{1}f}'.format(f, n))
 	i, p, d = s.partition('.')
-	bin = statistic.tr(Decimal('.'.join([i, (d+'0'*n)[:n]])))
-	return bin
+	return Decimal('.'.join([i, (d+'0'*n)[:n]]))
 	
 
 def dismemberment(string):
@@ -53,7 +51,7 @@ def sum_list(list_):
 	""" Faz a soma de uma lista com números."""
 	if len(list_) < 2:
 		return 0
-	sum = Decimal('0')
+	sum = 0
 	for n in list_:
 		sum += Decimal(str(n))
 	return sum
@@ -147,37 +145,24 @@ class Process(object):
 	
 		for x in range(0, len(self.list_xi)):
 			
-			self.list_x2.append(truncate(Decimal(f"{self.list_xi[x]}") - Decimal(f"{self.x1}"), self.decimal)) #xi-ㄡ
-			self.list_x3.append(abs(Decimal(f"{self.list_x2[x]}"))) #|xi-ㄡ|
-			self.list_x4.append(truncate(Decimal(f"{self.list_x3[x]}")**Decimal("2"), self.decimal)) #(xi-ㄡ)²
+			self.list_x2.append(truncate(Decimal(str(self.list_xi[x])) - self.x1, self.decimal)) #xi-ㄡ
+			self.list_x3.append(abs(self.list_x2[x])) #|xi-ㄡ|
+			self.list_x4.append(truncate(Decimal(str(self.list_x3[x]))**2, self.decimal)) #(xi-ㄡ)²
 			
 			if grouped == True:
 				
-				self.list_fi_x3.append(truncate(Decimal(f"{self.list_fi[x]}")*Decimal(f"{self.list_x3[x]}"), self.decimal)) #fi.|xi-ㄡ|
-				self.list_fi_x4.append(truncate(Decimal(f"{self.list_fi[x]}")*Decimal(f"{self.list_x4[x]}"), self.decimal)) #fi.(xi-ㄡ)²
+				self.list_fi_x3.append(truncate(self.list_fi[x]*Decimal(str(self.list_x3[x])), self.decimal)) #fi.|xi-ㄡ|
+				self.list_fi_x4.append(truncate(self.list_fi[x]*Decimal(str(self.list_x4[x])), self.decimal)) #fi.(xi-ㄡ)²
 				
-				base = Decimal(self.list_fi[x])*Decimal("100")
-				self.list_fri.append(round(Decimal(f"{base}")/Decimal(f"{self.sum_fi}"), self.decimal)) #fri%
+				base = self.list_fi[x]*100
+				self.list_fri.append(round(Decimal(str(base))/self.sum_fi)) #fri%
 				
-				n+=self.list_fi[x]
+				n += self.list_fi[x]
 				self.list_Fi.append(n) #Fi
 				
-				base = Decimal(self.list_fi[x])*Decimal("100")
-				b += round(Decimal(f"{base}")/Decimal(f"{self.sum_fi}"), self.decimal)
+				base = self.list_fi[x]*100
+				b += round(Decimal(str(base))/self.sum_fi)
 				self.list_Fri.append(b) #Fri%
-			
-			#Retira os zeros finais 1.0 --> 1
-			self.list_x2  = statistic.tr(self.list_x2)	  	# xi - "x-barra"
-			self.list_x3 = statistic.tr(self.list_x3)	  	 # |xi - "x-barra"|
-			self.list_x4 = statistic.tr(self.list_x4)	   	# (xi - "x-barra")²
-			self.list_xi = statistic.tr(self.list_xi)	     	# xi
-			self.list_fi = statistic.tr(self.list_fi)			  # fi
-			self.list_fi_xi = statistic.tr(self.list_fi_xi)    # xi.fi
-			self.list_fi_x3 = statistic.tr(self.list_fi_x3) # fi.|xi - "x-barra"|
-			self.list_fi_x4 = statistic.tr(self.list_fi_x4) # fi.(xi - "x-barra")²
-			self.list_fri = statistic.tr(self.list_fri)          # fri% - Freq. Relativa %
-			self.list_Fi = statistic.tr(self.list_Fi)           # Fi  - Freq. Absoluta Acumulado
-			self.list_Fri = statistic.tr(self.list_Fri) 	   # Fri - Freq. Relativa Acumulada
 			
 			#Recebe as somas
 			self.sum_xi = sum_list(self.list_xi)
@@ -187,16 +172,6 @@ class Process(object):
 			self.sum_fi_x4 = sum_list(self.list_fi_x4)
 			self.sum_fi_x3 = sum_list(self.list_fi_x3)
 			self.sum_fi_xi = sum_list(self.list_fi_xi)
-			
-			#Retira os zeros finais 1.0 --> 1
-			self.sum_xi = statistic.tr(self.sum_xi)
-			self.sum_fi = statistic.tr(self.sum_fi)
-			self.sum_x3 = statistic.tr(self.sum_x3)
-			self.sum_x4 = statistic.tr(self.sum_x4)
-			self.sum_fi_x4 = statistic.tr(self.sum_fi_x4)
-			self.sum_fi_x3 = statistic.tr(self.sum_fi_x3)
-			self.sum_fi_xi = statistic.tr(self.sum_fi_xi)
-			
 		
 	def gerar_matriz_table(self, escopo, grouped, modo, is_weighted=False ):
 		""" Cria uma matriz para terminaltables"""

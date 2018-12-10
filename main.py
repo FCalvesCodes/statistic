@@ -6,7 +6,7 @@ from mod.modo_audit import ModoAudit
 from collections import defaultdict
 from mod.func2 import Process
 from mod.func import Statistic
-from decimal import Decimal
+from decimal import Decimal, Context
 from mod import terminal 
 from mod import func2
 import decimal
@@ -33,6 +33,8 @@ except:
 	
 statistic = Statistic()
 process =  Process()
+
+math_decimal = Context()
 
 #Para fazer auditoria das variáveis(Em Desenvolvimento)
 #modoaudit = ModoAudit(process)
@@ -74,9 +76,12 @@ commands2 = ["[1]  -  Amplitude total",\
 								"[6]  -  Moda",\
 								"[6.1] - Mediana",\
 								"[6.2] - Erro Padrão (Em desenvolvimento)",\
-								"[6.3] - Adicionar (fi) (Em desenvolvimento)", \
+								"[6.3] - Adicionar (fi)", \
 								"[7]  -  Configurações",\
 								"[8]  -  Retornar"]
+
+#Indice proibidos de ser exibidos antes de adicionar (fi)
+command_no_authorized = [5]
 
 commands3 = ["[1] - Ajustar Casa Decimal",\
 							"[2] - Ativar/Desativar - Amostra",\
@@ -87,7 +92,7 @@ commands3 = ["[1] - Ajustar Casa Decimal",\
 							"[7] - Ativar/Desativar - Ponto Médio (xi)",\
 							"[8] - Retornar"]
 							
-abount = ["Esse script foi feito para fins didáticos,\nEstá bem estável pelo termux, \ndados inseridos somente dados inteiros\n       github: FelipeAlmeid4."]
+abount = ["Esse script foi feito para fins didáticos,\n está bem estável pelo termux.\n              github: FelipeAlmeid4."]
 
 def print_c(string, cor):
 	""" Coloca cores no terminal"""
@@ -144,18 +149,22 @@ def variance():
 		#Para dados brutos
 		if process.sample:
 			process.gerar_matriz_table((["i","xi", "xi-ㄡ", "|xi-ㄡ"]), False, 3)
-			print(f"\nAmostra:↴\nVariância é {process.sum_x4}/{process.quant_xi-1} = {round(process.sum_x4/(process.quant_xi-1), process.decimal)}\n")
+			n = math_decimal.divide(process.sum_x4, process.quant_xi-1)
+			print(f"\nAmostra:↴\nVariância é {process.sum_x4}/{process.quant_xi-1} = {round(n, process.decimal)}\n")
 		if process.populational:
+			n = math_decimal.divide(process.sum_x4, process.quant_xi)
 			process.gerar_matriz_table((["i","xi", "xi-ㄡ", "|xi-ㄡ"]) , False, 3)
-			print(f"\nPopulação:↴\nVariância é {process.sum_x4}/{process.quant_xi} = {round(process.sum_x4/process.quant_xi,  process.decimal)}\n")
+			print(f"\nPopulação:↴\nVariância é {process.sum_x4}/{process.quant_xi} = {round(n,  process.decimal)}\n")
 	else:
 		#para dados Agrupados
 		if process.sample:
 			process.gerar_matriz_table((["i","fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]) , True, 3)
-			print(f"\nAmostra:↴\nVariância é {process.sum_fi_x4}/{process.sum_fi-1} = {round(Decimal(process.sum_fi_x4)/(process.sum_fi-1), process.decimal)}\n")
+			n = math_decimal.divide(process.sum_fi_x4, process.sum_fi-1)
+			print(f"\nAmostra:↴\nVariância é {process.sum_fi_x4}/{process.sum_fi-1} = {round(n, process.decimal)}\n")
 		if process.populational:
 			process.gerar_matriz_table((["i", "fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]), True, 3)
-			print(f"\nPopulação:↴\nVariância é {process.sum_fi_x4}/{process.sum_fi} = {round(Decimal(process.sum_fi_x4)/process.sum_fi, process.decimal)}\n")
+			n = math_decimal.divide(process.sum_fi_x4, process.quant_xi)
+			print(f"\nPopulação:↴\nVariância é {process.sum_fi_x4}/{process.sum_fi} = {round(n, process.decimal)}\n")
 		
 #------------------------------------------------------------------------------
 	
@@ -166,15 +175,13 @@ def arithmetic_mean(list_):
 	
 	if modo_agrupados:
 		#Para dados Agrupados
-		process.sum_fi = round(func2.sum_list(process.list_fi), process.decimal)
+		process.sum_fi = func2.sum_list(process.list_fi)
 		quantidade = process.sum_fi
 	else:
 		quantidade = len(list_)
 		
 	#process.x1 = truncate(total/quantidade, 5)
-	process.x1 = truncate(Decimal(f"{total}")/Decimal(f"{quantidade}"), process.decimal)
-
-
+	process.x1 = truncate(math_decimal.divide(total, quantidade), process.decimal)
 def error_padr():
 	""" Erro padrão dados brutos"""
 	pass
@@ -542,8 +549,37 @@ def config():
 			break
 		else:
 			pass
-			
-		
+
+def weighted_average():
+	"""Média aritmética ponderada"""
+	#Cria a lista nova xi.fi
+	for x in range(0, len(process.list_fi)):
+		process.list_fi_xi.append(truncate(process.list_xi[x]*process.list_fi[x], 2)) #xi.fi
+	#Pegando a soma das listas
+	process.sum_fi = func2.sum_list(process.list_fi)
+	process.sum_fi_xi= func2.sum_list(process.list_fi_xi)
+	if len(process.list_fi) > 0:
+		copy = process.list_config
+		process.list_config = [False, False, False, False, True]
+		escopo = ["i", "xi", "fi"]
+		process.gerar_matriz_table(escopo, True, 4, True)
+		x1_p = process.sum_fi_xi/process.sum_fi
+		print(f"\n\tMédia aritmética ponderada:{process.sum_fi_xi}/{process.sum_fi} = {round(x1_p, process.decimal)}\n")
+		process.list_config = copy
+	else:
+		print("Erro no processo.")
+	
+
+
+def adc_fi():
+	""" adiciona o fi para dados brutos """
+	global command_no_authorized
+	
+	try:
+		string_fi = str(input("fi: ")).replace(" ","")
+		process.list_fi = func2.dismemberment(string_fi)
+	except:
+		print("Dados inválidos!")
 		
 		
 		
@@ -634,23 +670,32 @@ def dados_brutos_while():
 	
 	modo_agrupados = False
 	process.modo_agrupados = False
-	
-	# Calcula a média aritmética
-	arithmetic_mean(process.list_xi)
-	process.total_amplitude = statistic.total_amplitude1(process.list_xi)
-	process.start(modo_agrupados)
+	process.list_fi = []
 	
 	while 1:
+		
+		# Calcula a média aritmética
+		arithmetic_mean(process.list_xi)
+		process.total_amplitude = statistic.total_amplitude1(process.list_xi)
+		process.start(modo_agrupados)
 		clear_()
 		
 		print(terminal.terminal_size(modo_1, "="))
 		print(terminal.terminal_size(f" Amostra: {process.sample} ", "-"))
 		print(terminal.terminal_size(f" População: {process.populational} ", "-"))
 		print(terminal.terminal_size(f"xi:{process.list_xi}", " "))
+		if len(process.list_fi) > 1:
+			print_c(terminal.terminal_size(f"fi:{process.list_fi}", " "), "yellow")
 		print("\n")
-				
-		for command in commands2:
-			print(command)
+		
+		
+		for indice, command in enumerate(commands2):
+			if len(process.list_fi) > 0 and indice in command_no_authorized:
+				print_c(command, "yellow")
+			else:
+				if not indice in command_no_authorized:
+					print(command)
+			
 				
 		res2 = input("Opção: ")
 				
@@ -675,33 +720,8 @@ def dados_brutos_while():
 			print(f"\n\tMédia aritmética: {process.sum_xi}/{len(process.list_xi)} = {truncate(process.x1, process.decimal)}\n")
 		
 		elif res2 == "5.1":
-			error = 0
-			while error < 2:
-				try:
-					string_fi = str(input("fi: ")).replace(" ","")
-					process.list_fi = func2.dismemberment(string_fi)
-					#Cria a lista nova xi.fi
-					for x in range(0, len(process.list_fi)):
-						process.list_fi_xi.append(truncate(process.list_xi[x]*process.list_fi[x], 2)) #xi.fi
-					#Pegando a soma das listas
-					process.sum_fi = func2.sum_list(process.list_fi)
-					process.sum_fi_xi = func2.sum_list(process.list_fi_xi)
-					error += 1
-					if len(process.list_fi) > 0:
-						copy = process.list_config
-						process.list_config = [False, False, False, False, True]
-						escopo = ["i", "xi", "fi"]
-						process.gerar_matriz_table(escopo, True, 4, True)
-						x1_p = process.sum_fi_xi/process.sum_fi
-						print(f"\n\tMédia aritmética ponderada:{process.sum_fi_xi}/{process.sum_fi} = {round(x1_p, process.decimal)}\n")
-						process.list_config = copy
-						break
-					else:
-						return
-				except:
-					error += 1
+			weighted_average()
 					
-		
 		elif res2 == "6":
 			moda1()
 		
@@ -712,8 +732,9 @@ def dados_brutos_while():
 			pass
 		
 		elif res2 == "6.3":
-			pass
-				
+			adc_fi()
+			continue
+			
 		elif res2 == "7":
 			#Configurações
 			config()
@@ -739,15 +760,14 @@ def dados_agrupados_while():
 	modo_agrupados = True
 	process.modo_agrupados = True
 	
-	#Calcula a média aritmética
-	arithmetic_mean(process.list_fi_xi)
-	process.total_amplitude = statistic.total_amplitude2(process.initial, process.amplitude, process.quant_fi)
-	process.start(True)
-	
 	#Ajuda alocalizar a classe modal e já antecipa os dados
 	localizar_moda()
 	
 	while 1:
+		#Calcula a média aritmética
+		arithmetic_mean(process.list_fi_xi)
+		process.total_amplitude = statistic.total_amplitude2(process.initial, process.amplitude, process.quant_fi)
+		process.start(modo_agrupados)
 		clear_()
 	
 		#Escopo do menu Dados agrupados
