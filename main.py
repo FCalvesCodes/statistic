@@ -150,21 +150,21 @@ def variance():
 		if process.sample:
 			process.gerar_matriz_table((["i","xi", "xi-ㄡ", "|xi-ㄡ"]), False, 3)
 			n = math_decimal.divide(process.sum_x4, process.quant_xi-1)
-			print(f"\nAmostra:↴\nVariância é {process.sum_x4}/{process.quant_xi-1} = {round(n, process.decimal)}\n")
+			print(f"\nAmostra:↴\nVariância é ({process.sum_x4}/{process.quant_xi-1}) = {round(n, process.decimal)}\n")
 		if process.populational:
 			n = math_decimal.divide(process.sum_x4, process.quant_xi)
 			process.gerar_matriz_table((["i","xi", "xi-ㄡ", "|xi-ㄡ"]) , False, 3)
-			print(f"\nPopulação:↴\nVariância é {process.sum_x4}/{process.quant_xi} = {round(n,  process.decimal)}\n")
+			print(f"\nPopulação:↴\nVariância é ({process.sum_x4}/{process.quant_xi}) = {round(n,  process.decimal)}\n")
 	else:
 		#para dados Agrupados
 		if process.sample:
 			process.gerar_matriz_table((["i","fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]) , True, 3)
 			n = math_decimal.divide(process.sum_fi_x4, process.sum_fi-1)
-			print(f"\nAmostra:↴\nVariância é {process.sum_fi_x4}/{process.sum_fi-1} = {round(n, process.decimal)}\n")
+			print(f"\nAmostra:↴\nVariância é ({process.sum_fi_x4}/{process.sum_fi-1}) = {round(n, process.decimal)}\n")
 		if process.populational:
 			process.gerar_matriz_table((["i", "fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]), True, 3)
 			n = math_decimal.divide(process.sum_fi_x4, process.quant_xi)
-			print(f"\nPopulação:↴\nVariância é {process.sum_fi_x4}/{process.sum_fi} = {round(n, process.decimal)}\n")
+			print(f"\nPopulação:↴\nVariância é ({process.sum_fi_x4}/{process.sum_fi}) = {round(n, process.decimal)}\n")
 		
 #------------------------------------------------------------------------------
 	
@@ -470,7 +470,7 @@ def new_xi(initial, amplitude_class, amount_class):
 	
 	list_ = []
 	for x in range(0, amount_class):
-		if str(initial+(amplitude_class/2)).endswith(".0"):
+		if str(initial+(amplitude_class/2)):
 			list_.append(round(initial+(amplitude_class/2)))
 			initial += amplitude_class
 		else:
@@ -565,7 +565,7 @@ def weighted_average():
 		escopo = ["i", "xi", "fi"]
 		process.gerar_matriz_table(escopo, True, 4, True)
 		x1_p = process.sum_fi_xi/process.sum_fi
-		print(f"\n\tMédia aritmética ponderada:{process.sum_fi_xi}/{process.sum_fi} = {round(x1_p, process.decimal)}\n")
+		print(f"\n\tMédia aritmética ponderada: ({process.sum_fi_xi}/{process.sum_fi}) = {round(x1_p, process.decimal)}\n")
 		process.list_config = copy
 	else:
 		print("Erro no processo.")
@@ -597,7 +597,8 @@ def data_entry(raw_data):
 	#Para dados brutos
 	if raw_data == True:
 		
-		print("Exemplo de Entrada:\n\txi: 14,15,19,20,20,21,22\n")
+		print("\nExemplo de Entrada:\n\txi: ", end= "")
+		print_c("14,15,19,20,20,21,22\n", "red")
 		
 		string_xi = str(input("xi: ")).replace(" ","")
 		process.list_xi = func2.dismemberment(string_xi)
@@ -638,11 +639,10 @@ def data_entry(raw_data):
 			
 			#Calcula o xi com base nos dados de entrada e return uma lista
 			process.list_xi = new_xi(process.initial, process.amplitude, process.quant_fi)
+			process.list_xi = statistic.tr(process.list_xi)
 			
 			#Calcula a quantidade de classes com base na process.list_xi
 			process.quant_xi = len(process.list_xi)
-			
-			
 			
 			#Cria a lista nova xi.fi para média aritmetica dados agrupados
 			for x in range(0, len(process.list_fi)):
@@ -702,12 +702,14 @@ def dados_brutos_while():
 				if not indice in command_no_authorized:
 					print(command)
 			
-				
-		res2 = input("Opção: ")
+		try:
+			res2 = input("Opção: ")
+		except:
+			pass
 				
 		if res2 == "1":
 			#Amplitude total
-			print(f"\n\t Amplitude Total {statistic.xmax} - {statistic.xmin}: {process.total_amplitude}\n")
+			print(f"\n\t Amplitude Total ({statistic.xmax} - {statistic.xmin}): {process.total_amplitude}\n")
 					
 		elif res2 == "2":
 			# Desvio médio simples
@@ -723,7 +725,7 @@ def dados_brutos_while():
 			variance()
 			
 		elif res2 == "5":
-			print(f"\n\tMédia aritmética: {process.sum_xi}/{len(process.list_xi)} = {truncate(process.x1, process.decimal)}\n")
+			print(f"\n\tMédia aritmética: ({process.sum_xi}/{len(process.list_xi)}) = {truncate(process.x1, process.decimal)}\n")
 		
 		elif res2 == "5.1"and len(process.list_fi) == len(process.list_xi):
 			weighted_average()
@@ -787,12 +789,15 @@ def dados_agrupados_while():
 				
 		for command in commands2_agr:
 			print(command)
-					
-		res2 = input("Opção: ")
-				
+		
+		try:
+			res2 = input("Opção: ")
+		except:
+			pass
+			
 		if res2 =="1":
 			#Amplitude total - Dados Agrupados
-			print(f"\n\t Amplitude Total {statistic.xmax} - {statistic.xmin}: {process.total_amplitude}\n")
+			print(f"\n\t Amplitude Total ({statistic.xmax} - {statistic.xmin}): {process.total_amplitude}\n")
 					
 		elif res2 == "2":
 			#Desvio médio simples - Dados Agrupados
@@ -811,7 +816,7 @@ def dados_agrupados_while():
 			process.list_config = [False, False, False, True, True]
 			escopo = ["i", "Dados", "fi"]
 			process.gerar_matriz_table(escopo, True, 4)
-			print(f"\n\tMédia aritmética:{process.sum_fi_xi}/{process.sum_fi} = {truncate(process.x1, process.decimal)}\n")
+			print(f"\n\tMédia aritmética: ({process.sum_fi_xi}/{process.sum_fi}) = {truncate(process.x1, process.decimal)}\n")
 			process.list_config = copy
 		elif res2 == "5.1":
 			moda2()
@@ -850,7 +855,12 @@ while 1:
 	
 	for command in commands1:
 		print(command)
-	res1 = input("Opção: ")
+		
+	try:
+		res1 = input("Opção: ")
+	except EOFError:
+		pass
+
 	
 	if res1 == "1":
 		#Dados brutos

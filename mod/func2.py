@@ -129,6 +129,8 @@ class Process(object):
 					return colored(str(string), "green")
 				elif string == False:
 					return colored(str(string), "red")
+				elif type(string) == int:
+					return colored(str(string), "yellow")
 			except:
 					return string
 		else:
@@ -172,6 +174,7 @@ class Process(object):
 			self.sum_fi_x4 = sum_list(self.list_fi_x4)
 			self.sum_fi_x3 = sum_list(self.list_fi_x3)
 			self.sum_fi_xi = sum_list(self.list_fi_xi)
+			
 		
 	def gerar_matriz_table(self, escopo, grouped, modo, is_weighted=False ):
 		""" Cria uma matriz para terminaltables"""
@@ -203,8 +206,7 @@ class Process(object):
 		ind = 0	#Indice para configurar a tabela
 		
 		#Tabela de configurações - lista  em constante atualização
-		self.list_config2 = [["Casa Decimal",f"{self.decimal}"], ["Amostra", self.f_c(self.sample)], ["População", self.f_c(self.populational)], ["fri %", self.f_c(self.list_config[0])], ["Fi", self.f_c(self.list_config[1])], ["Fri %", self.f_c(self.list_config[2])], ["xi", self.f_c(self.list_config[3])]]
-		
+		self.list_config2 = [["Casa Decimal",self.f_c(self.decimal)], ["Amostra", self.f_c(self.sample)], ["População", self.f_c(self.populational)], ["fri %", self.f_c(self.list_config[0])], ["Fi", self.f_c(self.list_config[1])], ["Fri %", self.f_c(self.list_config[2])], ["xi", self.f_c(self.list_config[3])]]
 		#Gerar uma matriz para configurações
 		if grouped == None and modo == 5:
 			for x in range(0, len(self.list_config2)):
@@ -223,37 +225,37 @@ class Process(object):
 
 			if grouped == False and modo == 1:
 				#Dados Brutos - Desvio médio simples
-				tabela.append([x+1, truncate(self.list_xi[x], self.decimal), truncate(self.list_x2[x],self.decimal), truncate(self.list_x3[x], self.decimal)])
+				tabela.append(statistic.tr([x+1, truncate(self.list_xi[x], self.decimal), truncate(self.list_x2[x],self.decimal), truncate(self.list_x3[x], self.decimal)]))
 				
 			elif grouped == False and modo == 2:
 				#Dados Brutos - Desvio Padrão
-				tabela.append([x+1, truncate(self.list_xi[x], self.decimal), truncate(self.list_x2[x],self.decimal), truncate(self.list_x3[x], self.decimal), truncate(self.list_x4[x], self.decimal)])
+				tabela.append(statistic.tr([x+1, truncate(self.list_xi[x], self.decimal), truncate(self.list_x2[x],self.decimal), truncate(self.list_x3[x], self.decimal), truncate(self.list_x4[x], self.decimal)]))
 			
 			elif grouped == False and modo == 3:
 				#Dados Brutos - Variância
-				tabela.append([x+1, truncate(self.list_xi[x], self.decimal), truncate(self.list_x2[x],self.decimal), truncate(self.list_x4[x], self.decimal)])
+				tabela.append(statistic.tr([x+1, truncate(self.list_xi[x], self.decimal), truncate(self.list_x2[x],self.decimal), truncate(self.list_x4[x], self.decimal)]))
 
 ############# Dados Agrupados #################
 			
 			elif grouped == True and modo == 1:
 				#Dados Agrupados - Desvio médio simples
-				tabela.append([x+1, self.list_fi[x], truncate(self.list_xi[x], self.decimal), truncate(self.list_fi_xi[x], self.decimal), truncate(self.list_x3[x], self.decimal), truncate(self.list_fi_x3[x], self.decimal)])
+				tabela.append(statistic.tr([x+1, self.list_fi[x], truncate(self.list_xi[x], self.decimal), truncate(self.list_fi_xi[x], self.decimal), truncate(self.list_x3[x], self.decimal), truncate(self.list_fi_x3[x], self.decimal)]))
 		
 			elif grouped == True and modo == 2:
 				#Dados Agrupados - Desvio padrão
-				tabela.append([x+1, truncate(self.list_fi[x], self.decimal), truncate(self.list_xi[x], self.decimal), truncate(self.list_fi_xi[x], self.decimal), truncate(self.list_x2[x],self.decimal), truncate(self.list_x4[x], self.decimal), truncate(self.list_fi_x4[x], self.decimal)])
+				tabela.append(statistic.tr([x+1, truncate(self.list_fi[x], self.decimal), truncate(self.list_xi[x], self.decimal), truncate(self.list_fi_xi[x], self.decimal), truncate(self.list_x2[x],self.decimal), truncate(self.list_x4[x], self.decimal), truncate(self.list_fi_x4[x], self.decimal)]))
 				
 			elif grouped == True and modo == 3:
 				#Dados Agrupados - Variância
-				tabela.append([x+1, truncate(self.list_fi[x], self.decimal), truncate(self.list_xi[x], self.decimal), truncate(self.list_fi_xi[x],self.decimal), truncate(self.list_x2[x],self.decimal), truncate(self.list_x4[x], self.decimal), truncate(self.list_fi_x4[x], self.decimal)])
+				tabela.append(statistic.tr([x+1, truncate(self.list_fi[x], self.decimal), truncate(self.list_xi[x], self.decimal), truncate(self.list_fi_xi[x],self.decimal), truncate(self.list_x2[x],self.decimal), truncate(self.list_x4[x], self.decimal), truncate(self.list_fi_x4[x], self.decimal)]))
 				
 			elif grouped == True and modo == 4:
 				#Dados Agrupados - Tabela de frêquencia
 				if is_weighted:
-					tabela.append([x+1, truncate(self.list_xi[x], self.decimal), truncate(self.list_fi[x], self.decimal)])
+					tabela.append(statistic.tr([x+1, truncate(self.list_xi[x], self.decimal), truncate(self.list_fi[x], self.decimal)]))
 				else:
 					xmin += amplitude
-					tabela.append([x+1, f"{xmin-amplitude}|-----{xmin}", self.list_fi[x]])
+					tabela.append(statistic.tr([x+1, f"{xmin-amplitude}|-----{xmin}", self.list_fi[x]]))
 				
 				if self.list_config[0] == True:
 					#Adicionar os dados
@@ -266,7 +268,7 @@ class Process(object):
 					tabela[x+1].append(self.list_Fri[x])
 				
 				if self.list_config[3] == True:
-					tabela[x+1].append(truncate(self.list_xi[x], self.decimal))
+					tabela[x+1].append(self.list_xi[x])
 				
 				if self.list_config[-1] == True:
 					tabela[x+1].append(self.list_fi_xi[x])
@@ -277,40 +279,40 @@ class Process(object):
 	
 		if grouped == False and modo == 1 and self.install_terminaltables:
 			#Dados Brutos - Desvio médio simples
-			tabela.append([" ", self.sum_xi, "    Σ", self.sum_x3])
+			tabela.append(statistic.tr([" ", self.sum_xi, "    Σ", self.sum_x3]))
 			terminal.tables(tabela, True, "Dados Brutos - Desvio médio simples")
 			
 		elif grouped == False and modo == 2 and self.install_terminaltables:
 			#Dados brutos - Desvio padrão
-			tabela.append([" ", self.sum_xi, "Σ",self.sum_x3, self.sum_x4])
+			tabela.append(statistic.tr([" ", self.sum_xi, "Σ",self.sum_x3, self.sum_x4]))
 			terminal.tables(tabela, True,"Dados brutos - desvio padrão")
 			
 		elif grouped == False and modo == 3 and self.install_terminaltables:
 			#Dados brutos - Variância
-			tabela.append([" ", self.sum_xi, "Σ", self.sum_x4])
+			tabela.append(statistic.tr([" ", self.sum_xi, "Σ", self.sum_x4]))
 			terminal.tables(tabela, True,"Dados brutos - Variância")
 			
 		elif grouped == True and modo == 1 and self.install_terminaltables:
 			#Dados agrupados - Desvio médio  simples
-			tabela.append([" ", self.sum_fi, self.sum_xi, self.sum_fi_xi, self.sum_x3, self.sum_fi_x3])
+			tabela.append(statistic.tr([" ", self.sum_fi, self.sum_xi, self.sum_fi_xi, self.sum_x3, self.sum_fi_x3]))
 			terminal.tables(tabela, True,"Dados Agrupados - Desvio médio simples")
 			
 		elif grouped == True and modo == 2 and self.install_terminaltables:
 			#Dados agrupados - Desvio padrão
-			tabela.append([" ", self.sum_fi, self.sum_xi,self.sum_fi_xi, "Σ", self.sum_x4, self.sum_fi_x4])
+			tabela.append(statistic.tr([" ", self.sum_fi, self.sum_xi,self.sum_fi_xi, "Σ", self.sum_x4, self.sum_fi_x4]))
 			terminal.tables(tabela, True,"Dados Agrupados - desvio padrão")
 			
 		elif grouped == True and modo == 3 and self.install_terminaltables:
-			tabela.append([" ", self.sum_fi, self.sum_xi, self.sum_fi_xi, "Σ", self.sum_x4, self.sum_fi_x4])
+			tabela.append(statistic.tr([" ", self.sum_fi, self.sum_xi, self.sum_fi_xi, "Σ", self.sum_x4, self.sum_fi_x4]))
 			terminal.tables(tabela, True,"Dados Agrupados - Variância")
 			
 		elif grouped == True and modo == 4 and self.install_terminaltables:
 			#Dados Agrupados - Tabela de frêquencia
 			if is_weighted:
 				#Caso seja para média ponderada
-				tabela.append([" ", self.sum_xi, self.sum_fi])
+				tabela.append(statistic.tr([" ", self.sum_xi, self.sum_fi]))
 			else:
-				tabela.append([" ", " Σ ", self.sum_fi])
+				tabela.append(statistic.tr([" ", " Σ ", self.sum_fi]))
 			
 			if self.list_config[0] == True:
 				#Adicionar os dados

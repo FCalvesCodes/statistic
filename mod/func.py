@@ -57,7 +57,7 @@ class Statistic(object):
 		if type(obj) == list:
 			new_list = []
 			for n in obj:
-				if str(n).endswith(".0") or str(n).endswith(".00"):
+				if str(n).endswith(".0") or str(n).endswith(".00") or str(n).endswith(".000") or str(n).endswith(".0000") or str(n).endswith(".00000"):
 					n = round(n)
 					new_list.append(n)
 				else:
@@ -65,7 +65,7 @@ class Statistic(object):
 					
 			return new_list
 		else:
-			if str(obj).endswith(".0") or str(obj).endswith(".00"):
+			if str(obj).endswith(".0") or str(obj).endswith(".00") or str(obj).endswith(".000") or str(obj).endswith(".0000") or str(obj).endswith(".00000"):
 				return round(obj)
 			else:
 				return obj
