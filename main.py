@@ -580,7 +580,12 @@ def adc_fi():
 		process.list_fi = func2.dismemberment(string_fi)
 	except:
 		print("Dados inválidos!")
-		
+	
+	if len(process.list_fi) == len(process.list_xi):
+		pass
+	else:
+		process.list_fi = []
+		print(" Dados faltando !")
 		
 		
 # -------------------------------------------------------------------------------
@@ -684,7 +689,7 @@ def dados_brutos_while():
 		print(terminal.terminal_size(f" Amostra: {process.sample} ", "-"))
 		print(terminal.terminal_size(f" População: {process.populational} ", "-"))
 		print(terminal.terminal_size(f"xi:{process.list_xi}", " "))
-		if len(process.list_fi) > 1:
+		if len(process.list_fi) == len(process.list_xi):
 			print_c(terminal.terminal_size(f"fi:{process.list_fi}", " "), "yellow")
 		print("\n")
 		
@@ -719,7 +724,7 @@ def dados_brutos_while():
 		elif res2 == "5":
 			print(f"\n\tMédia aritmética: {process.sum_xi}/{len(process.list_xi)} = {truncate(process.x1, process.decimal)}\n")
 		
-		elif res2 == "5.1":
+		elif res2 == "5.1"and len(process.list_fi) == len(process.list_xi):
 			weighted_average()
 					
 		elif res2 == "6":
@@ -733,7 +738,8 @@ def dados_brutos_while():
 		
 		elif res2 == "6.3":
 			adc_fi()
-			continue
+			if len(process.list_fi) == len(process.list_xi):
+				continue
 			
 		elif res2 == "7":
 			#Configurações
