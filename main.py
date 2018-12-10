@@ -553,6 +553,7 @@ def config():
 def weighted_average():
 	"""Média aritmética ponderada"""
 	#Cria a lista nova xi.fi
+	process.list_fi_xi = []
 	for x in range(0, len(process.list_fi)):
 		process.list_fi_xi.append(truncate(process.list_xi[x]*process.list_fi[x], 2)) #xi.fi
 	#Pegando a soma das listas
