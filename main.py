@@ -130,6 +130,15 @@ def truncate(f, n):
 
 # ------------------------------------------------------------------------------
 
+def zero():
+	process.lmo = statistic.tr(process.lmo)
+	process.value = statistic.tr(process.value)
+	process.ffant = statistic.tr(process.ffant)
+	process.fpost = statistic.tr(process.fpost)
+	process.delta_2 =  statistic.tr(process.delta_2)
+	process.delta_1 = statistic.tr(process.delta_1)
+	process.amplitude = statistic.tr(process.amplitude)
+
 def clear_():
 	""" Limpa o terminal de acordo com a sua plataforma."""
 	if sys.platform == "linux":
@@ -147,22 +156,21 @@ def variance():
 	#Variância amostral e populacional
 	if modo_agrupados == False:
 		#Para dados brutos
+		process.gerar_matriz_table((["i","xi", "xi-ㄡ", "|xi-ㄡ"]), False, 3)
 		if process.sample:
-			process.gerar_matriz_table((["i","xi", "xi-ㄡ", "|xi-ㄡ"]), False, 3)
 			n = math_decimal.divide(process.sum_x4, process.quant_xi-1)
 			print(f"\nAmostra:↴\nVariância é ({process.sum_x4}/{process.quant_xi-1}) = {round(n, process.decimal)}\n")
 		if process.populational:
 			n = math_decimal.divide(process.sum_x4, process.quant_xi)
-			process.gerar_matriz_table((["i","xi", "xi-ㄡ", "|xi-ㄡ"]) , False, 3)
 			print(f"\nPopulação:↴\nVariância é ({process.sum_x4}/{process.quant_xi}) = {round(n,  process.decimal)}\n")
 	else:
 		#para dados Agrupados
+		
+		process.gerar_matriz_table((["i","fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]) , True, 3)
 		if process.sample:
-			process.gerar_matriz_table((["i","fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]) , True, 3)
 			n = math_decimal.divide(process.sum_fi_x4, process.sum_fi-1)
 			print(f"\nAmostra:↴\nVariância é ({process.sum_fi_x4}/{process.sum_fi-1}) = {round(n, process.decimal)}\n")
 		if process.populational:
-			process.gerar_matriz_table((["i", "fi", "xi","xi.fi", "xi-ㄡ", "(xi-ㄡ)²","fi.(xi-ㄡ)²"]), True, 3)
 			n = math_decimal.divide(process.sum_fi_x4, process.quant_xi)
 			print(f"\nPopulação:↴\nVariância é ({process.sum_fi_x4}/{process.sum_fi}) = {round(n, process.decimal)}\n")
 		
@@ -275,6 +283,14 @@ def moda1():
 def moda2():
 	""" Localiza  a classe modal."""
 	
+	zero()
+	
+	#Reconfigura a lista de config para tabela
+	copy = process.list_config
+	process.list_config = [False, False, False, False, False]
+	escopo = ["i", "Dados", "fi"]
+	process.gerar_matriz_table(escopo, True, 4)
+	process.list_config = copy
 	
 	n = 1
 	for x in range(0, len(process.indice)):
@@ -295,6 +311,7 @@ def moda2():
 		base = Decimal(f"{delta_up}")/Decimal(f"{delta_down}")
 		base = Decimal(f"{base}")*Decimal(f"{c}")
 		base = Decimal(f"{lmo}")+Decimal(f"{base}")
+		
 		tables(data=l, separar_linhas=True)
 		
 		print(f"\n\t{n} - Moda é {round(base, process.decimal)}")
@@ -426,6 +443,7 @@ def localizar_moda():
 	
 def mediana2():
 	""" Media para dados agrupados"""
+	zero()
 	#Elemento mediano 
 	emd = Decimal(f"{process.sum_fi}")/Decimal("2")
 	
@@ -439,15 +457,23 @@ def mediana2():
 			indice, fmd = i, process.list_fi[i]
 			break
 		
-	xmin = process.initial
-	amp = process.amplitude
+	xmin = statistic.tr(process.initial)
+	amp = statistic.tr(process.amplitude)
 	
 	for x in range(0, len(process.list_fi)):
 		if x == indice:
 			lmd = xmin
 		else:
 			xmin += amp
-			
+	
+	
+	#Reconfigura a lista de config para tabela
+	copy = process.list_config
+	process.list_config = [False, True, False, False, False]
+	escopo = ["i", "Dados", "fi"]
+	process.gerar_matriz_table(escopo, True, 4)
+	process.list_config = copy
+	
 	for x in range(0, len(process.indice)):
 		l = []
 		l.append([f"     Mediana  - Classe Mediana é {indice+1}°", "Valores"])

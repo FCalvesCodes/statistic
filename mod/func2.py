@@ -112,7 +112,7 @@ class Process(object):
 		self.fpost= []		  #
 		self.delta_2 = []	 #
 		self.delta_1 = []	 #
-		self.amplitude	   # c
+		self.amplitude = 0   # c
 		self.modal = ["Amodal", "Unimodal", "Bimodal", "Trimodal", "Quadrimodal"]
 		
 		#Configurações para visualizar tabela de frequencia
