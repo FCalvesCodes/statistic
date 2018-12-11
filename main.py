@@ -596,7 +596,7 @@ def data_entry(raw_data):
 	
 	#Para dados brutos
 	if raw_data == True:
-		
+		process.list_fi_xi = []
 		print("\nExemplo de Entrada:\n\txi: ", end= "")
 		print_c("14,15,19,20,20,21,22\n", "red")
 		
@@ -643,6 +643,7 @@ def data_entry(raw_data):
 			
 			#Calcula a quantidade de classes com base na process.list_xi
 			process.quant_xi = len(process.list_xi)
+			process.list_fi_xi = []
 			
 			#Cria a lista nova xi.fi para média aritmetica dados agrupados
 			for x in range(0, len(process.list_fi)):
