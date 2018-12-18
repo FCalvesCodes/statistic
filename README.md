@@ -40,7 +40,7 @@ Esse Script foi feito para fins didáticos, é uma calculadora de estatística q
 	- Frequência relativa (fri%) -- (Para vizualizar a tabela na opção 7)
 	- Frequência absoluta acumulada (Fi) -- (Para vizualizar a tabela na opção 7)
 	- Frequência relativa acomulada (Fri%) -- (Para vizualizar a tabela na opção 7)
-	- Ponto média (xi) -- (Para vizualizar a tabela na opção 7)
+	- Ponto médio (xi) -- (Para vizualizar a tabela na opção 7)
 
 
 **Modo de uso:**
