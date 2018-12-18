@@ -180,7 +180,7 @@ class Process(object):
 		""" Cria uma matriz para terminaltables"""
 		
 		#Passa o valor para classe (True ou False)
-		self.install_terminaltables = terminal.status()
+		self.install_terminaltables = terminal.status_table()
 		
 		#Adiciona ao escopo mais conteúdo
 		if grouped == True and modo == 4:
@@ -330,7 +330,7 @@ class Process(object):
 			if self.list_config[-1] == True:
 				tabela[-1].append(self.sum_fi_xi)
 				
-			terminal.tables(tabela, True,"Tabela de frequência")
+			terminal.tables(tabela, True,"Tabela de Frequência")
 		elif install_terminaltables == False:
 			print("Instale o módulo terminaltables para mais detalhes.\n")
 	

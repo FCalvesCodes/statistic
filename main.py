@@ -1,4 +1,4 @@
-#! data/data/com.termux/files/usr/bin/env python
+#! data/data/com.termux/files/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 
@@ -16,39 +16,22 @@ import sys
 import os
 
 
-try:
-	from termcolor import colored
-	install_termcolor = True
-except:
-	install_termcolor = False
+install_terminaltables = terminal.status_table()
+install_termcolor = terminal.status_color()
 
-try:
-	from terminaltables import AsciiTable
-	install_terminaltables = True
-except:
-	install_terminaltables = False
-	print("\nInstale o módulo terminaltables para visualizar\n a tabela detalhada.")
-	time.sleep(2)
-	
-	
 statistic = Statistic()
 process =  Process()
-
+mod = ModoAudit(process)
 math_decimal = Context()
 
-#Para fazer auditoria das variáveis(Em Desenvolvimento)
-#modoaudit = ModoAudit(process)
-
-#Var para confirgurar entre dados brutos e dados agruapdos
 modo_agrupados = None
 
 
 modo_1 = "Modo Dados Brutos"
 modo_2 = "Modo Dados Agrupados"
 
-# -------------- Variáveis em geral ------------------
 
-
+#Menu Principal
 commands1 = ["[1] - Dados Brutos",\
 								"[2] - Dados Agrupados",\
 								"[3] - Sobre",\
@@ -56,6 +39,7 @@ commands1 = ["[1] - Dados Brutos",\
 								"[5] - Configurações",\
 							    "[6] - Sair"]
 
+#Menu Dados Agrupados
 commands2_agr = ["[1]  -  Amplitude Total",\
 								"[2]  -  Desvio Médio Simples",\
 								"[3]  -  Desvio Padrão",\
@@ -67,6 +51,7 @@ commands2_agr = ["[1]  -  Amplitude Total",\
 								"[7]  -  Visualizar tabela de frequência",\
 								"[8]  -  Retornar"]
 
+#Menu Dados Brutos
 commands2 = ["[1]  -  Amplitude total",\
 								"[2]  -  Desvio Médio Simples",\
 								"[3]  -  Desvio Padrão",\
@@ -80,9 +65,10 @@ commands2 = ["[1]  -  Amplitude total",\
 								"[7]  -  Configurações",\
 								"[8]  -  Retornar"]
 
-#Indice proibidos de ser exibidos antes de adicionar (fi)
+#Remove "[5.1] - Média Aritmética ponderada", aparece após adicionar fi em dados brutos
 command_no_authorized = [5]
 
+#Menu de configurações
 commands3 = ["[1] - Ajustar Casa Decimal",\
 							"[2] - Ativar/Desativar - Amostra",\
 							"[3] - Ativar/Desativar - População",\
@@ -92,32 +78,10 @@ commands3 = ["[1] - Ajustar Casa Decimal",\
 							"[7] - Ativar/Desativar - Ponto Médio (xi)",\
 							"[8] - Retornar"]
 							
+#Mensagem "sobre"
 abount = ["Esse script foi feito para fins didáticos,\n está bem estável pelo termux.\n              github: FelipeAlmeid4."]
 
-def print_c(string, cor):
-	""" Coloca cores no terminal"""
-	global install_termcolor
-	
-	if install_termcolor and sys.platform == "linux":
-		a = colored(str(string), cor)
-		print(a)
-	else:
-		print(string)
-
-#--------------------------------------------------------------------
-
-def tables(data, ult_borda= False,title= "",separar_linhas=False):
-		""" Recebe a tabela em formatos Matriz."""
-		tables_terminal = AsciiTable(data)
-		tables_terminal.inner_footing_row_border = ult_borda
-		tables_terminal.inner_row_border = separar_linhas
-		tables_terminal.title = title
-		if tables_terminal.ok:
-			print(tables_terminal.table)
-		else:
-			print("Tabela não pode ser visualizada, \n Recua o zoom ou aumente \n a janela do terminal e tente novamente.")
-			
-# ------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 
 def truncate(f, n):
     '''Truncates/pads a float f to n process.decimal places without rounding'''
@@ -131,6 +95,7 @@ def truncate(f, n):
 # ------------------------------------------------------------------------------
 
 def zero():
+	""" Remove os zeros finais de ponto flutuante 1.00 --> 1."""
 	process.lmo = statistic.tr(process.lmo)
 	process.value = statistic.tr(process.value)
 	process.ffant = statistic.tr(process.ffant)
@@ -139,21 +104,11 @@ def zero():
 	process.delta_1 = statistic.tr(process.delta_1)
 	process.amplitude = statistic.tr(process.amplitude)
 
-def clear_():
-	""" Limpa o terminal de acordo com a sua plataforma."""
-	if sys.platform == "linux":
-		os.system("clear")
-		os.system("reset")
-		
-	elif sys.platform == "win32":
-		os.system("mode con cols=110 lines=80")
-		os.system("cls")
-		
 # ----------------------------------------------------
 
 def variance():
+	""" Calcula variância amostral e populacional."""
 	global modo_agrupados
-	#Variância amostral e populacional
 	if modo_agrupados == False:
 		#Para dados brutos
 		process.gerar_matriz_table((["i","xi", "xi-ㄡ", "|xi-ㄡ"]), False, 3)
@@ -190,6 +145,8 @@ def arithmetic_mean(list_):
 		
 	#process.x1 = truncate(total/quantidade, 5)
 	process.x1 = truncate(math_decimal.divide(total, quantidade), process.decimal)
+
+
 def error_padr():
 	""" Erro padrão dados brutos"""
 	pass
@@ -220,7 +177,7 @@ def moda1():
 	#https://pt.stackoverflow.com/questions/216413/identificar-elementos-repetidos-em-lista-com-python
 	global modo_agrupados
 	
-	clear_()
+	terminal.clear_()
 	n = 1
 	m = []
 		
@@ -281,7 +238,7 @@ def moda1():
 # ------------------------------------------------------------------------------
 		
 def moda2():
-	""" Localiza  a classe modal."""
+	""" Localiza  a classe modal e faz todo o calculo e mostra."""
 	
 	zero()
 	
@@ -295,7 +252,7 @@ def moda2():
 	n = 1
 	for x in range(0, len(process.indice)):
 		l = []
-		l.append([f"     Moda  - Classe modal é {process.indice[x]+1}°", "Valores"])
+		l.append([f" {x+1} - Moda  - Classe modal é {process.indice[x]+1}°", "Valores"])
 		l.append(["Limite inferior da classe modal (lmo)", f"{process.lmo[x]}"])
 		l.append(["Freq. Absoluta Simples Classe modal (fmo)", f"{process.value}"])
 		l.append(["Freq. Absoluta Simples Classe Anterior (fant)", f"{process.ffant[x]}"])
@@ -312,9 +269,9 @@ def moda2():
 		base = Decimal(f"{base}")*Decimal(f"{c}")
 		base = Decimal(f"{lmo}")+Decimal(f"{base}")
 		
-		tables(data=l, separar_linhas=True)
+		terminal.tables(matriz=l, separar_linhas=True)
 		
-		print(f"\n\t{n} - Moda é {round(base, process.decimal)}")
+		print(f"\n\t{x+1} - Moda é {round(base, process.decimal)}")
 		
 		n+=1
 		
@@ -323,7 +280,7 @@ def moda2():
 def mediana1():
 	""" Calcula a mediana de uma lista de dados brutos"""
 	#Recebe a lista em ordem crescente
-	clear_()
+	terminal.clear_()
 	list_= statistic.rol_raw_data(process.list_xi)
 	print(terminal.terminal_size(f" ROL: {list_} ", "━"))
 	
@@ -486,7 +443,7 @@ def mediana2():
 	base = Decimal(f"{emd-fant}")/Decimal(f"{fmd}")
 	base = Decimal(f"{process.amplitude}")*Decimal(f"{base}")
 	base = Decimal(f"{base}")+Decimal(f"{lmd}")
-	tables(data=l, separar_linhas=True)
+	terminal.tables(matriz=l, separar_linhas=True)
 	print(f"\n\tMediana  é {round(base, process.decimal)}")
 	
 # ------------------------------------------------------------------------------------------
@@ -512,7 +469,7 @@ def config():
 	global modo_agrupados
 	
 	while 1:
-		clear_()
+		terminal.clear_()
 		
 		#Tabela de configuração
 		print("\n")
@@ -624,7 +581,7 @@ def data_entry(raw_data):
 	if raw_data == True:
 		process.list_fi_xi = []
 		print("\nExemplo de Entrada:\n\txi: ", end= "")
-		print_c("14,15,19,20,20,21,22\n", "red")
+		terminal.print_color("14,15,19,20,20,21,22\n", "red")
 		
 		string_xi = str(input("xi: ")).replace(" ","")
 		process.list_xi = func2.dismemberment(string_xi)
@@ -634,7 +591,7 @@ def data_entry(raw_data):
 			return
 			
 		else:
-			clear_()
+			terminal.clear_()
 			print(f"xi = {process.list_xi}")
 			input("...")
 			
@@ -643,13 +600,13 @@ def data_entry(raw_data):
 	# Pede os dados e faz o pré- processamento das variáveis necessarias para funções em seguida
 	else:
 		#Demostração de entrada 
-		print("Exemplo de Entradas:")
+		print("\nExemplo de Entradas:")
 		print("\n\tfi:", end=" ")
-		print_c( "18,31,15,10,7,5,4","red")
+		terminal.print_color( "18,31,15,10,7,5,4","red")
 		print("\n\txi:\n\t  Xmin da 1° Classe:", end=" ")
-		print_c("500", "red")
+		terminal.print_color("500", "red")
 		print("\n\t  Amplitude_classe:", end=" ")
-		print_c("200", "red")
+		terminal.print_color("200", "red")
 		print("\n")
 		
 		string_fi = str(input("fi: ")).replace(" ", "")
@@ -687,7 +644,7 @@ def data_entry(raw_data):
 			
 		else:
 			#Gera a tabela de frequência
-			clear_()
+			terminal.clear_()
 			print("\n")
 			escopo = ["i", "  Dados", "fi", "xi"]
 			process.gerar_matriz_table(escopo, True, 4)
@@ -711,20 +668,20 @@ def dados_brutos_while():
 		arithmetic_mean(process.list_xi)
 		process.total_amplitude = statistic.total_amplitude1(process.list_xi)
 		process.start(modo_agrupados)
-		clear_()
+		terminal.clear_()
 		
 		print(terminal.terminal_size(modo_1, "="))
 		print(terminal.terminal_size(f" Amostra: {process.sample} ", "-"))
 		print(terminal.terminal_size(f" População: {process.populational} ", "-"))
 		print(terminal.terminal_size(f"xi:{process.list_xi}", " "))
 		if len(process.list_fi) == len(process.list_xi):
-			print_c(terminal.terminal_size(f"fi:{process.list_fi}", " "), "yellow")
+			terminal.print_color(terminal.terminal_size(f"fi:{process.list_fi}", " "), "yellow")
 		print("\n")
 		
 		
 		for indice, command in enumerate(commands2):
 			if len(process.list_fi) > 0 and indice in command_no_authorized:
-				print_c(command, "yellow")
+				terminal.print_color(command, "yellow")
 			else:
 				if not indice in command_no_authorized:
 					print(command)
@@ -765,6 +722,10 @@ def dados_brutos_while():
 			
 		elif res2 == "6.2":
 			pass
+			
+		elif res2 == "audit":
+			mod.print_dada()
+			input("...")
 		
 		elif res2 == "6.3":
 			adc_fi()
@@ -804,7 +765,7 @@ def dados_agrupados_while():
 		arithmetic_mean(process.list_fi_xi)
 		process.total_amplitude = statistic.total_amplitude2(process.initial, process.amplitude, process.quant_fi)
 		process.start(modo_agrupados)
-		clear_()
+		terminal.clear_()
 	
 		#Escopo do menu Dados agrupados
 		print(terminal.terminal_size(modo_2, "="))
@@ -850,6 +811,10 @@ def dados_agrupados_while():
 		
 		elif res2 == "5.2":
 			mediana2()
+		
+		elif res2 == "data":
+			mod.print_dada()
+			input("...")
 			
 		elif res2 == "6":
 			#Configurações
@@ -858,7 +823,7 @@ def dados_agrupados_while():
 		
 		elif res2 == "7":
 			#Visualizar tabela Dados agrupados
-			clear_()
+			terminal.clear_()
 			print("\n")
 			escopo = ["i", "Dados", "fi"]
 			process.gerar_matriz_table(escopo, True, 4)
@@ -874,7 +839,7 @@ def dados_agrupados_while():
 # ------------------------------------------------------------------------------------------
 
 while 1:
-	clear_()
+	terminal.clear_()
 	
 	#Escopo do While principal
 	print(terminal.terminal_size(" Estatística ", "+"))
@@ -928,23 +893,27 @@ while 1:
 	elif res1 == "3":
 		if install_terminaltables:
 			l = [["Sobre"], abount]
-			tables(l)
+			terminal.tables(l)
 		else:
 			print(f"\nSobre:\n\t{abount[0]}")
 		input("...")
 	
 	
 	elif res1 == "4":
-		print_c("\nATENÇÃO:\n", "red")
+		terminal.print_color("\nATENÇÃO:\n", "red")
 		print("  Xmin é o número menor da 1° classe P/ Dados Agrupados.\n")
 		print("  Amplitude da classe é a distância de um Xmin ao Xmax da \n  mesma classe. Ex: 500|----700 --> 200")
 		input("...")
-			
+	
 		
 	elif res1 == "5":
 		modo_agrupados = False
 		process.modo_agrupados = False
 		config()
+		
+	elif res1 == "audit":
+		mod.print_dada()
+		input("...")
 			
 		
 	elif res1 == "6":

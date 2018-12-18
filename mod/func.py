@@ -7,19 +7,20 @@ import math
 class Statistic(object):
 	
 	def __init__(self):
+		
+		#Recebe o xmin e xmax dos dados
 		self.xmax = 0
 		self.xmin = 0
 		
 	def rol_raw_data(self, list_):
-		"""Coloca uma lista de números em ordem crescente."""
-		copy = list_[:]
-		for x in range(0, len(copy)):
-			for y in range(x+1, len(copy)):
-				if copy[x] > copy[y]:
-					cop = copy[y]
-					copy[y] = copy[x]  
-					copy[x] = cop
-		return copy
+		"""Faz a ordenação de uma lista númerica(crescente)."""
+		list_copy = list_[:]
+		for x in range(0, len(list_copy)):
+			for y in range(x+1, len(list_copy)):
+				if list_copy[x] > list_copy[y]:
+					copy = list_copy[y]
+					list_copy[y], list_copy[x] = list_copy[x], copy
+		return list_copy
 		
 	def total_amplitude1(self, list_1):
 		"""Retorna a amplitude total de dados brutos."""
