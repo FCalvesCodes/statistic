@@ -132,7 +132,7 @@ def variance():
 #------------------------------------------------------------------------------
 	
 def arithmetic_mean(list_):
-	""" Faz a operação para obter a média aritimética  e guarda na var x1."""
+	""" Faz a operação para obter a média aritimética  e guarda na var process.x1."""
 	global modo_agrupados
 	total = func2.sum_list(list_)
 	
@@ -142,14 +142,8 @@ def arithmetic_mean(list_):
 		quantidade = process.sum_fi
 	else:
 		quantidade = len(list_)
-		
-	#process.x1 = truncate(total/quantidade, 5)
+
 	process.x1 = truncate(math_decimal.divide(total, quantidade), process.decimal)
-
-
-def error_padr():
-	""" Erro padrão dados brutos"""
-	pass
 
 # ------------------------------------------------------------------------------
 
@@ -562,6 +556,7 @@ def adc_fi():
 	try:
 		string_fi = str(input("fi: ")).replace(" ","")
 		process.list_fi = func2.dismemberment(string_fi)
+		process.quant_fi = len(process.list_fi)
 	except:
 		print("Dados inválidos!")
 	
@@ -605,7 +600,7 @@ def data_entry(raw_data):
 		terminal.print_color( "18,31,15,10,7,5,4","red")
 		print("\n\txi:\n\t  Xmin da 1° Classe:", end=" ")
 		terminal.print_color("500", "red")
-		print("\n\t  Amplitude_classe:", end=" ")
+		print("\n\t  Amplitude da 1° classe:", end=" ")
 		terminal.print_color("200", "red")
 		print("\n")
 		
@@ -723,9 +718,8 @@ def dados_brutos_while():
 		elif res2 == "6.2":
 			pass
 			
-		elif res2 == "audit":
+		elif res2 == "var":
 			mod.print_dada()
-			input("...")
 		
 		elif res2 == "6.3":
 			adc_fi()
@@ -812,9 +806,8 @@ def dados_agrupados_while():
 		elif res2 == "5.2":
 			mediana2()
 		
-		elif res2 == "data":
+		elif res2 == "var":
 			mod.print_dada()
-			input("...")
 			
 		elif res2 == "6":
 			#Configurações
@@ -911,7 +904,7 @@ while 1:
 		process.modo_agrupados = False
 		config()
 		
-	elif res1 == "audit":
+	elif res1 == "var":
 		mod.print_dada()
 		input("...")
 			
