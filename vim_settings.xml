@@ -3,11 +3,20 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
-      <file name="$USER_HOME$/Desktop/botger1/main.py" timestamp="1550348279737">
+      <file name="$USER_HOME$/Desktop/botger1/main.py" timestamp="1550350141159">
+        <mark key="[" line="7" column="7" />
+        <mark key="]" line="7" column="7" />
+        <mark key="^" line="7" column="7" />
+        <mark key="." line="7" column="7" />
+      </file>
+      <file name="/Dummy.txt" timestamp="1550349119682">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/Python Console" timestamp="1550348311754">
+      <file name="/Python Console" timestamp="1550349985895">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
+        <mark key="[" line="26" column="13" />
       </file>
       <file name="$USER_HOME$/PycharmProjects/untitled/teste.py" timestamp="1549924834602">
         <mark key="[" line="0" column="0" />
@@ -31,6 +40,9 @@
     <shortcut-conflicts>
       <shortcut-conflict owner="vim">
         <text>ctrl pressed V</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed C</text>
       </shortcut-conflict>
     </shortcut-conflicts>
   </component>
