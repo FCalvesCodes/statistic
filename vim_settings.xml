@@ -15,12 +15,6 @@
       <file name="/Python Console" timestamp="1550358318690">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550358458180">
-        <mark key="[" line="47" column="8" />
-        <mark key="]" line="47" column="8" />
-        <mark key="^" line="52" column="43" />
-        <mark key="." line="47" column="8" />
-      </file>
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
@@ -40,13 +34,57 @@
     <jumps />
     <registers>
       <register name="1" type="4">
-        <text encoding="base64">CmZyb20gdXBkYXRlcyBpbXBvcnQgY2hhdHByaXZhdGU=</text>
+        <text>new_chat = {}
+members_chat = {}
+
+
+def verification(message):
+    global new_chat
+    global members_chat
+
+
+    for key, value in new_chat.items():
+        if message.author == key:
+            return False
+        elif message.author == value:
+            return False
+
+    return True</text>
       </register>
       <register name="&quot;" type="4">
-        <text>chatprivate.ChatPrivate(new_chat, members_chat)</text>
+        <text />
+      </register>
+      <register name="2" type="4">
+        <text encoding="base64">ICAgaWYgdmVyaWZpY2F0aW9uKG1lc3NhZ2UpOgogICAgICAgICAgICBzb2xpY2l0YWNpb24uYXBwZW5kKG1lc3NhZ2UuYXV0aG9yKQogICAgICAgIGlmIG1lc3NhZ2UuY29udGVudC5sb3dlcigpLnN0YXJ0c3dpdGgoIi9ub3ZvX2NoYXQiKSBhbmQgbGVuKG1lc3NhZ2UuY29udGVudCkgPT0gMTA6CgogICAgICAgICAgICBlbWJlZCA9IGRpc2NvcmQuRW1iZWQoCiAgICAgICAgICAgICAgICB0aXRsZT0iQ3JpYW5kbyB1bWEgc2FsYSBwcml2YWRhISIsCiAgICAgICAgICAgICAgICBjb2xvcj0weEQzNThGNywKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uPSJRdWFsIOkgbyBub21lIGRhIHNhbGE/IEV4OiAvbmFtZSBzYWxhMTIiCiAgICAgICAgICAgICkKICAgICAgICAgICAgYXdhaXQgY2xpZW50LnNlbmRfbWVzc2FnZShtZXNzYWdlLmF1dGhvciwgZW1iZWQ9ZW1iZWQpCgogICAgICAgIGlmIG1lc3NhZ2UuYXV0aG9yIGluIHNvbGljaXRhY2lvbiBhbmQgbWVzc2FnZS5jaGFubmVsLmlzX3ByaXZhdGUgYW5kIG1lc3NhZ2UuYXV0aG9yLmJvdDoKICAgICAgICAgICAgcHJpbnQoIk5vbWUgZGEgc2FsYTp7fSIuZm9ybWF0KG1lc3NhZ2UuY29udGVudC5sb3dlcigpKSkKCiAgICBlbHNlOgogICAgICAgIGF3YWl0IGNsaWVudC5zZW5kX21lc3NhZ2UobWVzc2FnZS5hdXRob3IsICJWb2PqIGrhIGNyaW91IG91IGrhIOkgbWVtYnJvIGRlIHVtYSBzYWxhIHByaXZhZGEuIik=</text>
+      </register>
+      <register name="3" type="4">
+        <text>def new_chat_creator():
+    global new_chat
+    global members_chat</text>
+      </register>
+      <register name="4" type="4">
+        <text>or i in range(1):
+            msg = await client.wait_for_message(author=message.author, content='/name')
+            name = message.content.lower()[5:-1]
+            print(name)</text>
+      </register>
+      <register name="5" type="4">
+        <text encoding="base64">ICAgICAgICBtc2cgPSBhd2FpdCBjbGllbnQud2FpdF9mb3JfbWVzc2FnZShhdXRob3I9bWVzc2FnZS5hdXRob3IsIGNvbnRlbnQ9JyRzdG9wJykKICAgICAgICAgICAgZm10ID0gJ3t9IGxlZnQgdG8gZ28uLi4nCiAgICAgICAgICAgIGF3YWl0IGNsaWVudC5zZW5kX21lc3NhZ2UobWVzc2FnZS5jaGFubmVsLCBmbXQuZm9ybWF0KDMgLSBpKSkKCiAgICAgICAgYXdhaXQgY2xpZW50LnNlbmRfbWVzc2FnZShtZXNzYWdlLmNoYW5uZWwsICdHb29kIGpvYiEnKQ==</text>
+      </register>
+      <register name="6" type="4">
+        <text encoding="base64">CgogICAgaWYgbWVzc2FnZS5jb250ZW50Lmxvd2VyKCkuc3RhcnRzd2l0aCgiL25hbWUiKSBhbmQgbWVzc2FnZS5jaGFubmVsLmlzX3ByaXZhdGUgYW5kIG1lc3NhZ2UuYXV0aG9yID0gaWQ6CiAgICAgICAgbm9tZSA9IA==</text>
+      </register>
+      <register name="7" type="4">
+        <text encoding="base64">CiAgICBpZiBtZXNzYWdlLmF1dGhvci5pZCA9PSBjbGllbnQudXNlci5pZDo=</text>
+      </register>
+      <register name="8" type="4">
+        <text encoding="base64">CiAgICAgICAgcHJpbnQoaWRfdXNlcik=</text>
+      </register>
+      <register name="9" type="4">
+        <text encoding="base64">CiAgYXdhaXQgY2xpZW50LnNlbmRfbWVzc2FnZShtZXNzYWcsICJEaWdpdGUgbyBOb21lIGRhIHNhbGEiKQ==</text>
       </register>
       <register name="-" type="4">
-        <text>chatprivate.ChatPrivate(new_chat, members_chat)</text>
+        <text />
       </register>
     </registers>
     <search>
