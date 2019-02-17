@@ -15,7 +15,12 @@
       <file name="/Python Console" timestamp="1550358318690">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550378594733" />
+      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550379442819">
+        <mark key="[" line="22" column="35" />
+        <mark key="]" line="22" column="35" />
+        <mark key="^" line="22" column="112" />
+        <mark key="." line="22" column="35" />
+      </file>
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
@@ -53,7 +58,7 @@ def verification(message):
     return True</text>
       </register>
       <register name="&quot;" type="4">
-        <text />
+        <text>(client.get_server(message.author.id)</text>
       </register>
       <register name="2" type="4">
         <text encoding="base64">ICAgaWYgdmVyaWZpY2F0aW9uKG1lc3NhZ2UpOgogICAgICAgICAgICBzb2xpY2l0YWNpb24uYXBwZW5kKG1lc3NhZ2UuYXV0aG9yKQogICAgICAgIGlmIG1lc3NhZ2UuY29udGVudC5sb3dlcigpLnN0YXJ0c3dpdGgoIi9ub3ZvX2NoYXQiKSBhbmQgbGVuKG1lc3NhZ2UuY29udGVudCkgPT0gMTA6CgogICAgICAgICAgICBlbWJlZCA9IGRpc2NvcmQuRW1iZWQoCiAgICAgICAgICAgICAgICB0aXRsZT0iQ3JpYW5kbyB1bWEgc2FsYSBwcml2YWRhISIsCiAgICAgICAgICAgICAgICBjb2xvcj0weEQzNThGNywKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uPSJRdWFsIOkgbyBub21lIGRhIHNhbGE/IEV4OiAvbmFtZSBzYWxhMTIiCiAgICAgICAgICAgICkKICAgICAgICAgICAgYXdhaXQgY2xpZW50LnNlbmRfbWVzc2FnZShtZXNzYWdlLmF1dGhvciwgZW1iZWQ9ZW1iZWQpCgogICAgICAgIGlmIG1lc3NhZ2UuYXV0aG9yIGluIHNvbGljaXRhY2lvbiBhbmQgbWVzc2FnZS5jaGFubmVsLmlzX3ByaXZhdGUgYW5kIG1lc3NhZ2UuYXV0aG9yLmJvdDoKICAgICAgICAgICAgcHJpbnQoIk5vbWUgZGEgc2FsYTp7fSIuZm9ybWF0KG1lc3NhZ2UuY29udGVudC5sb3dlcigpKSkKCiAgICBlbHNlOgogICAgICAgIGF3YWl0IGNsaWVudC5zZW5kX21lc3NhZ2UobWVzc2FnZS5hdXRob3IsICJWb2PqIGrhIGNyaW91IG91IGrhIOkgbWVtYnJvIGRlIHVtYSBzYWxhIHByaXZhZGEuIik=</text>
@@ -85,7 +90,7 @@ def verification(message):
         <text encoding="base64">CiAgYXdhaXQgY2xpZW50LnNlbmRfbWVzc2FnZShtZXNzYWcsICJEaWdpdGUgbyBOb21lIGRhIHNhbGEiKQ==</text>
       </register>
       <register name="-" type="4">
-        <text />
+        <text>(client.get_server(message.author.id)</text>
       </register>
     </registers>
     <search>
