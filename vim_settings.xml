@@ -21,13 +21,15 @@
         <mark key="." line="23" column="27" />
         <mark key="^" line="29" column="24" />
       </file>
+      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/channel.py" timestamp="1550452820324" />
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550451892327">
+      <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550453204376">
         <mark key="[" line="26" column="53" />
         <mark key="]" line="26" column="53" />
         <mark key="." line="26" column="53" />
+        <mark key="^" line="26" column="57" />
       </file>
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/server.py" timestamp="1550431303549" />
       <file name="$USER_HOME$/PycharmProjects/untitled/teste.py" timestamp="1549924834602">
@@ -47,7 +49,7 @@
         <text encoding="base64">CmRlZiBjaGVja19hZG0obWVzc2FnZSk6CiAgICBnbG9iYWwgbWVtYmVyc19jaGF0CiAgICBmb3Iga2V5LCB2YWx1ZSBpbiBtZW1iZXJzX2NoYXQuaXRlbXMoKToKICAgICAgICBpZiBrZXkgPT0gbWVzc2FnZS5hdXRob3I6CiAgICAgICAgICAgIHJldHVybiBGYWxzZQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIHJldHVybiBUcnVlCiAgICByZXR1cm4gVHJ1ZQ==</text>
       </register>
       <register name="&quot;" type="4">
-        <text>channel.to</text>
+        <text>self.client.get_channel(channel.id)).topi</text>
       </register>
       <register name="2" type="4">
         <text encoding="base64">ICBpZiBtZXNzYWdlLmF1dGhvci5pZCA9PSAiNTQ2NDA2NDYzNzM2OTA1NzM4IjoKICAgICAgICByZXR1cm4KCiAgICBlbGlmIG1lc3NhZ2UuY29udGVudC5sb3dlcigpLnN0YXJ0c3dpdGgoIi9uZXdfY2hhdCIpIGFuZCBsZW4obWVzc2FnZS5jb250ZW50KSA+IDEyIGFuZCBsZW4obWVzc2FnZS5jb250ZW50KSA8IDE5OgogICAgICAgIG5hbWUgPSBtZXNzYWdlLmNvbnRlbnQubG93ZXIoKVsxMDpdCiAgICAgICAgaWYgbWVtYmVyc19jaGF0KG1lc3NhZ2UpOgogICAgICAgICAgICBtZW1iZXJzX2NoYXRbbWVzc2FnZS5hdXRob3JdID0gbmFtZQogICAgICAgICAgICBhd2FpdCBjbGllbnQuY3JlYXRlX2NoYW5uZWwobWVzc2FnZS5jaGFubmVsLCBuYW1lPW5hbWUsIHR5cGU9ZGlzY29yZC5jaGFubmVsLkNoYW5uZWxUeXBlLnRleHQpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgYXdhaXQgY2xpZW50LnNlbmRfbWVzc2FnZShtZXNzYWdlLmNoYW5uZWwsICJWb2PqIGrhIGVzdOEgZW0gdW1hIHNhbGEgcHJpdmFkYSAhIikKICAgIGVsc2U6CiAgICAgICAgYXdhaXQgY2xpZW50LnNlbmRfbWVzc2FnZShtZXNzYWdlLmNoYW5uZWwuc2VydmVyLCAiTm9tZSBkbyBjYW5hbCB0ZW0gcXVlIHRlciBubyBt4XhpbW8gOCBjYXJhY3RlcmVzLCBFeDogL25ld19jaGF0IHNhbGEzMDIiKQ==</text>
@@ -94,7 +96,7 @@ def verification(message):
         <text encoding="base64">CiAgICBpZiBtZXNzYWdlLmF1dGhvci5pZCA9PSBjbGllbnQudXNlci5pZDo=</text>
       </register>
       <register name="-" type="4">
-        <text>channel.to</text>
+        <text>self.client.get_channel(channel.id)).topi</text>
       </register>
     </registers>
     <search>
