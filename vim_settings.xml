@@ -15,15 +15,16 @@
       <file name="/Python Console" timestamp="1550358318690">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550449866530">
-        <mark key="[" line="27" column="7" />
-        <mark key="]" line="27" column="7" />
-        <mark key="." line="27" column="7" />
+      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550450590772">
+        <mark key="[" line="30" column="21" />
+        <mark key="]" line="30" column="24" />
+        <mark key="." line="30" column="24" />
+        <mark key="^" line="30" column="24" />
       </file>
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550450443885">
+      <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550450684783">
         <mark key="[" line="9" column="45" />
       </file>
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/server.py" timestamp="1550431303549" />
@@ -33,6 +34,7 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
+      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/client.py" timestamp="1550451078213" />
       <file name="$USER_HOME$/Desktop/botger1/venv/Lib/site-packages/multidict/__init__.py" timestamp="1550351222094">
         <mark key="[" line="7" column="14" />
       </file>
