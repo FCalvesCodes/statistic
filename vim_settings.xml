@@ -12,23 +12,25 @@
       <file name="/Dummy.txt" timestamp="1550349119682">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/guild.py" timestamp="1550605210947" />
+      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/abc.py" timestamp="1550603520774" />
       <file name="/Python Console" timestamp="1550358318690">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550599040510">
-        <mark key="[" line="48" column="11" />
-        <mark key="]" line="48" column="11" />
-        <mark key="." line="48" column="11" />
-        <mark key="^" line="2" column="14" />
+      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550604623869">
+        <mark key="[" line="41" column="37" />
+        <mark key="]" line="41" column="37" />
+        <mark key="." line="41" column="37" />
+        <mark key="^" line="44" column="33" />
       </file>
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550597425027">
-        <mark key="[" line="33" column="47" />
-        <mark key="]" line="30" column="0" />
-        <mark key="." line="30" column="0" />
-        <mark key="^" line="30" column="53" />
+      <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550603310082">
+        <mark key="[" line="34" column="16" />
+        <mark key="]" line="34" column="16" />
+        <mark key="." line="34" column="16" />
+        <mark key="^" line="32" column="53" />
       </file>
       <file name="$USER_HOME$/PycharmProjects/untitled/teste.py" timestamp="1549924834602">
         <mark key="[" line="0" column="0" />
@@ -43,21 +45,24 @@
     <jumps />
     <registers>
       <register name="1" type="4">
-        <text encoding="base64">IG1lbWJlciA9IGRpc2NvcmQudXRpbHMuZ2V0KG1lc3NhZ2UuZ3VpbGQubWVtYmVycywgbmFtZT0nJykKICAgICAgICBwcmludChtZW1iZXIp</text>
+        <text encoding="base64">IFRoZSBjYXRlZ29yeSB0byBwbGFjZSB0aGUgbmV3bHkgY3JlYXRlZCBjaGFubmVsIHVuZGVyLgogICAgICAgICAgICAgICAgVGhlIHBlcm1pc3Npb25zIHdpbGwgYmUgYXV0b21hdGljYWxseSBzeW5jZWQgdG8gY2F0ZWdvcnkgaWYgbm8KICAgICAgICAgICAgb3ZlcndyaXRlcyBhcmUgcHJvdmlkZWQu</text>
       </register>
       <register name="&quot;" type="4">
-        <text encoding="base64">IC9uZXdfY2hhdCB0ZXN0ZQ==</text>
+        <text encoding="base64">IFRoZSBjYXRlZ29yeSB0byBwbGFjZSB0aGUgbmV3bHkgY3JlYXRlZCBjaGFubmVsIHVuZGVyLgogICAgICAgICAgICAgICAgVGhlIHBlcm1pc3Npb25zIHdpbGwgYmUgYXV0b21hdGljYWxseSBzeW5jZWQgdG8gY2F0ZWdvcnkgaWYgbm8KICAgICAgICAgICAgb3ZlcndyaXRlcyBhcmUgcHJvdmlkZWQu</text>
       </register>
       <register name="2" type="4">
-        <text encoding="base64">CmZyb20gZGlzY29yZCBpbXBvcnQ=</text>
+        <text encoding="base64">IG1lbWJlciA9IGRpc2NvcmQudXRpbHMuZ2V0KG1lc3NhZ2UuZ3VpbGQubWVtYmVycywgbmFtZT0nJykKICAgICAgICBwcmludChtZW1iZXIp</text>
       </register>
       <register name="3" type="4">
-        <text encoding="base64">CmRlZiBjaGVja19hZG0obWVzc2FnZSk6CiAgICBnbG9iYWwgbWVtYmVyc19jaGF0CiAgICBmb3Iga2V5LCB2YWx1ZSBpbiBtZW1iZXJzX2NoYXQuaXRlbXMoKToKICAgICAgICBpZiBrZXkgPT0gbWVzc2FnZS5hdXRob3I6CiAgICAgICAgICAgIHJldHVybiBGYWxzZQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIHJldHVybiBUcnVlCiAgICByZXR1cm4gVHJ1ZQ==</text>
+        <text encoding="base64">CmZyb20gZGlzY29yZCBpbXBvcnQ=</text>
       </register>
       <register name="4" type="4">
-        <text encoding="base64">ICBpZiBtZXNzYWdlLmF1dGhvci5pZCA9PSAiNTQ2NDA2NDYzNzM2OTA1NzM4IjoKICAgICAgICByZXR1cm4KCiAgICBlbGlmIG1lc3NhZ2UuY29udGVudC5sb3dlcigpLnN0YXJ0c3dpdGgoIi9uZXdfY2hhdCIpIGFuZCBsZW4obWVzc2FnZS5jb250ZW50KSA+IDEyIGFuZCBsZW4obWVzc2FnZS5jb250ZW50KSA8IDE5OgogICAgICAgIG5hbWUgPSBtZXNzYWdlLmNvbnRlbnQubG93ZXIoKVsxMDpdCiAgICAgICAgaWYgbWVtYmVyc19jaGF0KG1lc3NhZ2UpOgogICAgICAgICAgICBtZW1iZXJzX2NoYXRbbWVzc2FnZS5hdXRob3JdID0gbmFtZQogICAgICAgICAgICBhd2FpdCBjbGllbnQuY3JlYXRlX2NoYW5uZWwobWVzc2FnZS5jaGFubmVsLCBuYW1lPW5hbWUsIHR5cGU9ZGlzY29yZC5jaGFubmVsLkNoYW5uZWxUeXBlLnRleHQpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgYXdhaXQgY2xpZW50LnNlbmRfbWVzc2FnZShtZXNzYWdlLmNoYW5uZWwsICJWb2PqIGrhIGVzdOEgZW0gdW1hIHNhbGEgcHJpdmFkYSAhIikKICAgIGVsc2U6CiAgICAgICAgYXdhaXQgY2xpZW50LnNlbmRfbWVzc2FnZShtZXNzYWdlLmNoYW5uZWwuc2VydmVyLCAiTm9tZSBkbyBjYW5hbCB0ZW0gcXVlIHRlciBubyBt4XhpbW8gOCBjYXJhY3RlcmVzLCBFeDogL25ld19jaGF0IHNhbGEzMDIiKQ==</text>
+        <text encoding="base64">CmRlZiBjaGVja19hZG0obWVzc2FnZSk6CiAgICBnbG9iYWwgbWVtYmVyc19jaGF0CiAgICBmb3Iga2V5LCB2YWx1ZSBpbiBtZW1iZXJzX2NoYXQuaXRlbXMoKToKICAgICAgICBpZiBrZXkgPT0gbWVzc2FnZS5hdXRob3I6CiAgICAgICAgICAgIHJldHVybiBGYWxzZQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIHJldHVybiBUcnVlCiAgICByZXR1cm4gVHJ1ZQ==</text>
       </register>
       <register name="5" type="4">
+        <text encoding="base64">ICBpZiBtZXNzYWdlLmF1dGhvci5pZCA9PSAiNTQ2NDA2NDYzNzM2OTA1NzM4IjoKICAgICAgICByZXR1cm4KCiAgICBlbGlmIG1lc3NhZ2UuY29udGVudC5sb3dlcigpLnN0YXJ0c3dpdGgoIi9uZXdfY2hhdCIpIGFuZCBsZW4obWVzc2FnZS5jb250ZW50KSA+IDEyIGFuZCBsZW4obWVzc2FnZS5jb250ZW50KSA8IDE5OgogICAgICAgIG5hbWUgPSBtZXNzYWdlLmNvbnRlbnQubG93ZXIoKVsxMDpdCiAgICAgICAgaWYgbWVtYmVyc19jaGF0KG1lc3NhZ2UpOgogICAgICAgICAgICBtZW1iZXJzX2NoYXRbbWVzc2FnZS5hdXRob3JdID0gbmFtZQogICAgICAgICAgICBhd2FpdCBjbGllbnQuY3JlYXRlX2NoYW5uZWwobWVzc2FnZS5jaGFubmVsLCBuYW1lPW5hbWUsIHR5cGU9ZGlzY29yZC5jaGFubmVsLkNoYW5uZWxUeXBlLnRleHQpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgYXdhaXQgY2xpZW50LnNlbmRfbWVzc2FnZShtZXNzYWdlLmNoYW5uZWwsICJWb2PqIGrhIGVzdOEgZW0gdW1hIHNhbGEgcHJpdmFkYSAhIikKICAgIGVsc2U6CiAgICAgICAgYXdhaXQgY2xpZW50LnNlbmRfbWVzc2FnZShtZXNzYWdlLmNoYW5uZWwuc2VydmVyLCAiTm9tZSBkbyBjYW5hbCB0ZW0gcXVlIHRlciBubyBt4XhpbW8gOCBjYXJhY3RlcmVzLCBFeDogL25ld19jaGF0IHNhbGEzMDIiKQ==</text>
+      </register>
+      <register name="6" type="4">
         <text>new_chat = {}
 members_chat = {}
 
@@ -75,25 +80,22 @@ def verification(message):
 
     return True</text>
       </register>
-      <register name="6" type="4">
+      <register name="7" type="4">
         <text encoding="base64">ICAgaWYgdmVyaWZpY2F0aW9uKG1lc3NhZ2UpOgogICAgICAgICAgICBzb2xpY2l0YWNpb24uYXBwZW5kKG1lc3NhZ2UuYXV0aG9yKQogICAgICAgIGlmIG1lc3NhZ2UuY29udGVudC5sb3dlcigpLnN0YXJ0c3dpdGgoIi9ub3ZvX2NoYXQiKSBhbmQgbGVuKG1lc3NhZ2UuY29udGVudCkgPT0gMTA6CgogICAgICAgICAgICBlbWJlZCA9IGRpc2NvcmQuRW1iZWQoCiAgICAgICAgICAgICAgICB0aXRsZT0iQ3JpYW5kbyB1bWEgc2FsYSBwcml2YWRhISIsCiAgICAgICAgICAgICAgICBjb2xvcj0weEQzNThGNywKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uPSJRdWFsIOkgbyBub21lIGRhIHNhbGE/IEV4OiAvbmFtZSBzYWxhMTIiCiAgICAgICAgICAgICkKICAgICAgICAgICAgYXdhaXQgY2xpZW50LnNlbmRfbWVzc2FnZShtZXNzYWdlLmF1dGhvciwgZW1iZWQ9ZW1iZWQpCgogICAgICAgIGlmIG1lc3NhZ2UuYXV0aG9yIGluIHNvbGljaXRhY2lvbiBhbmQgbWVzc2FnZS5jaGFubmVsLmlzX3ByaXZhdGUgYW5kIG1lc3NhZ2UuYXV0aG9yLmJvdDoKICAgICAgICAgICAgcHJpbnQoIk5vbWUgZGEgc2FsYTp7fSIuZm9ybWF0KG1lc3NhZ2UuY29udGVudC5sb3dlcigpKSkKCiAgICBlbHNlOgogICAgICAgIGF3YWl0IGNsaWVudC5zZW5kX21lc3NhZ2UobWVzc2FnZS5hdXRob3IsICJWb2PqIGrhIGNyaW91IG91IGrhIOkgbWVtYnJvIGRlIHVtYSBzYWxhIHByaXZhZGEuIik=</text>
       </register>
-      <register name="7" type="4">
+      <register name="8" type="4">
         <text>def new_chat_creator():
     global new_chat
     global members_chat</text>
       </register>
-      <register name="8" type="4">
+      <register name="9" type="4">
         <text>or i in range(1):
             msg = await client.wait_for_message(author=message.author, content='/name')
             name = message.content.lower()[5:-1]
             print(name)</text>
       </register>
-      <register name="9" type="4">
-        <text encoding="base64">ICAgICAgICBtc2cgPSBhd2FpdCBjbGllbnQud2FpdF9mb3JfbWVzc2FnZShhdXRob3I9bWVzc2FnZS5hdXRob3IsIGNvbnRlbnQ9JyRzdG9wJykKICAgICAgICAgICAgZm10ID0gJ3t9IGxlZnQgdG8gZ28uLi4nCiAgICAgICAgICAgIGF3YWl0IGNsaWVudC5zZW5kX21lc3NhZ2UobWVzc2FnZS5jaGFubmVsLCBmbXQuZm9ybWF0KDMgLSBpKSkKCiAgICAgICAgYXdhaXQgY2xpZW50LnNlbmRfbWVzc2FnZShtZXNzYWdlLmNoYW5uZWwsICdHb29kIGpvYiEnKQ==</text>
-      </register>
       <register name="-" type="4">
-        <text encoding="base64">IC9uZXdfY2hhdCB0ZXN0ZQ==</text>
+        <text>print(dir(discord.CategoryChannel()))</text>
       </register>
     </registers>
     <search>
