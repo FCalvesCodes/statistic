@@ -15,20 +15,20 @@
       <file name="/Python Console" timestamp="1550358318690">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550546876810">
-        <mark key="[" line="29" column="7" />
-        <mark key="]" line="29" column="7" />
-        <mark key="." line="29" column="7" />
+      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550599040510">
+        <mark key="[" line="48" column="11" />
+        <mark key="]" line="48" column="11" />
+        <mark key="." line="48" column="11" />
         <mark key="^" line="2" column="14" />
       </file>
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550547219178">
-        <mark key="[" line="29" column="0" />
-        <mark key="]" line="29" column="0" />
-        <mark key="." line="29" column="0" />
-        <mark key="^" line="29" column="53" />
+      <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550597425027">
+        <mark key="[" line="33" column="47" />
+        <mark key="]" line="30" column="0" />
+        <mark key="." line="30" column="0" />
+        <mark key="^" line="30" column="53" />
       </file>
       <file name="$USER_HOME$/PycharmProjects/untitled/teste.py" timestamp="1549924834602">
         <mark key="[" line="0" column="0" />
@@ -46,7 +46,7 @@
         <text encoding="base64">IG1lbWJlciA9IGRpc2NvcmQudXRpbHMuZ2V0KG1lc3NhZ2UuZ3VpbGQubWVtYmVycywgbmFtZT0nJykKICAgICAgICBwcmludChtZW1iZXIp</text>
       </register>
       <register name="&quot;" type="4">
-        <text encoding="base64">IG1lbWJlciA9IGRpc2NvcmQudXRpbHMuZ2V0KG1lc3NhZ2UuZ3VpbGQubWVtYmVycywgbmFtZT0nJykKICAgICAgICBwcmludChtZW1iZXIp</text>
+        <text encoding="base64">IC9uZXdfY2hhdCB0ZXN0ZQ==</text>
       </register>
       <register name="2" type="4">
         <text encoding="base64">CmZyb20gZGlzY29yZCBpbXBvcnQ=</text>
@@ -93,7 +93,7 @@ def verification(message):
         <text encoding="base64">ICAgICAgICBtc2cgPSBhd2FpdCBjbGllbnQud2FpdF9mb3JfbWVzc2FnZShhdXRob3I9bWVzc2FnZS5hdXRob3IsIGNvbnRlbnQ9JyRzdG9wJykKICAgICAgICAgICAgZm10ID0gJ3t9IGxlZnQgdG8gZ28uLi4nCiAgICAgICAgICAgIGF3YWl0IGNsaWVudC5zZW5kX21lc3NhZ2UobWVzc2FnZS5jaGFubmVsLCBmbXQuZm9ybWF0KDMgLSBpKSkKCiAgICAgICAgYXdhaXQgY2xpZW50LnNlbmRfbWVzc2FnZShtZXNzYWdlLmNoYW5uZWwsICdHb29kIGpvYiEnKQ==</text>
       </register>
       <register name="-" type="4">
-        <text encoding="base64">ICAgICAgICAgICAgcHJpbnQoc2VsZi5tZXNzYWdlLmF1dGhvci5fZ2V0X2NoYW5uZWwp</text>
+        <text encoding="base64">IC9uZXdfY2hhdCB0ZXN0ZQ==</text>
       </register>
     </registers>
     <search>
