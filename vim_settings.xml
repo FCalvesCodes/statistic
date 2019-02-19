@@ -15,20 +15,20 @@
       <file name="/Python Console" timestamp="1550358318690">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550456790965">
-        <mark key="[" line="1" column="42" />
-        <mark key="]" line="16" column="6" />
-        <mark key="." line="16" column="6" />
-        <mark key="^" line="16" column="6" />
+      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550542724812">
+        <mark key="[" line="36" column="46" />
+        <mark key="]" line="36" column="47" />
+        <mark key="." line="36" column="47" />
+        <mark key="^" line="2" column="14" />
       </file>
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550455631484">
-        <mark key="[" line="3" column="30" />
-        <mark key="]" line="27" column="68" />
-        <mark key="." line="27" column="68" />
-        <mark key="^" line="27" column="57" />
+      <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550542603029">
+        <mark key="[" line="33" column="16" />
+        <mark key="]" line="33" column="16" />
+        <mark key="." line="33" column="16" />
+        <mark key="^" line="30" column="53" />
       </file>
       <file name="$USER_HOME$/PycharmProjects/untitled/teste.py" timestamp="1549924834602">
         <mark key="[" line="0" column="0" />
@@ -46,7 +46,7 @@
         <text encoding="base64">CmZyb20gZGlzY29yZCBpbXBvcnQ=</text>
       </register>
       <register name="&quot;" type="4">
-        <text encoding="base64">CmZyb20gZGlzY29yZCBpbXBvcnQ=</text>
+        <text encoding="base64">c2VsZi5uYW1lX2NoYXRfcmVxdWlzaSA9IA==</text>
       </register>
       <register name="2" type="4">
         <text encoding="base64">CmRlZiBjaGVja19hZG0obWVzc2FnZSk6CiAgICBnbG9iYWwgbWVtYmVyc19jaGF0CiAgICBmb3Iga2V5LCB2YWx1ZSBpbiBtZW1iZXJzX2NoYXQuaXRlbXMoKToKICAgICAgICBpZiBrZXkgPT0gbWVzc2FnZS5hdXRob3I6CiAgICAgICAgICAgIHJldHVybiBGYWxzZQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIHJldHVybiBUcnVlCiAgICByZXR1cm4gVHJ1ZQ==</text>
@@ -93,7 +93,7 @@ def verification(message):
         <text encoding="base64">CgogICAgaWYgbWVzc2FnZS5jb250ZW50Lmxvd2VyKCkuc3RhcnRzd2l0aCgiL25hbWUiKSBhbmQgbWVzc2FnZS5jaGFubmVsLmlzX3ByaXZhdGUgYW5kIG1lc3NhZ2UuYXV0aG9yID0gaWQ6CiAgICAgICAgbm9tZSA9IA==</text>
       </register>
       <register name="-" type="4">
-        <text encoding="base64">IHNlbGYuY2xpZW50Lg==</text>
+        <text encoding="base64">c2VsZi5uYW1lX2NoYXRfcmVxdWlzaSA9IA==</text>
       </register>
     </registers>
     <search>
