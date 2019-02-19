@@ -3,6 +3,7 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
+      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/permissions.py" timestamp="1550611525042" />
       <file name="$USER_HOME$/Desktop/botger1/main.py" timestamp="1550351004274">
         <mark key="[" line="0" column="13" />
         <mark key="]" line="7" column="7" />
@@ -17,11 +18,11 @@
       <file name="/Python Console" timestamp="1550609112563">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550609590063">
-        <mark key="[" line="56" column="169" />
-        <mark key="]" line="56" column="169" />
-        <mark key="." line="56" column="169" />
-        <mark key="^" line="56" column="167" />
+      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550610772316">
+        <mark key="[" line="56" column="92" />
+        <mark key="]" line="56" column="92" />
+        <mark key="." line="56" column="92" />
+        <mark key="^" line="56" column="144" />
       </file>
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
@@ -48,7 +49,7 @@
         <text encoding="base64">IFRoZSBjYXRlZ29yeSB0byBwbGFjZSB0aGUgbmV3bHkgY3JlYXRlZCBjaGFubmVsIHVuZGVyLgogICAgICAgICAgICAgICAgVGhlIHBlcm1pc3Npb25zIHdpbGwgYmUgYXV0b21hdGljYWxseSBzeW5jZWQgdG8gY2F0ZWdvcnkgaWYgbm8KICAgICAgICAgICAgb3ZlcndyaXRlcyBhcmUgcHJvdmlkZWQu</text>
       </register>
       <register name="&quot;" type="4">
-        <text encoding="base64">IGhhbmRsZV9vdmVyd3JpdGU9VHJ1ZQ==</text>
+        <text>e=</text>
       </register>
       <register name="2" type="4">
         <text encoding="base64">IG1lbWJlciA9IGRpc2NvcmQudXRpbHMuZ2V0KG1lc3NhZ2UuZ3VpbGQubWVtYmVycywgbmFtZT0nJykKICAgICAgICBwcmludChtZW1iZXIp</text>
@@ -95,7 +96,7 @@ def verification(message):
             print(name)</text>
       </register>
       <register name="-" type="4">
-        <text encoding="base64">IGhhbmRsZV9vdmVyd3JpdGU9VHJ1ZQ==</text>
+        <text>e=</text>
       </register>
     </registers>
     <search>
