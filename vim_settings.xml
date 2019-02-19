@@ -14,22 +14,22 @@
       </file>
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/guild.py" timestamp="1550605210947" />
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/abc.py" timestamp="1550603520774" />
-      <file name="/Python Console" timestamp="1550358318690">
+      <file name="/Python Console" timestamp="1550609112563">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550604623869">
-        <mark key="[" line="50" column="37" />
-        <mark key="]" line="50" column="37" />
-        <mark key="." line="50" column="37" />
-        <mark key="^" line="53" column="33" />
+      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550609590063">
+        <mark key="[" line="56" column="169" />
+        <mark key="]" line="56" column="169" />
+        <mark key="." line="56" column="169" />
+        <mark key="^" line="56" column="167" />
       </file>
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550603310082">
-        <mark key="[" line="32" column="16" />
-        <mark key="]" line="32" column="16" />
-        <mark key="." line="32" column="16" />
+      <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550607566554">
+        <mark key="[" line="42" column="19" />
+        <mark key="]" line="42" column="19" />
+        <mark key="." line="42" column="19" />
         <mark key="^" line="30" column="53" />
       </file>
       <file name="$USER_HOME$/PycharmProjects/untitled/teste.py" timestamp="1549924834602">
@@ -48,7 +48,7 @@
         <text encoding="base64">IFRoZSBjYXRlZ29yeSB0byBwbGFjZSB0aGUgbmV3bHkgY3JlYXRlZCBjaGFubmVsIHVuZGVyLgogICAgICAgICAgICAgICAgVGhlIHBlcm1pc3Npb25zIHdpbGwgYmUgYXV0b21hdGljYWxseSBzeW5jZWQgdG8gY2F0ZWdvcnkgaWYgbm8KICAgICAgICAgICAgb3ZlcndyaXRlcyBhcmUgcHJvdmlkZWQu</text>
       </register>
       <register name="&quot;" type="4">
-        <text encoding="base64">IFRoZSBjYXRlZ29yeSB0byBwbGFjZSB0aGUgbmV3bHkgY3JlYXRlZCBjaGFubmVsIHVuZGVyLgogICAgICAgICAgICAgICAgVGhlIHBlcm1pc3Npb25zIHdpbGwgYmUgYXV0b21hdGljYWxseSBzeW5jZWQgdG8gY2F0ZWdvcnkgaWYgbm8KICAgICAgICAgICAgb3ZlcndyaXRlcyBhcmUgcHJvdmlkZWQu</text>
+        <text encoding="base64">IGhhbmRsZV9vdmVyd3JpdGU9VHJ1ZQ==</text>
       </register>
       <register name="2" type="4">
         <text encoding="base64">IG1lbWJlciA9IGRpc2NvcmQudXRpbHMuZ2V0KG1lc3NhZ2UuZ3VpbGQubWVtYmVycywgbmFtZT0nJykKICAgICAgICBwcmludChtZW1iZXIp</text>
@@ -95,7 +95,7 @@ def verification(message):
             print(name)</text>
       </register>
       <register name="-" type="4">
-        <text>print(dir(discord.CategoryChannel()))</text>
+        <text encoding="base64">IGhhbmRsZV9vdmVyd3JpdGU9VHJ1ZQ==</text>
       </register>
     </registers>
     <search>
