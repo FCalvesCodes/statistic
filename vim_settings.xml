@@ -3,7 +3,6 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
-      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/permissions.py" timestamp="1550611525042" />
       <file name="$USER_HOME$/Desktop/botger1/main.py" timestamp="1550351004274">
         <mark key="[" line="0" column="13" />
         <mark key="]" line="7" column="7" />
@@ -13,12 +12,10 @@
       <file name="/Dummy.txt" timestamp="1550349119682">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/guild.py" timestamp="1550605210947" />
-      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/abc.py" timestamp="1550603520774" />
       <file name="/Python Console" timestamp="1550609112563">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550610772316">
+      <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550686731635">
         <mark key="[" line="56" column="92" />
         <mark key="]" line="56" column="92" />
         <mark key="." line="56" column="92" />
@@ -27,7 +24,7 @@
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
-      <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550607566554">
+      <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550686757396">
         <mark key="[" line="42" column="19" />
         <mark key="]" line="42" column="19" />
         <mark key="." line="42" column="19" />
