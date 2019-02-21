@@ -15,7 +15,7 @@
       <file name="/Python Console" timestamp="1550787528782">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatprivatetext.py" timestamp="1550787707783">
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatprivatetext.py" timestamp="1550791420647">
         <mark key="[" line="52" column="0" />
         <mark key="]" line="55" column="33" />
         <mark key="." line="55" column="33" />
@@ -45,11 +45,16 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550788164436">
-        <mark key="[" line="60" column="65" />
-        <mark key="]" line="60" column="65" />
-        <mark key="." line="60" column="65" />
-        <mark key="^" line="60" column="27" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550791850197">
+        <mark key="[" line="62" column="65" />
+        <mark key="]" line="62" column="65" />
+        <mark key="." line="62" column="65" />
+        <mark key="^" line="62" column="27" />
+      </file>
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1550791362251">
+        <mark key="[" line="9" column="6" />
+        <mark key="]" line="9" column="6" />
+        <mark key="." line="9" column="6" />
       </file>
       <file name="$USER_HOME$/Desktop/botger1/venv/Lib/site-packages/multidict/__init__.py" timestamp="1550351222094">
         <mark key="[" line="7" column="14" />
@@ -61,7 +66,7 @@
         <text encoding="base64">CiAgICAgICAgICAgIGF3YWl0IG1lc3NhZ2UuZ3VpbGQuY3JlYXRlX2NhdGVnb3J5KCIiKQogICAgICAgICAgICBhd2FpdCBtZXNzYWdlLmd1aWxkLmNyZWF0ZV9jYXRlZ29yeSgiU2FsYXMgUHJpdmFkYXMiKQ==</text>
       </register>
       <register name="&quot;" type="4">
-        <text encoding="base64">ICAgIA==</text>
+        <text>Custumi</text>
       </register>
       <register name="2" type="4">
         <text encoding="base64">ICAgIHByaW50KGNoYW5uZWwubmFtZSkKICAgICAgICAgICAgcHJpbnQoY2hhbm5lbC5jYXRlZ29yeSk=</text>
@@ -88,7 +93,7 @@
         <text encoding="base64">CmRlZiBjaGVja19hZG0obWVzc2FnZSk6CiAgICBnbG9iYWwgbWVtYmVyc19jaGF0CiAgICBmb3Iga2V5LCB2YWx1ZSBpbiBtZW1iZXJzX2NoYXQuaXRlbXMoKToKICAgICAgICBpZiBrZXkgPT0gbWVzc2FnZS5hdXRob3I6CiAgICAgICAgICAgIHJldHVybiBGYWxzZQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIHJldHVybiBUcnVlCiAgICByZXR1cm4gVHJ1ZQ==</text>
       </register>
       <register name="-" type="4">
-        <text encoding="base64">ICAgIA==</text>
+        <text>Custumi</text>
       </register>
     </registers>
     <search>
