@@ -3,7 +3,7 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
-      <file name="/Dummy.txt" timestamp="1550694500317">
+      <file name="/Dummy.txt" timestamp="1550785593398">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="$USER_HOME$/Desktop/botger1/main.py" timestamp="1550351004274">
@@ -27,6 +27,9 @@
         <mark key="." line="56" column="92" />
         <mark key="^" line="56" column="144" />
       </file>
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/Regras.txt" timestamp="1550784948354">
+        <mark key="[" line="0" column="0" />
+      </file>
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
@@ -42,11 +45,11 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550784325529">
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550785163138">
         <mark key="[" line="11" column="8" />
-        <mark key="]" line="59" column="27" />
-        <mark key="." line="59" column="27" />
-        <mark key="^" line="59" column="27" />
+        <mark key="]" line="60" column="27" />
+        <mark key="." line="60" column="27" />
+        <mark key="^" line="60" column="27" />
       </file>
       <file name="$USER_HOME$/Desktop/botger1/venv/Lib/site-packages/multidict/__init__.py" timestamp="1550351222094">
         <mark key="[" line="7" column="14" />
