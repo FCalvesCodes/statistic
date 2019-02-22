@@ -3,7 +3,7 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
-      <file name="/Dummy.txt" timestamp="1550875790755">
+      <file name="/Dummy.txt" timestamp="1550878619195">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Python Console" timestamp="1550815327180">
@@ -43,6 +43,9 @@
         <mark key="^" line="7" column="7" />
         <mark key="." line="7" column="7" />
       </file>
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/requirements.txt" timestamp="1550878003143">
+        <mark key="[" line="0" column="0" />
+      </file>
       <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550686757396">
         <mark key="[" line="42" column="19" />
         <mark key="]" line="42" column="19" />
@@ -55,11 +58,11 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550875854700">
-        <mark key="[" line="74" column="170" />
-        <mark key="]" line="128" column="7" />
-        <mark key="." line="128" column="7" />
-        <mark key="^" line="108" column="51" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550877703530">
+        <mark key="[" line="76" column="170" />
+        <mark key="]" line="18" column="0" />
+        <mark key="." line="18" column="0" />
+        <mark key="^" line="18" column="0" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1550850238402">
         <mark key="[" line="19" column="112" />
