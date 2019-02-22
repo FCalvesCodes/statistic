@@ -3,13 +3,14 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
+      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/permissions.py" timestamp="1550819176705" />
       <file name="/Dummy.txt" timestamp="1550799176486">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/Python Console" timestamp="1550797968115">
+      <file name="/Python Console" timestamp="1550815327180">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatprivatetext.py" timestamp="1550811791001">
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatprivatetext.py" timestamp="1550818471977">
         <mark key="'" line="35" column="8" />
         <mark key="[" line="19" column="47" />
         <mark key="]" line="19" column="28" />
@@ -28,11 +29,11 @@
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatvoiceprivate.py" timestamp="1550814378689">
-        <mark key="[" line="14" column="15" />
-        <mark key="]" line="15" column="12" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatvoiceprivate.py" timestamp="1550818054505">
+        <mark key="[" line="26" column="5" />
+        <mark key="]" line="26" column="5" />
         <mark key="^" line="15" column="12" />
-        <mark key="." line="15" column="12" />
+        <mark key="." line="26" column="5" />
       </file>
       <file name="$USER_HOME$/Desktop/botger1/venv/Lib/site-packages/multidict/__init__.py" timestamp="1550351222094">
         <mark key="[" line="7" column="14" />
@@ -55,11 +56,11 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550814435676">
-        <mark key="[" line="103" column="143" />
-        <mark key="]" line="103" column="51" />
-        <mark key="." line="103" column="51" />
-        <mark key="^" line="103" column="51" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550819319039">
+        <mark key="[" line="128" column="7" />
+        <mark key="]" line="128" column="7" />
+        <mark key="." line="128" column="7" />
+        <mark key="^" line="108" column="51" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1550810821303">
         <mark key="[" line="19" column="102" />
@@ -73,39 +74,39 @@
     </jumps>
     <registers>
       <register name="1" type="4">
+        <text encoding="base64">ICAgICAgIHByaW50KGNhdGVnb3J5X3ZvaWNlKQogICAgICAgICAgICBwcmludChjYXRlZ29yeV92b2ljZS5uYW1lKQ==</text>
+      </register>
+      <register name="&quot;" type="4">
+        <text encoding="base64">ICAgICAgIHByaW50KGNhdGVnb3J5X3ZvaWNlKQogICAgICAgICAgICBwcmludChjYXRlZ29yeV92b2ljZS5uYW1lKQ==</text>
+      </register>
+      <register name="2" type="4">
         <text>if channel.category != None and channel.category == self.namecategorytext:
                 #Recebe objeto da sala
                 self.category = channel_.category</text>
       </register>
-      <register name="&quot;" type="4">
-        <text>(Salas Privadas</text>
-      </register>
-      <register name="2" type="4">
+      <register name="3" type="4">
         <text encoding="base64">CiAgICAgICAgICAgIGF3YWl0IG1lc3NhZ2UuZ3VpbGQuY3JlYXRlX2NhdGVnb3J5KCIiKQogICAgICAgICAgICBhd2FpdCBtZXNzYWdlLmd1aWxkLmNyZWF0ZV9jYXRlZ29yeSgiU2FsYXMgUHJpdmFkYXMiKQ==</text>
       </register>
-      <register name="3" type="4">
+      <register name="4" type="4">
         <text encoding="base64">ICAgIHByaW50KGNoYW5uZWwubmFtZSkKICAgICAgICAgICAgcHJpbnQoY2hhbm5lbC5jYXRlZ29yeSk=</text>
       </register>
-      <register name="4" type="4">
+      <register name="5" type="4">
         <text encoding="base64">CiAgICAgICAgICAgIHByaW50KCJDaGFubmVsOnt9IC0gQ2F0ZWdvcnk6ezEuY2F0ZWdvcnl9Ii5mb3JtYXQoY2hhbm5lbCwgc2VsZi5jbGllbnQuZ2V0X2NoYW5uZWwoY2hhbm5lbC5pZCkpKQoKICAgICAgICAgICAgaWYgbmFtZSA9PSBjaGFubmVsLm5hbWUgYW5kIHNlbGYuY2xpZW50LmdldF9jaGFubmVsKGNoYW5uZWwuaWQpLmNhdGVnb3J5ID09IHNlbGYubmFtZWNhdGVnb3J5dGV4dDoKICAgICAgICAgICAgICAgIHNlbGYucG9zc3VpX3NhbGFzX3ByaXZhZGFzID0gVHJ1ZQogICAgICAgICAgICAgICAgcmV0dXJuIEZhbHNlCiAgICAgICAgICAgIHByaW50KHNlbGYuY2xpZW50LmdldF9jaGFubmVsKGNoYW5uZWwuaWQpLmNhdGVnb3J5KQogICAgICAgICAgICBpZiBzZWxmLmNsaWVudC5nZXRfY2hhbm5lbChjaGFubmVsLmlkKS5jYXRlZ29yeSA9PSBzZWxmLm5hbWVjYXRlZ29yeXRleHQ6CiAgICAgICAgICAgICAgICBwYXNz</text>
       </register>
-      <register name="5" type="4">
+      <register name="6" type="4">
         <text encoding="base64">ICAgICAgICBwcmludChjaGFubmVsLmNhdGVnb3J5KQogICAgICAgICAgICAjVmVyaWZpY2Egc2UgauEgdGVtIG8gY2hhdCBjb20gbyBtZXNtbyBub21lCiAgICAgICAgICAgIGlmIG5hbWUgPT0gY2hhbm5lbC5uYW1lLmxvd2VyKCkgYW5kIGNoYW5uZWwuY2F0ZWdvcnkgPT0gc2VsZi5uYW1lY2F0ZWdvcnl0ZXh0OgogICAgICAgICAgICAgICAgcmV0dXJuIEZhbHNlICNOb21lIGRvIGNoYXQgauEgZXhpc3RlCgogICAgICAgICAgICAjVmVyaWZpY2Egc2UgbyBtZW1icm8gauEgZXN04SBlbSB1bWEgc2FsYSBwcml2YWRhCiAgICAgICAgICAgIGlmIGNoYW5uZWwuY2F0ZWdvcnkgPT0gc2VsZi5uYW1lY2F0ZWdvcnl0ZXh0OgogICAgICAgICAgICAgICAgY2hhbm5lbF8gPSBzZWxmLmNsaWVudC5nZXRfY2hhbm5lbChjaGFubmVsLmlkKQoKICAgICAgICAgICAgICAgICNSZWNlYmUgbyBvYmpldG8gY2F0ZWdvcmlhICJTYWxhcyBQcml2YWRhcyIKICAgICAgICAgICAgICAgIHNlbGYuY2F0ZWdvcnkgPSBjaGFubmVsLmNhdGVnb3J5CgogICAgICAgICAgICAgICAgbWVtYmVycyA9IGNoYW5uZWxfLm1lbWJlcnMKICAgICAgICAgICAgICAgIGZvciBtZW1iZXIgaW4gbWVtYmVyczoKICAgICAgICAgICAgICAgICAgICBpZiBtZW1iZXIuaWQgPT0gc2VsZi5pZF9tZW1iZXI6CiAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBGYWxzZQoKICAgICAgICByZXR1cm4gVHJ1ZSAjUGFzc291IGVtIHRvZGFzIGFzIHZlcmlmaWNh5/Vlcw==</text>
       </register>
-      <register name="6" type="4">
+      <register name="7" type="4">
         <text encoding="base64">CmltcG9ydCBkaXNjb3Jk</text>
       </register>
-      <register name="7" type="4">
+      <register name="8" type="4">
         <text encoding="base64">IFRoZSBjYXRlZ29yeSB0byBwbGFjZSB0aGUgbmV3bHkgY3JlYXRlZCBjaGFubmVsIHVuZGVyLgogICAgICAgICAgICAgICAgVGhlIHBlcm1pc3Npb25zIHdpbGwgYmUgYXV0b21hdGljYWxseSBzeW5jZWQgdG8gY2F0ZWdvcnkgaWYgbm8KICAgICAgICAgICAgb3ZlcndyaXRlcyBhcmUgcHJvdmlkZWQu</text>
       </register>
-      <register name="8" type="4">
+      <register name="9" type="4">
         <text encoding="base64">IG1lbWJlciA9IGRpc2NvcmQudXRpbHMuZ2V0KG1lc3NhZ2UuZ3VpbGQubWVtYmVycywgbmFtZT0nJykKICAgICAgICBwcmludChtZW1iZXIp</text>
       </register>
-      <register name="9" type="4">
-        <text encoding="base64">CmZyb20gZGlzY29yZCBpbXBvcnQ=</text>
-      </register>
       <register name="-" type="4">
-        <text>(Salas Privadas</text>
+        <text encoding="base64">ICAgICBmb3IgbWVtYmVyIGluIGNoYXRfdm9pY2UubWVtYmVyczo=</text>
       </register>
       <register name="/" type="4">
         <text encoding="base64">XDxndWlsZFw+</text>
