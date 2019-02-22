@@ -3,8 +3,7 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
-      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/permissions.py" timestamp="1550849920516" />
-      <file name="/Dummy.txt" timestamp="1550850455978">
+      <file name="/Dummy.txt" timestamp="1550875790755">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Python Console" timestamp="1550815327180">
@@ -56,8 +55,8 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550849695422">
-        <mark key="[" line="135" column="69" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550875854700">
+        <mark key="[" line="74" column="170" />
         <mark key="]" line="128" column="7" />
         <mark key="." line="128" column="7" />
         <mark key="^" line="108" column="51" />
