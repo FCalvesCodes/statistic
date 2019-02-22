@@ -3,17 +3,15 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
-      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/permissions.py" timestamp="1550797311455" />
       <file name="/Dummy.txt" timestamp="1550799176486">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/guild.py" timestamp="1550796780274" />
       <file name="/Python Console" timestamp="1550797968115">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatprivatetext.py" timestamp="1550799130340">
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatprivatetext.py" timestamp="1550810520657">
         <mark key="'" line="39" column="8" />
-        <mark key="[" line="39" column="55" />
+        <mark key="[" line="19" column="47" />
         <mark key="]" line="40" column="62" />
         <mark key="." line="40" column="62" />
         <mark key="^" line="40" column="62" />
@@ -29,6 +27,9 @@
       </file>
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
+      </file>
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatvoiceprivate.py" timestamp="1550811073663">
+        <mark key="[" line="0" column="0" />
       </file>
       <file name="$USER_HOME$/Desktop/botger1/venv/Lib/site-packages/multidict/__init__.py" timestamp="1550351222094">
         <mark key="[" line="7" column="14" />
@@ -51,14 +52,14 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550794492599">
-        <mark key="[" line="68" column="65" />
-        <mark key="]" line="68" column="65" />
-        <mark key="." line="68" column="65" />
-        <mark key="^" line="68" column="27" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550810551198">
+        <mark key="[" line="13" column="53" />
+        <mark key="]" line="13" column="53" />
+        <mark key="." line="13" column="53" />
+        <mark key="^" line="66" column="27" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1550795039747">
-        <mark key="[" line="18" column="16" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1550810821303">
+        <mark key="[" line="19" column="102" />
         <mark key="]" line="11" column="12" />
         <mark key="." line="11" column="12" />
         <mark key="^" line="11" column="12" />
@@ -74,7 +75,7 @@
                 self.category = channel_.category</text>
       </register>
       <register name="&quot;" type="4">
-        <text encoding="base64">IHNlbGYuaGVscF9lbWJlZCA9IEVtYmVkKHRpdGxlPSJIZWxwICEiLCBkZXNjcmlwdGlvbj0iYVxuYlxuIiwgY29sb3I9c2VsZi52aW9sZXQp</text>
+        <text>(Salas Privadas</text>
       </register>
       <register name="2" type="4">
         <text encoding="base64">CiAgICAgICAgICAgIGF3YWl0IG1lc3NhZ2UuZ3VpbGQuY3JlYXRlX2NhdGVnb3J5KCIiKQogICAgICAgICAgICBhd2FpdCBtZXNzYWdlLmd1aWxkLmNyZWF0ZV9jYXRlZ29yeSgiU2FsYXMgUHJpdmFkYXMiKQ==</text>
@@ -101,7 +102,7 @@
         <text encoding="base64">CmZyb20gZGlzY29yZCBpbXBvcnQ=</text>
       </register>
       <register name="-" type="4">
-        <text encoding="base64">IHNlbGYuaGVscF9lbWJlZCA9IEVtYmVkKHRpdGxlPSJIZWxwICEiLCBkZXNjcmlwdGlvbj0iYVxuYlxuIiwgY29sb3I9c2VsZi52aW9sZXQp</text>
+        <text>(Salas Privadas</text>
       </register>
       <register name="/" type="4">
         <text encoding="base64">XDxndWlsZFw+</text>
@@ -131,6 +132,9 @@
       </shortcut-conflict>
       <shortcut-conflict owner="vim">
         <text>ctrl pressed A</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed F</text>
       </shortcut-conflict>
     </shortcut-conflicts>
   </component>
