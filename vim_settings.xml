@@ -3,7 +3,7 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
-      <file name="/Dummy.txt" timestamp="1550785593398">
+      <file name="/Dummy.txt" timestamp="1550795319314">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="$USER_HOME$/Desktop/botger1/main.py" timestamp="1550351004274">
@@ -46,13 +46,13 @@
         <mark key="." line="3" column="2" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550794492599">
-        <mark key="[" line="62" column="65" />
-        <mark key="]" line="62" column="65" />
-        <mark key="." line="62" column="65" />
-        <mark key="^" line="62" column="27" />
+        <mark key="[" line="65" column="65" />
+        <mark key="]" line="65" column="65" />
+        <mark key="." line="65" column="65" />
+        <mark key="^" line="65" column="27" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1550794170386">
-        <mark key="[" line="11" column="12" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1550795039747">
+        <mark key="[" line="18" column="16" />
         <mark key="]" line="11" column="12" />
         <mark key="." line="11" column="12" />
         <mark key="^" line="11" column="12" />
@@ -69,9 +69,7 @@
                 self.category = channel_.category</text>
       </register>
       <register name="&quot;" type="4">
-        <text>if channel.category != None and channel.category == self.namecategorytext:
-                #Recebe objeto da sala
-                self.category = channel_.category</text>
+        <text encoding="base64">IHNlbGYuaGVscF9lbWJlZCA9IEVtYmVkKHRpdGxlPSJIZWxwICEiLCBkZXNjcmlwdGlvbj0iYVxuYlxuIiwgY29sb3I9c2VsZi52aW9sZXQp</text>
       </register>
       <register name="2" type="4">
         <text encoding="base64">CiAgICAgICAgICAgIGF3YWl0IG1lc3NhZ2UuZ3VpbGQuY3JlYXRlX2NhdGVnb3J5KCIiKQogICAgICAgICAgICBhd2FpdCBtZXNzYWdlLmd1aWxkLmNyZWF0ZV9jYXRlZ29yeSgiU2FsYXMgUHJpdmFkYXMiKQ==</text>
@@ -98,7 +96,7 @@
         <text encoding="base64">CmZyb20gZGlzY29yZCBpbXBvcnQ=</text>
       </register>
       <register name="-" type="4">
-        <text>Custumi</text>
+        <text encoding="base64">IHNlbGYuaGVscF9lbWJlZCA9IEVtYmVkKHRpdGxlPSJIZWxwICEiLCBkZXNjcmlwdGlvbj0iYVxuYlxuIiwgY29sb3I9c2VsZi52aW9sZXQp</text>
       </register>
     </registers>
     <search>
