@@ -11,11 +11,12 @@
       <file name="/Python Console" timestamp="1550797968115">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatprivatetext.py" timestamp="1550797747937">
-        <mark key="[" line="56" column="46" />
-        <mark key="]" line="56" column="46" />
-        <mark key="." line="56" column="46" />
-        <mark key="^" line="56" column="46" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatprivatetext.py" timestamp="1550799130340">
+        <mark key="'" line="39" column="8" />
+        <mark key="[" line="39" column="55" />
+        <mark key="]" line="40" column="62" />
+        <mark key="." line="40" column="62" />
+        <mark key="^" line="40" column="62" />
       </file>
       <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550686731635">
         <mark key="[" line="56" column="92" />
@@ -51,10 +52,10 @@
         <mark key="." line="3" column="2" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550794492599">
-        <mark key="[" line="66" column="65" />
-        <mark key="]" line="66" column="65" />
-        <mark key="." line="66" column="65" />
-        <mark key="^" line="66" column="27" />
+        <mark key="[" line="68" column="65" />
+        <mark key="]" line="68" column="65" />
+        <mark key="." line="68" column="65" />
+        <mark key="^" line="68" column="27" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1550795039747">
         <mark key="[" line="18" column="16" />
@@ -63,7 +64,9 @@
         <mark key="^" line="11" column="12" />
       </file>
     </filemarks>
-    <jumps />
+    <jumps>
+      <jump line="39" column="8" filename="$USER_HOME$/Desktop/Bot-onmyoji/module/chatprivatetext.py" />
+    </jumps>
     <registers>
       <register name="1" type="4">
         <text>if channel.category != None and channel.category == self.namecategorytext:
@@ -100,13 +103,21 @@
       <register name="-" type="4">
         <text encoding="base64">IHNlbGYuaGVscF9lbWJlZCA9IEVtYmVkKHRpdGxlPSJIZWxwICEiLCBkZXNjcmlwdGlvbj0iYVxuYlxuIiwgY29sb3I9c2VsZi52aW9sZXQp</text>
       </register>
+      <register name="/" type="4">
+        <text encoding="base64">XDxndWlsZFw+</text>
+      </register>
     </registers>
     <search>
-      <last-dir>0</last-dir>
+      <last-search encoding="base64">XDxndWlsZFw+</last-search>
+      <last-offset />
+      <last-pattern encoding="base64">XDxndWlsZFw+</last-pattern>
+      <last-dir>-1</last-dir>
       <show-last>false</show-last>
     </search>
     <history>
-      <history-search />
+      <history-search>
+        <entry encoding="base64">XDxndWlsZFw+</entry>
+      </history-search>
       <history-cmd />
       <history-expr />
       <history-input />
