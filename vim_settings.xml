@@ -3,23 +3,19 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
+      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/permissions.py" timestamp="1550797311455" />
       <file name="/Dummy.txt" timestamp="1550795319314">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/Desktop/botger1/main.py" timestamp="1550351004274">
-        <mark key="[" line="0" column="13" />
-        <mark key="]" line="7" column="7" />
-        <mark key="^" line="7" column="7" />
-        <mark key="." line="7" column="7" />
-      </file>
-      <file name="/Python Console" timestamp="1550787528782">
+      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/guild.py" timestamp="1550796780274" />
+      <file name="/Python Console" timestamp="1550797968115">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatprivatetext.py" timestamp="1550793758323">
-        <mark key="[" line="67" column="19" />
-        <mark key="]" line="68" column="14" />
-        <mark key="." line="68" column="14" />
-        <mark key="^" line="68" column="14" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatprivatetext.py" timestamp="1550797747937">
+        <mark key="[" line="56" column="46" />
+        <mark key="]" line="56" column="46" />
+        <mark key="." line="56" column="46" />
+        <mark key="^" line="56" column="46" />
       </file>
       <file name="$USER_HOME$/PycharmProjects/botger1/main.py" timestamp="1550686731635">
         <mark key="[" line="56" column="92" />
@@ -32,6 +28,15 @@
       </file>
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
+      </file>
+      <file name="$USER_HOME$/Desktop/botger1/venv/Lib/site-packages/multidict/__init__.py" timestamp="1550351222094">
+        <mark key="[" line="7" column="14" />
+      </file>
+      <file name="$USER_HOME$/Desktop/botger1/main.py" timestamp="1550351004274">
+        <mark key="[" line="0" column="13" />
+        <mark key="]" line="7" column="7" />
+        <mark key="^" line="7" column="7" />
+        <mark key="." line="7" column="7" />
       </file>
       <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550686757396">
         <mark key="[" line="42" column="19" />
@@ -46,19 +51,16 @@
         <mark key="." line="3" column="2" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550794492599">
-        <mark key="[" line="65" column="65" />
-        <mark key="]" line="65" column="65" />
-        <mark key="." line="65" column="65" />
-        <mark key="^" line="65" column="27" />
+        <mark key="[" line="66" column="65" />
+        <mark key="]" line="66" column="65" />
+        <mark key="." line="66" column="65" />
+        <mark key="^" line="66" column="27" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1550795039747">
         <mark key="[" line="18" column="16" />
         <mark key="]" line="11" column="12" />
         <mark key="." line="11" column="12" />
         <mark key="^" line="11" column="12" />
-      </file>
-      <file name="$USER_HOME$/Desktop/botger1/venv/Lib/site-packages/multidict/__init__.py" timestamp="1550351222094">
-        <mark key="[" line="7" column="14" />
       </file>
     </filemarks>
     <jumps />
