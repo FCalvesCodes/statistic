@@ -3,7 +3,7 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
-      <file name="/Dummy.txt" timestamp="1550959503512">
+      <file name="/Dummy.txt" timestamp="1550961080126">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Python Console" timestamp="1550815327180">
@@ -28,7 +28,7 @@
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatvoiceprivate.py" timestamp="1550959072040">
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatvoiceprivate.py" timestamp="1550960994811">
         <mark key="[" line="85" column="0" />
         <mark key="]" line="85" column="0" />
         <mark key="^" line="79" column="36" />
