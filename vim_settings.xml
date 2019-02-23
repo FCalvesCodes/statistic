@@ -3,7 +3,7 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
-      <file name="/Dummy.txt" timestamp="1550953150535">
+      <file name="/Dummy.txt" timestamp="1550959503512">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Python Console" timestamp="1550815327180">
@@ -28,11 +28,11 @@
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatvoiceprivate.py" timestamp="1550957831799">
-        <mark key="[" line="82" column="5" />
-        <mark key="]" line="82" column="5" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatvoiceprivate.py" timestamp="1550959072040">
+        <mark key="[" line="85" column="0" />
+        <mark key="]" line="85" column="0" />
         <mark key="^" line="79" column="36" />
-        <mark key="." line="82" column="5" />
+        <mark key="." line="85" column="0" />
       </file>
       <file name="$USER_HOME$/Desktop/botger1/venv/Lib/site-packages/multidict/__init__.py" timestamp="1550351222094">
         <mark key="[" line="7" column="14" />
@@ -60,9 +60,9 @@
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550957420515">
         <mark key="[" line="4" column="50" />
-        <mark key="]" line="141" column="28" />
-        <mark key="." line="141" column="28" />
-        <mark key="^" line="141" column="28" />
+        <mark key="]" line="142" column="28" />
+        <mark key="." line="142" column="28" />
+        <mark key="^" line="142" column="28" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1550952721431">
         <mark key="[" line="19" column="151" />
@@ -79,7 +79,7 @@
         <text encoding="base64">ICAgZm9yIG1lbWJlciBpbiBjaGFubmVsX29iai5tZW1iZXJzOgogICAgICAgICAgICBwcmludChtZW1iZXIp</text>
       </register>
       <register name="&quot;" type="4">
-        <text encoding="base64">ICAgZm9yIG1lbWJlciBpbiBjaGFubmVsX29iai5tZW1iZXJzOgogICAgICAgICAgICBwcmludChtZW1iZXIp</text>
+        <text encoding="base64">ICAgICAgICAjY2hhbm5lbF9vYmouZGVsZXRlKHJlYXNvbj0iQ2FuYWwgZm9pIGFiYW5kb25hbmRvIik=</text>
       </register>
       <register name="2" type="4">
         <text encoding="base64">CgogICAgICAgIGZvciBtZW1iZXIgaW4gY2hhbm5lbF9vYmoubWVtYmVycy5jb25lY3Q6CiAgICAgICAgICAgIHByaW50KG1lbWJlcik=</text>
@@ -109,7 +109,7 @@
         <text encoding="base64">ICAgIHByaW50KGNoYW5uZWwubmFtZSkKICAgICAgICAgICAgcHJpbnQoY2hhbm5lbC5jYXRlZ29yeSk=</text>
       </register>
       <register name="-" type="4">
-        <text>print(&quot;Membro:{} - permission:{}&quot;.format(member, member.conect))</text>
+        <text encoding="base64">ICAgICAgICAjY2hhbm5lbF9vYmouZGVsZXRlKHJlYXNvbj0iQ2FuYWwgZm9pIGFiYW5kb25hbmRvIik=</text>
       </register>
       <register name="/" type="4">
         <text encoding="base64">XDxndWlsZFw+</text>
