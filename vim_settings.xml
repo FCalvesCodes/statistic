@@ -6,7 +6,7 @@
       <file name="/Dummy.txt" timestamp="1550961080126">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/Python Console" timestamp="1550815327180">
+      <file name="/Python Console" timestamp="1550964561410">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatprivatetext.py" timestamp="1550818471977">
@@ -34,6 +34,12 @@
         <mark key="^" line="79" column="36" />
         <mark key="." line="85" column="0" />
       </file>
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/translate.py" timestamp="1550964293800">
+        <mark key="[" line="8" column="17" />
+        <mark key="]" line="7" column="0" />
+        <mark key="^" line="7" column="0" />
+        <mark key="." line="7" column="0" />
+      </file>
       <file name="$USER_HOME$/Desktop/botger1/venv/Lib/site-packages/multidict/__init__.py" timestamp="1550351222094">
         <mark key="[" line="7" column="14" />
       </file>
@@ -58,7 +64,7 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550957420515">
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550964681852">
         <mark key="[" line="4" column="50" />
         <mark key="]" line="142" column="28" />
         <mark key="." line="142" column="28" />
