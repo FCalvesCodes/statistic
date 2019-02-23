@@ -3,8 +3,7 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
-      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/permissions.py" timestamp="1550880517122" />
-      <file name="/Dummy.txt" timestamp="1550884988661">
+      <file name="/Dummy.txt" timestamp="1550885006322">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Python Console" timestamp="1550815327180">
@@ -29,8 +28,8 @@
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatvoiceprivate.py" timestamp="1550881651058">
-        <mark key="[" line="59" column="6" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatvoiceprivate.py" timestamp="1550949896083">
+        <mark key="[" line="64" column="21" />
         <mark key="]" line="59" column="6" />
         <mark key="^" line="59" column="79" />
         <mark key="." line="59" column="6" />
@@ -59,11 +58,11 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550884191449">
-        <mark key="[" line="149" column="29" />
-        <mark key="]" line="149" column="28" />
-        <mark key="." line="149" column="28" />
-        <mark key="^" line="149" column="28" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550950058303">
+        <mark key="[" line="4" column="50" />
+        <mark key="]" line="140" column="28" />
+        <mark key="." line="140" column="28" />
+        <mark key="^" line="140" column="28" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1550850238402">
         <mark key="[" line="19" column="112" />
