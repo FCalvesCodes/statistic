@@ -3,6 +3,7 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
+      <file name="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/permissions.py" timestamp="1550880517122" />
       <file name="/Dummy.txt" timestamp="1550878619195">
         <mark key="[" line="0" column="0" />
       </file>
@@ -28,11 +29,11 @@
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatvoiceprivate.py" timestamp="1550818054505">
-        <mark key="[" line="26" column="5" />
-        <mark key="]" line="26" column="5" />
-        <mark key="^" line="15" column="12" />
-        <mark key="." line="26" column="5" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatvoiceprivate.py" timestamp="1550880919463">
+        <mark key="[" line="60" column="15" />
+        <mark key="]" line="60" column="16" />
+        <mark key="^" line="60" column="79" />
+        <mark key="." line="60" column="16" />
       </file>
       <file name="$USER_HOME$/Desktop/botger1/venv/Lib/site-packages/multidict/__init__.py" timestamp="1550351222094">
         <mark key="[" line="7" column="14" />
@@ -58,7 +59,7 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550877703530">
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550880363672">
         <mark key="[" line="76" column="170" />
         <mark key="]" line="18" column="0" />
         <mark key="." line="18" column="0" />
@@ -79,7 +80,7 @@
         <text encoding="base64">ICAgICAgIHByaW50KGNhdGVnb3J5X3ZvaWNlKQogICAgICAgICAgICBwcmludChjYXRlZ29yeV92b2ljZS5uYW1lKQ==</text>
       </register>
       <register name="&quot;" type="4">
-        <text encoding="base64">ICAgICAgIHByaW50KGNhdGVnb3J5X3ZvaWNlKQogICAgICAgICAgICBwcmludChjYXRlZ29yeV92b2ljZS5uYW1lKQ==</text>
+        <text>print(&quot;Membro:{} - permission:{}&quot;.format(member, member.conect))</text>
       </register>
       <register name="2" type="4">
         <text>if channel.category != None and channel.category == self.namecategorytext:
@@ -108,7 +109,7 @@
         <text encoding="base64">IG1lbWJlciA9IGRpc2NvcmQudXRpbHMuZ2V0KG1lc3NhZ2UuZ3VpbGQubWVtYmVycywgbmFtZT0nJykKICAgICAgICBwcmludChtZW1iZXIp</text>
       </register>
       <register name="-" type="4">
-        <text encoding="base64">ICAgICBmb3IgbWVtYmVyIGluIGNoYXRfdm9pY2UubWVtYmVyczo=</text>
+        <text>print(&quot;Membro:{} - permission:{}&quot;.format(member, member.conect))</text>
       </register>
       <register name="/" type="4">
         <text encoding="base64">XDxndWlsZFw+</text>
