@@ -28,11 +28,11 @@
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatvoiceprivate.py" timestamp="1550952505421">
-        <mark key="[" line="64" column="21" />
-        <mark key="]" line="59" column="6" />
-        <mark key="^" line="59" column="79" />
-        <mark key="." line="59" column="6" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatvoiceprivate.py" timestamp="1550957831799">
+        <mark key="[" line="82" column="5" />
+        <mark key="]" line="82" column="5" />
+        <mark key="^" line="79" column="36" />
+        <mark key="." line="82" column="5" />
       </file>
       <file name="$USER_HOME$/Desktop/botger1/venv/Lib/site-packages/multidict/__init__.py" timestamp="1550351222094">
         <mark key="[" line="7" column="14" />
@@ -58,11 +58,11 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550952204262">
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550957420515">
         <mark key="[" line="4" column="50" />
-        <mark key="]" line="140" column="28" />
-        <mark key="." line="140" column="28" />
-        <mark key="^" line="140" column="28" />
+        <mark key="]" line="141" column="28" />
+        <mark key="." line="141" column="28" />
+        <mark key="^" line="141" column="28" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1550952721431">
         <mark key="[" line="19" column="151" />
@@ -76,36 +76,37 @@
     </jumps>
     <registers>
       <register name="1" type="4">
-        <text encoding="base64">ICAgICAgcHJpbnQodm9pY2VfY2hhbm5lbC5jb25lY3QpCiAgICAgICAgICAgIHByaW50KGRpcih2b2ljZV9jaGFubmVsLmNvbmVjdCkpCiAgICAgICAgICAgIGZvciBtZW1iZXIgaW4gdm9pY2VfY2hhbm5lbC5tZW1iZXJzOgogICAgICAgICAgICAgICAgaWYgbWVtYmVyLmNvbmVjdDoKICAgICAgICAgIA==</text>
+        <text encoding="base64">ICAgZm9yIG1lbWJlciBpbiBjaGFubmVsX29iai5tZW1iZXJzOgogICAgICAgICAgICBwcmludChtZW1iZXIp</text>
       </register>
       <register name="&quot;" type="4">
-        <text encoding="base64">ICAgICAgcHJpbnQodm9pY2VfY2hhbm5lbC5jb25lY3QpCiAgICAgICAgICAgIHByaW50KGRpcih2b2ljZV9jaGFubmVsLmNvbmVjdCkpCiAgICAgICAgICAgIGZvciBtZW1iZXIgaW4gdm9pY2VfY2hhbm5lbC5tZW1iZXJzOgogICAgICAgICAgICAgICAgaWYgbWVtYmVyLmNvbmVjdDoKICAgICAgICAgIA==</text>
+        <text encoding="base64">ICAgZm9yIG1lbWJlciBpbiBjaGFubmVsX29iai5tZW1iZXJzOgogICAgICAgICAgICBwcmludChtZW1iZXIp</text>
       </register>
       <register name="2" type="4">
-        <text encoding="base64">ICAgICAgIHByaW50KGNhdGVnb3J5X3ZvaWNlKQogICAgICAgICAgICBwcmludChjYXRlZ29yeV92b2ljZS5uYW1lKQ==</text>
+        <text encoding="base64">CgogICAgICAgIGZvciBtZW1iZXIgaW4gY2hhbm5lbF9vYmoubWVtYmVycy5jb25lY3Q6CiAgICAgICAgICAgIHByaW50KG1lbWJlcik=</text>
       </register>
       <register name="3" type="4">
+        <text>print(dir(channel))
+        print(self.client.get_channel(channel).members)</text>
+      </register>
+      <register name="4" type="4">
+        <text encoding="base64">ICAgZm9yIG1lbWJlcl9vbiBpbiBjaGFubmVsLgogICAgICAgICAgICBwcmludChtZW1iZXJfb24p</text>
+      </register>
+      <register name="5" type="4">
+        <text encoding="base64">ICAgICAgcHJpbnQodm9pY2VfY2hhbm5lbC5jb25lY3QpCiAgICAgICAgICAgIHByaW50KGRpcih2b2ljZV9jaGFubmVsLmNvbmVjdCkpCiAgICAgICAgICAgIGZvciBtZW1iZXIgaW4gdm9pY2VfY2hhbm5lbC5tZW1iZXJzOgogICAgICAgICAgICAgICAgaWYgbWVtYmVyLmNvbmVjdDoKICAgICAgICAgIA==</text>
+      </register>
+      <register name="6" type="4">
+        <text encoding="base64">ICAgICAgIHByaW50KGNhdGVnb3J5X3ZvaWNlKQogICAgICAgICAgICBwcmludChjYXRlZ29yeV92b2ljZS5uYW1lKQ==</text>
+      </register>
+      <register name="7" type="4">
         <text>if channel.category != None and channel.category == self.namecategorytext:
                 #Recebe objeto da sala
                 self.category = channel_.category</text>
       </register>
-      <register name="4" type="4">
+      <register name="8" type="4">
         <text encoding="base64">CiAgICAgICAgICAgIGF3YWl0IG1lc3NhZ2UuZ3VpbGQuY3JlYXRlX2NhdGVnb3J5KCIiKQogICAgICAgICAgICBhd2FpdCBtZXNzYWdlLmd1aWxkLmNyZWF0ZV9jYXRlZ29yeSgiU2FsYXMgUHJpdmFkYXMiKQ==</text>
       </register>
-      <register name="5" type="4">
-        <text encoding="base64">ICAgIHByaW50KGNoYW5uZWwubmFtZSkKICAgICAgICAgICAgcHJpbnQoY2hhbm5lbC5jYXRlZ29yeSk=</text>
-      </register>
-      <register name="6" type="4">
-        <text encoding="base64">CiAgICAgICAgICAgIHByaW50KCJDaGFubmVsOnt9IC0gQ2F0ZWdvcnk6ezEuY2F0ZWdvcnl9Ii5mb3JtYXQoY2hhbm5lbCwgc2VsZi5jbGllbnQuZ2V0X2NoYW5uZWwoY2hhbm5lbC5pZCkpKQoKICAgICAgICAgICAgaWYgbmFtZSA9PSBjaGFubmVsLm5hbWUgYW5kIHNlbGYuY2xpZW50LmdldF9jaGFubmVsKGNoYW5uZWwuaWQpLmNhdGVnb3J5ID09IHNlbGYubmFtZWNhdGVnb3J5dGV4dDoKICAgICAgICAgICAgICAgIHNlbGYucG9zc3VpX3NhbGFzX3ByaXZhZGFzID0gVHJ1ZQogICAgICAgICAgICAgICAgcmV0dXJuIEZhbHNlCiAgICAgICAgICAgIHByaW50KHNlbGYuY2xpZW50LmdldF9jaGFubmVsKGNoYW5uZWwuaWQpLmNhdGVnb3J5KQogICAgICAgICAgICBpZiBzZWxmLmNsaWVudC5nZXRfY2hhbm5lbChjaGFubmVsLmlkKS5jYXRlZ29yeSA9PSBzZWxmLm5hbWVjYXRlZ29yeXRleHQ6CiAgICAgICAgICAgICAgICBwYXNz</text>
-      </register>
-      <register name="7" type="4">
-        <text encoding="base64">ICAgICAgICBwcmludChjaGFubmVsLmNhdGVnb3J5KQogICAgICAgICAgICAjVmVyaWZpY2Egc2UgauEgdGVtIG8gY2hhdCBjb20gbyBtZXNtbyBub21lCiAgICAgICAgICAgIGlmIG5hbWUgPT0gY2hhbm5lbC5uYW1lLmxvd2VyKCkgYW5kIGNoYW5uZWwuY2F0ZWdvcnkgPT0gc2VsZi5uYW1lY2F0ZWdvcnl0ZXh0OgogICAgICAgICAgICAgICAgcmV0dXJuIEZhbHNlICNOb21lIGRvIGNoYXQgauEgZXhpc3RlCgogICAgICAgICAgICAjVmVyaWZpY2Egc2UgbyBtZW1icm8gauEgZXN04SBlbSB1bWEgc2FsYSBwcml2YWRhCiAgICAgICAgICAgIGlmIGNoYW5uZWwuY2F0ZWdvcnkgPT0gc2VsZi5uYW1lY2F0ZWdvcnl0ZXh0OgogICAgICAgICAgICAgICAgY2hhbm5lbF8gPSBzZWxmLmNsaWVudC5nZXRfY2hhbm5lbChjaGFubmVsLmlkKQoKICAgICAgICAgICAgICAgICNSZWNlYmUgbyBvYmpldG8gY2F0ZWdvcmlhICJTYWxhcyBQcml2YWRhcyIKICAgICAgICAgICAgICAgIHNlbGYuY2F0ZWdvcnkgPSBjaGFubmVsLmNhdGVnb3J5CgogICAgICAgICAgICAgICAgbWVtYmVycyA9IGNoYW5uZWxfLm1lbWJlcnMKICAgICAgICAgICAgICAgIGZvciBtZW1iZXIgaW4gbWVtYmVyczoKICAgICAgICAgICAgICAgICAgICBpZiBtZW1iZXIuaWQgPT0gc2VsZi5pZF9tZW1iZXI6CiAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBGYWxzZQoKICAgICAgICByZXR1cm4gVHJ1ZSAjUGFzc291IGVtIHRvZGFzIGFzIHZlcmlmaWNh5/Vlcw==</text>
-      </register>
-      <register name="8" type="4">
-        <text encoding="base64">CmltcG9ydCBkaXNjb3Jk</text>
-      </register>
       <register name="9" type="4">
-        <text encoding="base64">IFRoZSBjYXRlZ29yeSB0byBwbGFjZSB0aGUgbmV3bHkgY3JlYXRlZCBjaGFubmVsIHVuZGVyLgogICAgICAgICAgICAgICAgVGhlIHBlcm1pc3Npb25zIHdpbGwgYmUgYXV0b21hdGljYWxseSBzeW5jZWQgdG8gY2F0ZWdvcnkgaWYgbm8KICAgICAgICAgICAgb3ZlcndyaXRlcyBhcmUgcHJvdmlkZWQu</text>
+        <text encoding="base64">ICAgIHByaW50KGNoYW5uZWwubmFtZSkKICAgICAgICAgICAgcHJpbnQoY2hhbm5lbC5jYXRlZ29yeSk=</text>
       </register>
       <register name="-" type="4">
         <text>print(&quot;Membro:{} - permission:{}&quot;.format(member, member.conect))</text>
