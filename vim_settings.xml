@@ -3,7 +3,7 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
-      <file name="/Dummy.txt" timestamp="1550961080126">
+      <file name="/Dummy.txt" timestamp="1550970534237">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Python Console" timestamp="1550964561410">
@@ -49,8 +49,8 @@
         <mark key="^" line="7" column="7" />
         <mark key="." line="7" column="7" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/requirements.txt" timestamp="1550878003143">
-        <mark key="[" line="0" column="0" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/requirements.txt" timestamp="1550970513584">
+        <mark key="[" line="0" column="12" />
       </file>
       <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550686757396">
         <mark key="[" line="42" column="19" />
@@ -64,7 +64,7 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550968826291">
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1550969937971">
         <mark key="[" line="62" column="120" />
         <mark key="]" line="62" column="94" />
         <mark key="." line="62" column="94" />
