@@ -52,8 +52,8 @@
         <mark key="^" line="7" column="7" />
         <mark key="." line="7" column="7" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/requirements.txt" timestamp="1550970513584">
-        <mark key="[" line="0" column="12" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/requirements.txt" timestamp="1551135946790">
+        <mark key="[" line="1" column="10" />
       </file>
       <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550686757396">
         <mark key="[" line="42" column="19" />
@@ -69,15 +69,21 @@
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1551134750084">
         <mark key="[" line="0" column="0" />
-        <mark key="]" line="41" column="94" />
-        <mark key="." line="41" column="94" />
-        <mark key="^" line="41" column="94" />
+        <mark key="]" line="45" column="94" />
+        <mark key="." line="45" column="94" />
+        <mark key="^" line="45" column="94" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1551032554526">
         <mark key="[" line="39" column="43" />
         <mark key="]" line="40" column="20" />
         <mark key="." line="39" column="27" />
         <mark key="^" line="40" column="20" />
+      </file>
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/sql_connect.py" timestamp="1551136467836">
+        <mark key="[" line="25" column="12" />
+        <mark key="]" line="25" column="12" />
+        <mark key="^" line="25" column="12" />
+        <mark key="." line="25" column="12" />
       </file>
     </filemarks>
     <jumps>
@@ -89,7 +95,7 @@
         lang = self.trans.detect()</text>
       </register>
       <register name="&quot;" type="4">
-        <text>from module.translate import Trad</text>
+        <text>.</text>
       </register>
       <register name="2" type="4">
         <text encoding="base64">ICAgZm9yIG1lbWJlciBpbiBjaGFubmVsX29iai5tZW1iZXJzOgogICAgICAgICAgICBwcmludChtZW1iZXIp</text>
@@ -119,7 +125,7 @@
         <text encoding="base64">CiAgICAgICAgICAgIGF3YWl0IG1lc3NhZ2UuZ3VpbGQuY3JlYXRlX2NhdGVnb3J5KCIiKQogICAgICAgICAgICBhd2FpdCBtZXNzYWdlLmd1aWxkLmNyZWF0ZV9jYXRlZ29yeSgiU2FsYXMgUHJpdmFkYXMiKQ==</text>
       </register>
       <register name="-" type="4">
-        <text>from module.translate import Trad</text>
+        <text>.</text>
       </register>
       <register name="/" type="4">
         <text encoding="base64">XDxndWlsZFw+</text>
