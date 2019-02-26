@@ -6,7 +6,7 @@
       <file name="/Dummy.txt" timestamp="1551033118023">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/Python Console" timestamp="1550964561410">
+      <file name="/Python Console" timestamp="1551139527816">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/chatprivatetext.py" timestamp="1550818471977">
@@ -67,11 +67,11 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1551138602553">
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1551139519374">
         <mark key="[" line="45" column="0" />
-        <mark key="]" line="53" column="94" />
-        <mark key="." line="53" column="94" />
-        <mark key="^" line="53" column="94" />
+        <mark key="]" line="55" column="94" />
+        <mark key="." line="55" column="94" />
+        <mark key="^" line="55" column="94" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1551032554526">
         <mark key="[" line="39" column="43" />
@@ -79,11 +79,11 @@
         <mark key="." line="39" column="27" />
         <mark key="^" line="40" column="20" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/sql_connect.py" timestamp="1551138647766">
-        <mark key="[" line="23" column="20" />
-        <mark key="]" line="23" column="21" />
-        <mark key="^" line="23" column="12" />
-        <mark key="." line="23" column="21" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/sql_connect.py" timestamp="1551139646389">
+        <mark key="[" line="28" column="18" />
+        <mark key="]" line="28" column="17" />
+        <mark key="^" line="28" column="17" />
+        <mark key="." line="28" column="17" />
       </file>
     </filemarks>
     <jumps>
