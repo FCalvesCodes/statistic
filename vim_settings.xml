@@ -62,8 +62,8 @@
         <mark key="^" line="7" column="7" />
         <mark key="." line="7" column="7" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/requirements.txt" timestamp="1551135946790">
-        <mark key="[" line="1" column="10" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/requirements.txt" timestamp="1551150278534">
+        <mark key="[" line="2" column="7" />
       </file>
       <file name="$USER_HOME$/PycharmProjects/botger1/updates/chatprivate.py" timestamp="1550686757396">
         <mark key="[" line="42" column="19" />
@@ -77,7 +77,7 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1551149437878">
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1551150228516">
         <mark key="[" line="83" column="34" />
         <mark key="]" line="83" column="29" />
         <mark key="." line="83" column="29" />
@@ -89,17 +89,17 @@
         <mark key="." line="39" column="27" />
         <mark key="^" line="40" column="20" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/sql_connect.py" timestamp="1551146188710">
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/sql_connect.py" timestamp="1551150226129">
         <mark key="[" line="27" column="7" />
         <mark key="]" line="27" column="7" />
         <mark key="^" line="23" column="25" />
         <mark key="." line="27" column="7" />
       </file>
       <file name="$USER_HOME$/Desktop/botger/modulos/db_botger.py" timestamp="1551148835877">
-        <mark key="[" line="34" column="25" />
-        <mark key="]" line="34" column="18" />
-        <mark key="^" line="34" column="18" />
-        <mark key="." line="34" column="18" />
+        <mark key="[" line="36" column="25" />
+        <mark key="]" line="36" column="18" />
+        <mark key="^" line="36" column="18" />
+        <mark key="." line="36" column="18" />
       </file>
     </filemarks>
     <jumps>
