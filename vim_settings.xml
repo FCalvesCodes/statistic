@@ -6,7 +6,7 @@
       <file name="/Dummy.txt" timestamp="1551033118023">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/Python Console" timestamp="1551193926317">
+      <file name="/Python Console" timestamp="1551196269823">
         <mark key="'" line="0" column="51" />
         <mark key="[" line="0" column="0" />
         <mark key="]" line="0" column="105" />
@@ -77,8 +77,8 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1551150228516">
-        <mark key="[" line="83" column="34" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1551196984472">
+        <mark key="[" line="83" column="0" />
         <mark key="]" line="83" column="29" />
         <mark key="." line="83" column="29" />
         <mark key="^" line="83" column="29" />
@@ -95,7 +95,8 @@
         <mark key="^" line="23" column="25" />
         <mark key="." line="27" column="7" />
       </file>
-      <file name="$USER_HOME$/Desktop/botger/modulos/db_botger.py" timestamp="1551194674923">
+      <file name="$USER_HOME$/Desktop/botger/modulos/db_botger.py" timestamp="1551197135871">
+        <mark key="'" line="57" column="57" />
         <mark key="[" line="62" column="8" />
         <mark key="]" line="62" column="8" />
         <mark key="^" line="36" column="18" />
@@ -105,6 +106,7 @@
     <jumps>
       <jump line="39" column="8" filename="$USER_HOME$/Desktop/Bot-onmyoji/module/chatprivatetext.py" />
       <jump line="0" column="51" filename="/Python Console" />
+      <jump line="57" column="57" filename="$USER_HOME$/Desktop/botger/modulos/db_botger.py" />
     </jumps>
     <registers>
       <register name="1" type="4">
