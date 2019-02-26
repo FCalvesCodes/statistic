@@ -67,11 +67,11 @@
         <mark key="^" line="3" column="2" />
         <mark key="." line="3" column="2" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1551139519374">
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/botger.py" timestamp="1551141612250">
         <mark key="[" line="45" column="0" />
-        <mark key="]" line="55" column="94" />
-        <mark key="." line="55" column="94" />
-        <mark key="^" line="55" column="94" />
+        <mark key="]" line="57" column="94" />
+        <mark key="." line="57" column="94" />
+        <mark key="^" line="57" column="94" />
       </file>
       <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/customization.py" timestamp="1551032554526">
         <mark key="[" line="39" column="43" />
@@ -79,11 +79,11 @@
         <mark key="." line="39" column="27" />
         <mark key="^" line="40" column="20" />
       </file>
-      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/sql_connect.py" timestamp="1551139646389">
-        <mark key="[" line="28" column="18" />
-        <mark key="]" line="28" column="17" />
-        <mark key="^" line="28" column="17" />
-        <mark key="." line="28" column="17" />
+      <file name="$USER_HOME$/Desktop/Bot-onmyoji/module/sql_connect.py" timestamp="1551141334583">
+        <mark key="[" line="21" column="16" />
+        <mark key="]" line="21" column="16" />
+        <mark key="^" line="18" column="15" />
+        <mark key="." line="21" column="16" />
       </file>
     </filemarks>
     <jumps>
@@ -94,7 +94,7 @@
         <text encoding="base64">IHNlbGYubGltaXRtYXhfbWVtYmVyID0gNQogICAgICAgIHNlbGYubGltaXRtaW5fbWVtYmVyID0gMg==</text>
       </register>
       <register name="&quot;" type="4">
-        <text encoding="base64">IHNlbGYubGltaXRtYXhfbWVtYmVyID0gNQogICAgICAgIHNlbGYubGltaXRtaW5fbWVtYmVyID0gMg==</text>
+        <text encoding="base64">IA==</text>
       </register>
       <register name="2" type="4">
         <text>def detection_language(self, message):
@@ -125,7 +125,7 @@
                 self.category = channel_.category</text>
       </register>
       <register name="-" type="4">
-        <text>)</text>
+        <text encoding="base64">IA==</text>
       </register>
       <register name="/" type="4">
         <text encoding="base64">XDxndWlsZFw+</text>
