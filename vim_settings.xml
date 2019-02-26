@@ -6,9 +6,9 @@
       <file name="/Dummy.txt" timestamp="1551033118023">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/Python Console" timestamp="1551146784647">
+      <file name="/Python Console" timestamp="1551193926317">
         <mark key="'" line="0" column="51" />
-        <mark key="[" line="0" column="105" />
+        <mark key="[" line="0" column="0" />
         <mark key="]" line="0" column="105" />
         <mark key="^" line="0" column="24" />
         <mark key="." line="0" column="105" />
@@ -35,8 +35,8 @@
       <file name="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/discord/compat.py" timestamp="1550350282078">
         <mark key="[" line="26" column="13" />
       </file>
-      <file name="$USER_HOME$/Desktop/botger/botger.py" timestamp="1551147925102">
-        <mark key="[" line="21" column="22" />
+      <file name="$USER_HOME$/Desktop/botger/botger.py" timestamp="1551194138968">
+        <mark key="[" line="38" column="30" />
         <mark key="]" line="21" column="10" />
         <mark key="^" line="21" column="10" />
         <mark key="." line="21" column="10" />
@@ -95,11 +95,11 @@
         <mark key="^" line="23" column="25" />
         <mark key="." line="27" column="7" />
       </file>
-      <file name="$USER_HOME$/Desktop/botger/modulos/db_botger.py" timestamp="1551148835877">
-        <mark key="[" line="36" column="25" />
-        <mark key="]" line="36" column="18" />
+      <file name="$USER_HOME$/Desktop/botger/modulos/db_botger.py" timestamp="1551194674923">
+        <mark key="[" line="62" column="8" />
+        <mark key="]" line="62" column="8" />
         <mark key="^" line="36" column="18" />
-        <mark key="." line="36" column="18" />
+        <mark key="." line="62" column="8" />
       </file>
     </filemarks>
     <jumps>
@@ -111,7 +111,7 @@
         <text encoding="base64">IHNlbGYuY3Vyc29yLmV4ZWN1dGUoZiJJTlNFUlQgSU5UTyBzZXJ2aWRvcmVzIFZBTFVFUyAoe2d1aWxkLmlkfSwgJ3tndWlsZC5uYW1lfScse2d1aWxkLm93bmVyX2lkfSwne2d1aWxkLmdldF9tZW1iZXIoZ3VpbGQub3duZXJfaWQpLm5hbWV9JywgREFURSAne2RhdGV0aW1lLmRhdGUudG9kYXkoKS5pc29mb3JtYXQoKX0nLCB7Mn0sICcxJykiKQogICAgICAgIHNlbGYuY29uLmNvbW1pdCgp</text>
       </register>
       <register name="&quot;" type="4">
-        <text>546406463736905738</text>
+        <text>print(&quot;Cadastro no banco concluido com sucesso !&quot;)</text>
       </register>
       <register name="2" type="4">
         <text encoding="base64">IHNlbGYubGltaXRtYXhfbWVtYmVyID0gNQogICAgICAgIHNlbGYubGltaXRtaW5fbWVtYmVyID0gMg==</text>
@@ -140,7 +140,7 @@
         <text encoding="base64">ICAgICAgIHByaW50KGNhdGVnb3J5X3ZvaWNlKQogICAgICAgICAgICBwcmludChjYXRlZ29yeV92b2ljZS5uYW1lKQ==</text>
       </register>
       <register name="-" type="4">
-        <text>546406463736905738</text>
+        <text>print(&quot;Cadastro no banco concluido com sucesso !&quot;)</text>
       </register>
       <register name="/" type="4">
         <text encoding="base64">XDxndWlsZFw+</text>
